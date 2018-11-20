@@ -25,9 +25,9 @@
  * @param string $tag shortcode used
  * @return string the generated HTML
  */
-function oik_block_blocks( $atts, $content, $tag ) {
+function oik_blocks_blocks( $atts, $content, $tag ) {
 
-	$post_id = oik_block_get_post_id( $atts );
+	$post_id = oik_blocks_get_post_id( $atts );
 	if ( $post_id ) {
 		if ( is_single( $post_id ) ) {
 			$post = get_post( $post_id );
@@ -52,7 +52,7 @@ function oik_block_blocks( $atts, $content, $tag ) {
 /**
  */
 
-function oik_block_get_post_id( $atts ) {
+function oik_blocks_get_post_id( $atts ) {
   $post_id = bw_array_get( $atts, "id", null );
   if ( $post_id ) {
     $single = true;
@@ -81,7 +81,7 @@ function oik_block_get_post_id( $atts ) {
  * core/latest-posts 
  * 
  */
-function oik_block_registered_blocks() {
+function oik_blocks_registered_blocks() {
 
 
 	//WP_Block_Registry::get_all_registered

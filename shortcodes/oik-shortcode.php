@@ -6,7 +6,7 @@
  * @param array $attributes including shortcode ( mandatory ) and content ( optional )
  * @return generated HTML
  */
-function oik_block_shortcode_block( $attributes ) {
+function oik_blocks_shortcode_block( $attributes ) {
 	bw_trace2();
 	$shortcode = bw_array_get( $attributes, "shortcode", null );
 	$content = bw_array_get( $attributes, "content", null );
