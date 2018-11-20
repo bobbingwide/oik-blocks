@@ -28,7 +28,7 @@
  * @param 
  */
 
-function oik_block_content( $atts=null, $content=null, $tag=null ) {
+function oik_blocks_content( $atts=null, $content=null, $tag=null ) {
 	oik_block_reset_editable();
 	//$post_types = bw_list_registered_post_types();
 	oik_require( "shortcodes/oik-table.php" );
@@ -48,7 +48,7 @@ function oik_block_content( $atts=null, $content=null, $tag=null ) {
 		$count = oik_block_count_posts( $post_type );
 		$row[] = $count;
 		$total += $count;
-		$editor = oik_block_post_type_compatible( $post_type, $post_type_object, $row );
+		$editor = oik_blocks_post_type_compatible( $post_type, $post_type_object, $row );
 		$row[] = $editor;
 		
 		oik_block_count_editable( $count, $editor );
