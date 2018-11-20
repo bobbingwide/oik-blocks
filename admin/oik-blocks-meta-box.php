@@ -15,7 +15,7 @@
  * and explanations for that setting. 
  * 
  */
-function oik_block_meta_box( $post, $metabox ) {
+function oik_blocks_meta_box( $post, $metabox ) {
   oik_require( "shortcodes/oik-content.php", "oik-block" );
 	
 	oik_block_display_post_opinions( $post );
@@ -24,8 +24,8 @@ function oik_block_meta_box( $post, $metabox ) {
 	//oik_block_revisions( $post );
 
 	
-	$preferred_editor = oik_block_get_preferred_editor( $post );
-	$preferred_editor_options = oik_block_get_preferred_editor_options();
+	$preferred_editor = oik_blocks_get_preferred_editor( $post );
+	$preferred_editor_options = oik_blocks_get_preferred_editor_options();
 	//BW_::p( __( "Editor selection", "oik-block" ) );
 	//e( $preferred_editor );
 	
@@ -40,7 +40,7 @@ function oik_block_meta_box( $post, $metabox ) {
 }
 
 
-function oik_block_display_post_opinions( $post ) {
+function oik_blocks_display_post_opinions( $post ) {
 	//oik_require( "admin/class-oik-block-editor-opinions.php", "oik-block" );
 	//add_action( "oik_block_prepare_opinions", "oik_block_meta_box_prepare_opinions" );
 	oik_require( "oik-block-opinions.php", "oik-block" );

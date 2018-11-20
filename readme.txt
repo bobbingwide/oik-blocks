@@ -31,7 +31,7 @@ oik-blocks provides 11 blocks
 - Google Maps
 - Nivo slider
 - Person
-- Generic shortcode block
+- Prototype Generic shortcode block
 
 For more info on the blocks included in the plugin see:
 
@@ -41,7 +41,7 @@ This is just the start.
 
 This plugin is currently being used for education, demonstration, experimentation and estimation.
 
-The code is being developed to work with latest version of the Gutenberg plugin and the latest build of WordPress 5.0.
+The code is being developed to work with latest version of the Gutenberg plugin and/or the latest build of WordPress 5.0.
 
 We'll refer to Gutenberg as the new editor.
 And each block will be called a block.
@@ -67,12 +67,12 @@ Yes, it's dependent upon a number of other plugins:
 
 - oik 
 - oik-bob-bing-wide
-- gutenberg
+- gutenberg and / or WordPress 5.0-beta5
 - oik-nivo-slider
 - oik-css
 
 == Screenshots ==
-1. oik-blocks's address blocks
+1. oik-blocks's address block
 
 == Upgrade Notice ==
 = 0.0.0-alpha-20181120 =

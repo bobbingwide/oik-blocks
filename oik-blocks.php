@@ -5,7 +5,7 @@
  * Description: WordPress Gutenberg blocks for oik shortcodes
  * Author: Herb Miller
  * Author URI: https://herbmiller.me/about/mick
- * Version: 0.0.0-alpha-20181118
+ * Version: 0.0.0-alpha-20181120
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  *
@@ -60,6 +60,7 @@ function oik_blocks_editor_scripts() {
 	}
 
 	if ( doing_filter( "replace_editor" ) ) {
+		oik_blocks_register_editor_scripts();
 		wp_enqueue_script( 'oik_blocks-blocks-js' );
 		// Pass in REST URL
 		wp_localize_script(
@@ -345,8 +346,8 @@ function oik_blocks_loaded() {
 	
 	
   if ( !defined('DOING_AJAX') ) {
-    add_action( "save_post", "oik_blocks_save_post", 10, 3 );
-		add_action( 'add_meta_boxes', 'oik_blocks_add_meta_boxes', 10, 2 );
+    //add_action( "save_post", "oik_blocks_save_post", 10, 3 );
+	//	add_action( 'add_meta_boxes', 'oik_blocks_add_meta_boxes', 10, 2 );
     //add_action( "edit_attachment", "oik_clone_edit_attachment", 10, 1 );
     //add_action( "add_attachment", "oik_clone_add_attachment", 10, 1 );
   }
@@ -448,7 +449,7 @@ function oik_blocks_add_meta_boxes( $post_type, $post ) {
   //if ( $clone ) {
 	if ( function_exists( 'bw_as_array')) {
 
-		oik_require( "admin/oik-block-meta-box.php", "oik-blocks" );
+		oik_require( "admin/oik-blocks-meta-box.php", "oik-blocks" );
 
 		add_meta_box( 'oik_blocks', __( "Editor selection", 'oik-blocks' ), 'oik_blocks_meta_box', $post_type, 'normal', 'default' );
 	}

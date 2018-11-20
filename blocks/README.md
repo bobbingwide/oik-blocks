@@ -18,7 +18,7 @@ oik-googlemap    | Static  | [bw_show_googlemap] | Google Maps Map
 oik-nivo         | Static  | [nivo]              | Nivo slider
 oik-person       | Static  | [bw_user] [bw_follow_me] | Person block
 oik-css          | Dynamic | [bw_css]            | Inline CSS 
-oik-csv          | Dynamic |  [bw_csv]           | Display CSV content
+oik-csv          | Dynamic | [bw_csv]            | Display CSV content
 oik-shortcode    | Dynamic | various             | Dynamic shortcode block
 
 
