@@ -4,9 +4,9 @@
 * Donate link: https://www.oik-plugins.com/oik/oik-donate/
 * Tags: gutenberg, shortcode, blocks, oik
 * Requires at least: 4.9.8
-* Tested up to: 5.0-beta5
+* Tested up to: 5.0-RC1
 * Gutenberg compatible: Yes
-* Stable tag: 0.0.0-alpha-20181120
+* Stable tag: 0.0.0-alpha-20181125
 * License: GPLv3 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,10 +76,18 @@ Yes, it's dependent upon a number of other plugins:
 1. oik-blocks's address block
 
 ## Upgrade Notice 
+# 0.0.0-alpha-20181125 
+No longer displays the Preferred editor meta box
+
+
 # 0.0.0-alpha-20181120 
 Forked from oik-block which will now only implement opinions.
 
 ## Changelog 
+# 0.0.0-alpha-20181125 
+* Deleted: Remove preferred editor, opinions and other stuff that'll remain in oik-block https://github.com/bobbingwide/oik-blocks/issues/1
+* Changed: Updated banner and icon assets to oik-blocks
+
 # 0.0.0-alpha-20181120 
 * Added: New plugin for oik-blocks only, cloned from oik-block
 * Changed: oik-block to oik-blocks, and other variations
