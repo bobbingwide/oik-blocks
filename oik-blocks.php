@@ -2,10 +2,10 @@
 /**
  * Plugin Name: oik-blocks
  * Plugin URI: https://www.oik-plugins.com/oik-plugins/oik-blocks
- * Description: WordPress Gutenberg blocks for oik shortcodes
+ * Description: WordPress 5.0 blocks, aka Gutenberg blocks, for oik shortcodes.
  * Author: Herb Miller
  * Author URI: https://herbmiller.me/about/mick
- * Version: 0.0.0-alpha-20181125
+ * Version: 0.1.0-alpha-20181128
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  *
@@ -14,31 +14,6 @@
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
-
-/*
-function oik_blocks_templates( $args, $post_type ) {
-
-  if ( $post_type == 'post' ) {
-    $args['template_lock'] = true;
-    $args['template'] = [
-      [
-        'core/image', [
-          'align' => 'left',
-        ]
-      ],
-      [
-        'core/paragraph', [
-          'placeholder' => 'The only thing you can add',
-        ]
-      ]
-    ];
-  }
-
-  return $args;
-
-}
-//add_filter( 'register_post_type_args', 'oik_blocks_templates', 20, 2 );
-*/
 
 /**
  * Enqueues block editor JavaScript and CSS
@@ -288,42 +263,25 @@ function oik_blocks_dynamic_alt_block_render( $attributes ) {
 }
 
 /**
- * Implements "gutenberg_can_edit_post_type" for oik-blocks 
- * 
- * Here we'll implement logic to test whether or not we're going to allow Gutenberg to edit the content
- *
- * If the post type doesn't support revisions then we may not want to use Gutenberg,
- * but this shouldn't prevent us from allowing the user to edit the content using the block editor.
- * Disabling the test for now. Herb 2018/04/04
- *
- */
-function oik_blocks_gutenberg_can_edit_post_type( $can_edit, $post_type ) {
-	bw_trace2();
-	//$can_edit = post_type_supports( $post_type, "revisions" );
-	return $can_edit;
-}
-
-/**
  * Implements actions for "oik_loaded"
  *
  * Now we know it's safe to respond to shortcodes
  */
 function oik_blocks_oik_loaded() {
-	add_action( "oik_add_shortcodes", "oik_blocks_oik_add_shortcodes" );
-	add_filter( "oik_blocks_query_inline_shortcodes", "oik_blocks_query_inline_shortcodes" );
-	add_filter( "oik_blocks_query_incompatible_shortcodes", "oik_blocks_query_incompatible_shortcodes" );
+	//add_action( "oik_add_shortcodes", "oik_blocks_oik_add_shortcodes" );
 }
 
 /** 
- * Add our shortcodes
+ * Adds our shortcodes.
+ * 
+ * oik-blocks doesn't have any. see oik-block instead
  */
 function oik_blocks_oik_add_shortcodes() {
-  bw_add_shortcode( "blocks", "oik_blocks_blocks", oik_path("shortcodes/oik-blocks.php", "oik-blocks"), false );
-  bw_add_shortcode( "guts", "oik_blocks_guts", oik_path( "shortcodes/oik-guts.php", "oik-blocks" ), false );
-  bw_add_shortcode( "content", "oik_blocks_content", oik_path( "shortcodes/oik-content.php", "oik-blocks" ), false );
 }
 
-
+/**
+ * Registers oik-blocks processing when plugin loaded
+ */
 function oik_blocks_loaded() {
 
 	// Hook scripts and styles functions into enqueue_block_assets hook
@@ -333,10 +291,6 @@ function oik_blocks_loaded() {
 	
 	// Hook scripts function into block editor hook
 	add_action( 'enqueue_block_editor_assets', 'oik_blocks_editor_scripts' );
-	
-	add_filter( 'gutenberg_can_edit_post_type', 'oik_blocks_gutenberg_can_edit_post_type', 10, 2 );
-	
-	
 
 	add_action( "oik_loaded", "oik_blocks_oik_loaded" );
 	add_action( "plugins_loaded", "oik_blocks_plugins_loaded", 100 );
@@ -344,12 +298,7 @@ function oik_blocks_loaded() {
 	add_action( "init", "oik_blocks_register_dynamic_blocks" );
 	
 	
-	
   if ( !defined('DOING_AJAX') ) {
-    //add_action( "save_post", "oik_blocks_save_post", 10, 3 );
-	//	add_action( 'add_meta_boxes', 'oik_blocks_add_meta_boxes', 10, 2 );
-    //add_action( "edit_attachment", "oik_clone_edit_attachment", 10, 1 );
-    //add_action( "add_attachment", "oik_clone_add_attachment", 10, 1 );
   }
 
 }
@@ -366,7 +315,7 @@ function oik_blocks_register_dynamic_blocks() {
 		//oik_blocks_register_editor_scripts();
 		oik_blocks_boot_libs();
 		register_block_type( 'oik-block/contact-form',
-												[  'render_callback' => 'oik_blocks_dynamic_block_contact_form' 
+												[ 'render_callback' => 'oik_blocks_dynamic_block_contact_form' 
 												,	'editor_script' => 'oik_blocks-blocks-js'
 												, 'editor_style' => null
 												, 'script' => null
@@ -435,77 +384,6 @@ function oik_blocks_boot_libs() {
 		$loaded = include_once( $oik_boot_file );
 	}
 	oik_lib_fallback( __DIR__ . "/libs" );
-}
-
-/** 
- * Implements "add_meta_boxes" for oik-blocks 
- *
- * Adds the meta box to enable the user to set the preferred editor for the post
- * 
- */
-function oik_blocks_add_meta_boxes( $post_type, $post ) {
-
-  //$clone = post_type_supports( $post_type, "clone" );
-  //if ( $clone ) {
-	if ( function_exists( 'bw_as_array')) {
-
-		oik_require( "admin/oik-blocks-meta-box.php", "oik-blocks" );
-
-		add_meta_box( 'oik_blocks', __( "Editor selection", 'oik-blocks' ), 'oik_blocks_meta_box', $post_type, 'normal', 'default' );
-	}
-}
-
-/**
- * Implements save for the oik_blocks meta box
- *
- * We invoke the logic as a lazy function.
- *
- * @param ID $id - the ID of the post being updated
- * @param post $post - the post object
- * @param bool $update - true more often than not
- */
-function oik_blocks_save_post( $id, $post, $update ) {
-  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-		// Ignore autosaves
-	} else {
-		oik_require( "admin/oik-blocks-save-post.php", "oik-blocks" );
-		//oik_blocks_lazy_save_post( $id, $post, $update );
-	}
-}
-
-/**
- * Queries inline shortcodes for oik and related plugins
- * 
- * @TODO Determine if we need to know the component for the shortcode.
- * This may help us decide whether or not to deactivate the plugin
- * See also the schunter plugin.
- * 
- * @param array $inline_shortcodes
- * @return array $inline_shortcodes
- */ 
-function oik_blocks_query_inline_shortcodes( $inline_shortcodes ) {
-	oik_require( "converter/class-shortcode-converter.php", "oik-blocks" );
-	$shortcode_converter = new Shortcode_converter();
-	$inline_shortcodes = $shortcode_converter->query_inline_shortcodes( $inline_shortcodes );
-	return $inline_shortcodes;
-}
-
-
-/**
- * Queries incompatible shortcodes for oik and related plugins
- * 
- * @TODO Determine if we need to know the component for the shortcode.
- * This may help us decide whether or not to deactivate the plugin
- * See also the schunter plugin.
- * 
- * @param array $inline_shortcodes
- * @return array $inline_shortcodes
- */ 
-function oik_blocks_query_incompatible_shortcodes( $incompatible_shortcodes ) {
-	oik_require( "converter/class-shortcode-converter.php", "oik-blocks" );
-	$shortcode_converter = new Shortcode_converter();
-	$incompatible_shortcodes = $shortcode_converter->query_incompatible_shortcodes( $incompatible_shortcodes );
-	return $incompatible_shortcodes;
 }
 
 oik_blocks_loaded();
