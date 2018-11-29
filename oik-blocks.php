@@ -194,6 +194,17 @@ function oik_blocks_dynamic_block_shortcode( $attributes ) {
 }
 
 /**
+ * Renders the WordPress block
+ *
+ * @param array $attributes v, m, p
+ */
+function oik_blocks_dynamic_block_wp( $attributes ) {
+	oik_require( "shortcodes/oik-bob-bing-wide.php", "oik");
+	$html = bw_wp( $attributes );
+	return $html;
+}
+
+/**
  * Returns the content of the dynamic block
  * 
  * This is a quick and dirty hack while we're waiting on a fix for Gutenberg issue #5760
@@ -330,6 +341,15 @@ function oik_blocks_register_dynamic_blocks() {
 												]
 											 );
 		register_block_type( 'oik-block/shortcode-block', [ 'render_callback' => 'oik_blocks_dynamic_block_shortcode' ] );
+		register_block_type( 'oik-block/wp',
+			[ 'render_callback' => 'oik_blocks_dynamic_block_wp',
+			  'attributes' => [ 'v' =>  [ 'type' => 'string', ]
+				               , 'p' => ['type' => 'string' ]
+			                    , 'm' => ['type' => 'string']
+				  ]
+			]
+
+		);
 												 
 	}
 }
