@@ -3,7 +3,7 @@ Contributors: bobbingwide
 Donate link: https://www.oik-plugins.com/oik/oik-donate/
 Tags: gutenberg, shortcode, blocks, oik
 Requires at least: 4.9.8
-Tested up to: 5.0-RC1
+Tested up to: 5.0-RC3
 Gutenberg compatible: Yes
 Stable tag: 0.1.0-alpha-20181128
 License: GPLv3 or later
@@ -12,18 +12,17 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 == Description ==
 WordPress 5.0 blocks, aka Gutenberg blocks, for oik shortcodes.
 
-This is mostly prototype code delivering a number of the oik shortcodes 
+This is mostly prototype code delivering a number of the oik shortcodes
 as blocks for the new WordPress content editor.
 
-
-oik delivers over 80 shortcodes. 
+oik delivers over 80 shortcodes.
 Some of these are crying out to be converted into advanced WordPress blocks.
 
 oik-blocks provides 11 blocks
 
 - Address
 - CSS
-- CSV 
+- CSV
 - Contact form
 - Countdown
 - Follow me
@@ -32,6 +31,11 @@ oik-blocks provides 11 blocks
 - Nivo slider
 - Person
 - Prototype Generic shortcode block
+
+For more info on the blocks included in the plugin see:
+
+[blocks readme](https://github.com/bobbingwide/oik-blocks/tree/master/blocks)
+
 
 For more info on the blocks included in the plugin see:
 

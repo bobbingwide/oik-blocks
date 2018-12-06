@@ -1,3 +1,11 @@
+/**
+ * Follow me block for the [bw_follow_me] shortcode
+ *
+ *
+ *
+ * @copyright (C) Copyright Bobbing Wide 2018
+ * @author Herb Miller @bobbingwide
+ */
 import './style.scss';
 import './editor.scss';
 
@@ -9,9 +17,14 @@ const { __ } = wp.i18n;
 // Get registerBlockType and Editable from wp.blocks
 const { 
 	registerBlockType, 
-	Editable,
-  InspectorControls,
- } = wp.blocks;
+} = wp.blocks;
+const {
+    Editable,
+    PlainText,
+    AlignmentToolbar,
+    BlockControls,
+    InspectorControls,
+} = wp.editor;
 	 
 const {
   Toolbar,
@@ -110,7 +123,7 @@ export default registerBlockType(
 					
           return [
 						
-  					!! props.focus && (
+
               <InspectorControls key="follow-me">
 								<PanelBody key="pb">
 								<TextControl label="User" value={props.attributes.user} id="hm001" instanceId="fm-user" onChange={onChangeUser}  />
@@ -118,7 +131,7 @@ export default registerBlockType(
 								<TextControl label="Network" value={props.attributes.network} id="hm003" instanceId="fm-network" onChange={onChangeNetwork}  /> 
 								 </PanelBody>
               </InspectorControls>
-  					),
+  					,
 					
 					
             <div className={ props.className }>

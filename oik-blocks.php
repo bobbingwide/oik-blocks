@@ -34,7 +34,7 @@ function oik_blocks_editor_scripts() {
 		gob();
 	}
 
-	if ( doing_filter( "replace_editor" ) ) {
+	//if ( doing_filter( "replace_editor" ) ) {
 		oik_blocks_register_editor_scripts();
 		wp_enqueue_script( 'oik_blocks-blocks-js' );
 		// Pass in REST URL
@@ -44,7 +44,7 @@ function oik_blocks_editor_scripts() {
 			[
 				'rest_url' => esc_url( rest_url() )
 			]);
-	}
+	//}
 	// Enqueue optional editor only styles
 	$editorStylePath = 'blocks/build/css/blocks.editor.css';
 		
