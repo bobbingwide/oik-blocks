@@ -13,6 +13,7 @@ github           | Static  | [github]            | Wrapper to [github] shortcode
 oik-address      | Static  | [bw_address]        | Address block
 oik-contact-form | Dynamic | [bw_contact_form]   | Contact form 
 oik-countdown    | Static  | [bw_countdown]      | Countdown timer
+oik-geshi        | Dynamic SSR | [bw_geshi] | Generic Syntax Highlighting
 oik-follow-me    | Static  | [bw_follow_me]      | Social media follow me
 oik-googlemap    | Static  | [bw_show_googlemap] | Google Maps Map
 oik-nivo         | Static  | [nivo]              | Nivo slider
@@ -22,7 +23,7 @@ oik-csv          | Dynamic | [bw_csv]            | Display CSV content
 oik-shortcode    | Dynamic | various             | Dynamic shortcode block
 
 
-In each folder there are at least 3 files
+In each folder there is at least 1 .js file, and there could be some .scss files.
 
 File |  Target | Contents
 ----- | ------	| --------------

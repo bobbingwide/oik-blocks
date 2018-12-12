@@ -175,6 +175,7 @@ function oik_blocks_dynamic_block_csv( $attributes ) {
 	bw_trace2( $content, "Content" );
 	oik_require( "shortcodes/oik-csv.php", "oik-bob-bing-wide" );
 	$html = bw_csv( $attributes, $content );
+	bw_trace2( $html, "html", false );
 	return $html;
 }
 
@@ -201,6 +202,21 @@ function oik_blocks_dynamic_block_shortcode( $attributes ) {
 function oik_blocks_dynamic_block_wp( $attributes ) {
 	oik_require( "shortcodes/oik-bob-bing-wide.php", "oik");
 	$html = bw_wp( $attributes );
+	return $html;
+}
+
+/**
+* Renders the GeSHi block
+                        *
+ * @param array $attributes lang, type, content
+ */
+function oik_blocks_dynamic_block_geshi( $attributes ) {
+	oik_require( "shortcodes/oik-geshi.php", "oik-css");
+	$content = bw_array_get( $attributes, "content", null);
+	$html = oik_geshi( $attributes, $content );
+	if ( !$html ) {
+		$html = "empty";
+	}
 	return $html;
 }
 
@@ -348,7 +364,14 @@ function oik_blocks_register_dynamic_blocks() {
 			                    , 'm' => ['type' => 'string']
 				  ]
 			]
-
+		);
+		register_block_type( 'oik-block/geshi',
+			[ 'render_callback' => 'oik_blocks_dynamic_block_geshi',
+			  'attributes' => [ 'lang' =>  [ 'type' => 'string', ]
+				  , 'text' => ['type' => 'string' ]
+				  , 'content' => ['type' => 'string']
+			  ]
+			]
 		);
 												 
 	}
