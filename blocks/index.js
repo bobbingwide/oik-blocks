@@ -21,6 +21,7 @@ import './oik-csv';          // From oik-bob-bing-wide bw_csv
 import './oik-shortcode';    // From oik general purpose shortcode block
 import './oik-wp';           // From oik-bob-bing-wide wp shortcode
 import './oik-geshi';        // From oik-css bw_geshi shortcode
+import './oik-search';       // From wordpress - get_search_form()
 
 
 

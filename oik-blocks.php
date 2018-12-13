@@ -221,6 +221,15 @@ function oik_blocks_dynamic_block_geshi( $attributes ) {
 }
 
 /**
+ * Renders the Search block
+ *
+ * @param array $attributes
+ */
+function oik_blocks_dynamic_block_search( $attributes ) {
+	$html = get_search_form( false );
+	return $html;
+}
+/**
  * Returns the content of the dynamic block
  * 
  * This is a quick and dirty hack while we're waiting on a fix for Gutenberg issue #5760
@@ -373,6 +382,9 @@ function oik_blocks_register_dynamic_blocks() {
 			  ]
 			]
 		);
+		register_block_type( "oik-block/search",
+		[ 'render_callback' => 'oik_blocks_dynamic_block_search' ]
+			);
 												 
 	}
 }
