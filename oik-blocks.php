@@ -5,7 +5,7 @@
  * Description: WordPress 5.0 blocks, aka Gutenberg blocks, for oik shortcodes.
  * Author: Herb Miller
  * Author URI: https://herbmiller.me/about/mick
- * Version: 0.1.0-alpha-20181128
+ * Version: 0.1.0-alpha-20181213
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  *
