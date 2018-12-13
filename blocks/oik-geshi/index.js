@@ -32,9 +32,11 @@ const {
 } = wp.components;
 
 import { map, partial } from 'lodash';
+const Fragment = wp.element.Fragment;
 
 /**
-* These are the different options for the GeSHi lang attribute
+* These are the different options for the GeSHi lang= attribute.
+ * It's tricky getting it to accept lang=none!
 */
 const langOptions =
     { none: "None",
@@ -75,6 +77,7 @@ export default registerBlockType(
         attributes: {
             lang: {
                 type: 'string',
+                default: '',
             },
             text: {
                 type: 'string',
@@ -84,6 +87,13 @@ export default registerBlockType(
             },
 
 
+        },
+
+
+        supports: {
+            customClassName: false,
+            className: false,
+            html: false,
         },
 
         edit: props => {
@@ -114,10 +124,13 @@ export default registerBlockType(
                 props.setAttributes( { [key] : value } );
             };
 
+            const isSelected = props.isSelected;
 
 
 
-            return [
+
+            return (
+                <Fragment>
                 <InspectorControls >
                     <PanelBody>
                         <PanelRow>
@@ -136,20 +149,26 @@ export default registerBlockType(
                     </PanelBody>
 
                 </InspectorControls>
-                , <ServerSideRender
-                    block="oik-block/geshi" attributes={ props.attributes }
-                />,
-                props.isSelected &&
-                <div className="wp-block-oik-block-geshi wp-block-shortcode" key="content-input">
+                    {!isSelected &&
+                    <ServerSideRender
+                        block="oik-block/geshi" attributes={props.attributes}
+                    />
+                    }
+
+                    {isSelected &&
+                    <div className="wp-block-oik-block-geshi wp-block-shortcode" key="content-input">
                     <PlainText
-                value={ props.attributes.content }
-                placeholder={ __( 'Write code' ) }
-            onChange={onChangeContent}
-            />,
+                        value={props.attributes.content}
+                        placeholder={__('Write code')}
+                        onChange={onChangeContent}
+                    />
+                    </div>
+                    }
 
-        </div>
 
-            ];
+                </Fragment>
+
+        );
         },
 
 
