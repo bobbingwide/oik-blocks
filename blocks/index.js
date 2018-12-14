@@ -9,7 +9,7 @@
  * @author Herb Miller @bobbingwide
  */
 import './github';	         // From oik-bob-bing-wide
-import './oik-address';			 // From oik & oik-user
+import './oik-address';		 // From oik & oik-user
 import './oik-googlemap';    // From oik bw_show_googlemap
 import './oik-person';       // From oik-user bw_user  and bw_follow_me etc
 import './oik-contact-form'; // From oik bw_contact_form
@@ -22,6 +22,8 @@ import './oik-shortcode';    // From oik general purpose shortcode block
 import './oik-wp';           // From oik-bob-bing-wide wp shortcode
 import './oik-geshi';        // From oik-css bw_geshi shortcode
 import './oik-search';       // From wordpress - get_search_form()
+import './oik-uk-tides';     // From uk-tides - [bw_tides] shortcode
+//import './oik-fields';       // From oik-fields - [bw_fields] and [bw_field] shortcode
 
 
 

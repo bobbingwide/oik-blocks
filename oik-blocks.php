@@ -229,6 +229,73 @@ function oik_blocks_dynamic_block_search( $attributes ) {
 	$html = get_search_form( false );
 	return $html;
 }
+
+/**
+ * Renders the UK tides block
+ *
+ * @param array $attributes
+ */
+function oik_blocks_dynamic_block_uk_tides( $attributes ) {
+	$html = oik_blocks_check_server_func( "shortcodes/uk-tides.php", "uk-tides", "bw_tides");
+	if ( null === $html ) {
+		$attributes = oik_blocks_uk_tides_attributes( $attributes );
+		$html = bw_tides( $attributes, null, null );
+	}
+	return $html;
+}
+
+/**
+ * Sets parameters for bw_tides from the blocks attributes
+ * * domain | format
+ * ------ | -----------------------------------
+ * tidetimes.org.uk | domain/port-tide-times.rss
+ * tidetimes.co.uk  | domain/rss/port-tide-times
+ *
+ * @param $attributes site, port
+ * @return array with tideurl and store set from site and port
+ */
+function oik_blocks_uk_tides_attributes( $attributes ) {
+	bw_trace2( $attributes );
+	$site = bw_array_get( $attributes, "site", null );
+	$port = bw_array_get( $attributes, "port", null );
+	switch ( $site ) {
+		case "couk":
+			$tideurl = "https://tidetimes.co.uk/rss/$port-tide-times";
+			break;
+		default:
+			$tideurl = "https://tidetimes.org.uk/$port-tide-times.rss";
+	}
+	$attributes[ 'tideurl'] = $tideurl;
+	$attributes[ 'store'] = $tideurl;
+
+	return $attributes;
+}
+
+/**
+ * Checks if the server function is available
+ *
+ * Returns null if everything is OK, HTML if there's a problem
+ *
+ * @param $filename - relative path for the file to load
+ * @param $plugin - plugin name
+ * @param $funcname - required function name
+ * @return string| null
+ */
+
+function oik_blocks_check_server_func( $filename, $plugin, $funcname ) {
+	$html = null;
+	if ( is_callable( $funcname )) {
+		return $html;
+	}
+	$path = oik_path( $filename, $plugin );
+	if ( file_exists( $path ) ) {
+		require_once $path;
+	}
+	if ( !is_callable( $funcname )) {
+		$html = "Server function $funcname not available";
+	}
+	return $html;
+}
 /**
  * Returns the content of the dynamic block
  * 
@@ -385,7 +452,16 @@ function oik_blocks_register_dynamic_blocks() {
 		register_block_type( "oik-block/search",
 		[ 'render_callback' => 'oik_blocks_dynamic_block_search' ]
 			);
-												 
+
+		register_block_type( "oik-block/uk-tides",
+			[ 'render_callback' => 'oik_blocks_dynamic_block_uk_tides',
+			  'attributes' => [
+			  	    'site' => [ 'type' => 'string' ]
+				  , 'port' => [ 'type' => 'string' ]
+			  ]
+			]
+
+		);
 	}
 }
 
