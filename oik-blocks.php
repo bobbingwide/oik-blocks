@@ -20,6 +20,7 @@ defined( 'ABSPATH' ) || exit;
  * 
  * Notes:
  * - This routine shouldn't be invoked when using the classic-editor
+ * - But we can no longer perform tests on the classic-editor parameter alone
  * - It should only enqueue scripts for the Gutenberg editor
  * - Not in other admin areas 
  * 
@@ -272,6 +273,58 @@ function oik_blocks_uk_tides_attributes( $attributes ) {
 }
 
 /**
+ * Renders the Fields block
+ *
+ * @param array $attributes fields, labels
+ * @return string generated HTML
+ */
+function oik_blocks_dynamic_block_fields( $attributes ) {
+	$html = oik_blocks_check_server_func( "shortcodes/oik-fields.php", "oik-fields", "bw_metadata");
+	if ( null === $html ) {
+		$attributes = oik_blocks_fields_attributes( $attributes );
+		$html = bw_metadata( $attributes, null, null );
+		$html = oik_blocks_fields_results( $html, $attributes );
+	}
+	return $html;
+}
+
+/**
+ * 'Filters' the Fields block's attributes
+ *
+ * @param array $attributes
+ * @return array $attributes
+ */
+function oik_blocks_fields_attributes( $attributes ) {
+	$fields = bw_array_get( $attributes, "fields", "none" );
+	if ( "none" === $fields ) {
+		unset( $attributes[ 'fields' ] );
+	}
+	return $attributes;
+}
+
+/**
+ * 'filters' the Fields block's results
+ *
+ * @param string $html
+ * @param array $attributes
+ * @return string HTML
+ */
+function oik_blocks_fields_results( $html, $attributes ) {
+	//bw_trace2();
+	$fields = bw_array_get( $attributes, "fields", "none" );
+	if ( $fields === 'featured' && ! has_post_thumbnail() ) {
+		$html .= "Please set featured image";
+	}
+
+	return $html;
+}
+
+function oik_blocks_fields_featured_image_not_set() {
+	return;
+}
+
+
+/**
  * Checks if the server function is available
  *
  * Returns null if everything is OK, HTML if there's a problem
@@ -458,6 +511,16 @@ function oik_blocks_register_dynamic_blocks() {
 			  'attributes' => [
 			  	    'site' => [ 'type' => 'string' ]
 				  , 'port' => [ 'type' => 'string' ]
+			  ]
+			]
+
+		);
+		register_block_type( "oik-block/fields",
+			[ 'render_callback' => 'oik_blocks_dynamic_block_fields',
+			  'attributes' => [
+				  'fields' => [ 'type' => 'string' ],
+				  'labels' => [ 'type' => 'string' ],
+
 			  ]
 			]
 

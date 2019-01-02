@@ -23,7 +23,7 @@ import './oik-wp';           // From oik-bob-bing-wide wp shortcode
 import './oik-geshi';        // From oik-css bw_geshi shortcode
 import './oik-search';       // From wordpress - get_search_form()
 import './oik-uk-tides';     // From uk-tides - [bw_tides] shortcode
-//import './oik-fields';       // From oik-fields - [bw_fields] and [bw_field] shortcode
+import './oik-fields';       // From oik-fields - [bw_fields] and [bw_field] shortcode
 
 
 
