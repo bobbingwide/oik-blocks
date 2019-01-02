@@ -2,8 +2,8 @@
  * Implements UK tides as a server rendered block
  *
  * - Depends on uk-tides for server logic
- * - Supports easier to use parameter for source of tidal information
- * - Supports easier to use parameter for specifying the location
+ * - Supports easier to use parameter for source of tidal information ( Site )
+ * - Supports easier to use parameter for specifying the location ( Port )
  * - Server side rendering when the block is not selected.
  *
  * @copyright (C) Copyright Bobbing Wide 2018

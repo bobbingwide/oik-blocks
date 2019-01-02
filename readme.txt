@@ -3,9 +3,9 @@ Contributors: bobbingwide
 Donate link: https://www.oik-plugins.com/oik/oik-donate/
 Tags: gutenberg, shortcode, blocks, oik
 Requires at least: 4.9.8
-Tested up to: 5.0.1
+Tested up to: 5.0.2
 Gutenberg compatible: Yes
-Stable tag: 0.1.0-alpha-20181213
+Stable tag: 0.1.0-alpha-20190102
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,20 +18,23 @@ as blocks for the new WordPress content editor.
 oik delivers over 80 shortcodes.
 Some of these are crying out to be converted into advanced WordPress blocks.
 
-oik-blocks provides 13 blocks
+oik-blocks provides 16 blocks
 
 - Address
-- CSS
-- CSV
 - Contact form
 - Countdown
+- CSS
+- CSV
+- Fields
 - Follow me
 - GeSHi
 - GitHub Issue
 - Google Maps
 - Nivo slider
 - Person
+- Search
 - Prototype Generic shortcode block
+- UK tides
 - WordPress version
 
 
@@ -66,18 +69,22 @@ Where can I find out more?
 [github bobbingwide oik-blocks ]
 
 
-Yes, it's dependent upon a number of other plugins:
+Yes, it uses a number of other plugins:
 
 - oik 
 - oik-bob-bing-wide
-- gutenberg and / or WordPress 5.0-beta5
+- gutenberg and / or WordPress 5.0
 - oik-nivo-slider
 - oik-css
+- uk-tides
 
 == Screenshots ==
 1. oik-blocks's address block
 
 == Upgrade Notice ==
+= 0.1.0-alpha-20190102 =
+Upgrade for new blocks and a fix for failures when WordPress SEO is active. 
+
 = 0.1.0-alpha-20181213 = 
 Upgrade for the new WordPress and GeSHi server side rendered blocks. No longer requires Gutenberg under WordPress 5.0 
 
@@ -91,6 +98,15 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 == Changelog == 
+= 0.1.0-alpha-20190102 =
+* Added: Fields block [github bobbingwide oik-blocks issue 21]
+* Added: UK tides block [github bobbingwide oik-blocks issue 19]
+* Added: Search block [github bobbingwide oik-blocks issue 20]
+* Fixed: Don't crash when classic-editor parameter detected during 'enqueue_block_editor_assets' action [github bobbingwide oik-blocks issue 15]
+* Tested: With Gutenberg 4.7.1
+* Tested: With WordPress 5.0.2
+* Tested: With PHP 7.2
+
 = 0.1.0-alpha-20181213 = 
 * Added: GeSHi block, [github bobbingwide oik-blocks issue 18]
 * Added: WordPress server rendered dynamic block, [github bobbingwide oik-blocks issue 16]
