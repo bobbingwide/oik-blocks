@@ -1,3 +1,13 @@
+/**
+ * Implements [bw_address] as a server rendered block
+ *
+ * - Depends on oik
+ * -
+ *
+ * @copyright (C) Copyright Bobbing Wide 2018,2019
+ * @author Herb Miller @bobbingwide
+ */
+
 import './style.scss';
 import './editor.scss';
 
@@ -8,10 +18,34 @@ import './editor.scss';
 const { __ } = wp.i18n;
 // Get registerBlockType and Editable from wp.blocks
 const { registerBlockType, Editable } = wp.blocks;
+
+const {
+    InspectorControls,
+    ServerSideRender,
+} = wp.editor;
+
+const {
+    Toolbar,
+    PanelBody,
+    PanelRow,
+    FormToggle,
+    TextControl,
+    SelectControl,
+} = wp.components;
+const Fragment = wp.element.Fragment;
+import { map, partial } from 'lodash';
 // Set the header for the block since it is reused
 const blockHeader = <h3>{ __( 'Address' ) }</h3>;
 
 //var TextControl = wp.blocks.InspectorControls.TextControl;
+/**
+ * These are the different options for the tag attr
+ */
+const tagOptions =
+    { "div": "Block",
+        "span": "Inline",
+
+    };
 
 /**
  * Register e
@@ -23,7 +57,7 @@ export default registerBlockType(
         // Localize title using wp.i18n.__()
         title: __( 'Address' ),
 				
-				description: 'Displays your address',
+		description: 'Displays your address',
 
         // Category Options: common, formatting, layout, widgets, embed
         category: 'common',
@@ -39,28 +73,54 @@ export default registerBlockType(
 
         // Set for each piece of dynamic data used in your block
         attributes: {
+            tag: {
+                type: 'string',
+                default: ''
+            }
+
 					
         },
 
+        supports: {
+            customClassName: false,
+            className: false,
+            html: false,
+        },
+
         edit: props => {
-          const onChangeInput = ( event ) => {
-            props.setAttributes( { issue: event.target.value } );
-						bit = 'bit'; 
-						props.setAttributes( { bit: bit } );
-          };
-					
-					//const focus = ( focus ) => {
-					 	//props.setAttributes( { issue: 'fred' } );
-					//};
+            function onChangeAttr( key, value ) {
+                props.setAttributes( { [key] : value } );
+            };
+
+
 					
           return (
-            <div className={ props.className }>
-							{blockHeader}
-							<p>This is where the address will appear</p>
-            </div>
+
+              <Fragment>
+              <InspectorControls >
+              <PanelBody>
+            <PanelRow>
+                <SelectControl label="Display" value={props.attributes.tag}
+                                     options={ map( tagOptions, ( key, label ) => ( { value: label, label: key } ) ) }
+                                     onChange={partial( onChangeAttr, 'tag' )}
+            />
+
+            </PanelRow>
+                  <PanelRow>
+                      Equivalent shortcode<br />
+                      &#91;bw_address tag={props.attributes.tag}&#93;
+                  </PanelRow>
+            </PanelBody>
+
+        </InspectorControls>
+
+        <ServerSideRender
+            block="oik-block/address" attributes={ props.attributes }
+            />
+        </Fragment>
           );
         },
-        save: props => {
+        saver: props => {
 					// console.log( props );
 					//var shortcode =  {props.attributes.issue} ;
 					var lsb = '[';
@@ -74,5 +134,8 @@ export default registerBlockType(
             </div>
           );
         },
+        save() {
+                  return null;
+        }
     },
 );

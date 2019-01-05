@@ -5,7 +5,7 @@
  * Description: WordPress 5.0 blocks, aka Gutenberg blocks, for oik shortcodes.
  * Author: Herb Miller
  * Author URI: https://herbmiller.me/about/mick
- * Version: 0.1.0-alpha-20190102
+ * Version: 0.1.0-alpha-20190105
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  *
@@ -323,6 +323,14 @@ function oik_blocks_fields_featured_image_not_set() {
 	return;
 }
 
+function oik_blocks_dynamic_block_address( $attributes ) {
+	$html = oik_blocks_check_server_func( "shortcodes/oik-address.php", "oik", "bw_address" );
+	if ( null === $html ) {
+		$html = bw_address( $attributes, null, null );
+	}
+	return $html;
+}
+
 
 /**
  * Checks if the server function is available
@@ -452,11 +460,21 @@ function oik_blocks_loaded() {
 	add_action( "plugins_loaded", "oik_blocks_plugins_loaded", 100 );
 	
 	add_action( "init", "oik_blocks_register_dynamic_blocks" );
+	add_action( "oik_pre_theme_field", "oik_blocks_pre_theme_field" );
 	
 	
   if ( !defined('DOING_AJAX') ) {
   }
 
+}
+
+/**
+ * Implements oik_pre_theme_field
+ *
+ * This allows the Fields block to ensure shortcodes are loaded during server side rendering.
+ */
+function oik_blocks_pre_theme_field() {
+	do_action( "oik_add_shortcodes" );
 }
 
 /**
@@ -521,6 +539,14 @@ function oik_blocks_register_dynamic_blocks() {
 				  'fields' => [ 'type' => 'string' ],
 				  'labels' => [ 'type' => 'string' ],
 
+			  ]
+			]
+
+		);
+		register_block_type( "oik-block/address",
+			[ 'render_callback' => 'oik_blocks_dynamic_block_address',
+			  'attributes' => [
+			  	'tag' => [ 'type' => 'string']
 			  ]
 			]
 
