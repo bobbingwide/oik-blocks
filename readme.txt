@@ -5,7 +5,7 @@ Tags: gutenberg, shortcode, blocks, oik
 Requires at least: 4.9.8
 Tested up to: 5.0.2
 Gutenberg compatible: Yes
-Stable tag: 0.1.0-alpha-20190102
+Stable tag: 0.1.0-alpha-20190105
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -82,6 +82,9 @@ Yes, it uses a number of other plugins:
 1. oik-blocks's address block
 
 == Upgrade Notice ==
+= 0.1.0-alpha-20190105 = 
+Upgrade for minor improvements to the Fields block and the Address block 
+
 = 0.1.0-alpha-20190102 =
 Upgrade for new blocks and a fix for failures when WordPress SEO is active. 
 
@@ -98,6 +101,10 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 == Changelog == 
+= 0.1.0-alpha-20190105 = 
+* Changed: Change Address block to server side rendered., [github bobbingwide oik-blocks issue 5]
+* Changed: Fields block - ensure shortcode fields are expanded, [github bobbingwide oik-blocks issue 21]
+
 = 0.1.0-alpha-20190102 =
 * Added: Fields block [github bobbingwide oik-blocks issue 21]
 * Added: UK tides block [github bobbingwide oik-blocks issue 19]
