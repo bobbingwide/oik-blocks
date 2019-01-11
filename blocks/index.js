@@ -5,7 +5,7 @@
  * The build directory is the target. 
  * See webpack.config.js
  * 
- * @copyright (C) Copyright Bobbing Wide 2018
+ * @copyright (C) Copyright Bobbing Wide 2018, 2019
  * @author Herb Miller @bobbingwide
  */
 import './github';	         // From oik-bob-bing-wide
@@ -24,6 +24,7 @@ import './oik-geshi';        // From oik-css bw_geshi shortcode
 import './oik-search';       // From wordpress - get_search_form()
 import './oik-uk-tides';     // From uk-tides - [bw_tides] shortcode
 import './oik-fields';       // From oik-fields - [bw_fields] and [bw_field] shortcode
+import './oik-dashicon';     // From oik-bob-bing-wide [bw_dash]
 
 
 
