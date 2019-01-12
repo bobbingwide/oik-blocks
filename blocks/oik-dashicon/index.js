@@ -31,6 +31,7 @@ const {
 } = wp.components;
 
 import { DashiconsSelect } from './dashicons.js';
+import { BlockiconsSelect } from './blockicons.js';
 
 /**
  * Register the WordPress block
@@ -82,6 +83,9 @@ export default registerBlockType(
                                          value={ props.attributes.dashicon }
                                          onChange={ onChangeDashicon }
                             />
+                        </PanelRow>
+                        <PanelRow>
+                            <BlockiconsSelect />
                         </PanelRow>
                          <PanelRow>
                             <DashiconsSelect />
