@@ -1,7 +1,6 @@
 /**
- * Implements [bw_dash] shortcode
+ * Implements the Block icon block
  *
- * tries to use Dashicon component
  *
  * @copyright (C) Copyright Bobbing Wide 2019
  * @author Herb Miller @bobbingwide
@@ -16,6 +15,7 @@ const {
     registerBlockType,
 } = wp.blocks;
 const {
+    BlockIcon,
     InspectorControls,
 } = wp.editor;
 
@@ -30,64 +30,70 @@ const {
 
 } = wp.components;
 
-import { DashiconsSelect } from './dashicons.js';
-//import { BlockiconsSelect } from './blockicons.js';
+//import { DashiconsSelect } from './dashicons.js';
+import { BlockiconsSelect, BlockiconStyled } from './blockicons.js';
 
 /**
  * Register the WordPress block
  */
 export default registerBlockType(
     // Namespaced, hyphens, lowercase, unique name
-    'oik-block/dashicon',
+    'oik-block/blockicon',
     {
         // Localize title using wp.i18n.__()
-        title: __( 'Dashicon' ),
+        title: __( 'Block icon' ),
 
-        description: 'Displays icons',
+        description: 'Displays a Block icon',
 
         // Category Options: common, formatting, layout, widgets, embed
         category: 'widgets',
 
         // Dashicons Options - https://goo.gl/aTM1DQ
-        icon: 'heart',
+        icon: 'block-default',
 
         // Limit to 3 Keywords / Phrases
         keywords: [
             __( 'icon' ),
             __( 'oik' ),
-            __( 'dash'),
+            __( 'block'),
         ],
 
         // Set for each piece of dynamic data used in your block
+
         attributes: {
-            dashicon: {
+
+            blockicon: {
                 type: 'string',
-                default: 'heart'
-            },
+                default: ''
+            }
 
 
         },
 
         edit: props => {
 
-            const onChangeDashicon = ( event ) => {
-                props.setAttributes( { dashicon: event } );
-            };
+
+            const onChangeBlockicon = ( event ) => {
+                props.setAttributes( { blockicon: event } );
+            }
+
+            var blockicon = BlockiconStyled( props.attributes.blockicon );
 
 
             return [
                 <InspectorControls >
                     <PanelBody>
-                        <PanelRow>
-                            <TextControl label="Dashicon"
-                                         value={ props.attributes.dashicon }
-                                         onChange={ onChangeDashicon }
-                            />
-                        </PanelRow>
 
                         <PanelRow>
-                            <DashiconsSelect />
+                            <TextControl label="Blockicon"
+                                         value={ props.attributes.blockicon }
+                                         onChange={ onChangeBlockicon }
+                            />
                         </PanelRow>
+                        <PanelRow>
+                            <BlockiconsSelect />
+                        </PanelRow>
+
 
 
                     </PanelBody>
@@ -95,7 +101,8 @@ export default registerBlockType(
                 </InspectorControls>
                 ,
                 <p>
-                <Dashicon icon={ props.attributes.dashicon} />
+                    { blockicon }
+
 
                 </p>
 
@@ -107,10 +114,7 @@ export default registerBlockType(
                 />
          */
         save: props => {
-            return(
-                <Dashicon icon={props.attributes.dashicon} />
-
-            );
+            return BlockiconStyled( props.attributes.blockicon );
         },
     },
 );

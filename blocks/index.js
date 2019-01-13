@@ -25,6 +25,7 @@ import './oik-search';       // From wordpress - get_search_form()
 import './oik-uk-tides';     // From uk-tides - [bw_tides] shortcode
 import './oik-fields';       // From oik-fields - [bw_fields] and [bw_field] shortcode
 import './oik-dashicon';     // From oik-bob-bing-wide [bw_dash]
+import './oik-blockicon';    // Displays a selected BlockIcon
 
 
 
