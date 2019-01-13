@@ -84,12 +84,8 @@ export default registerBlockType(
                 <InspectorControls >
                     <PanelBody>
 
-                        <PanelRow>
-                            <TextControl label="Blockicon"
-                                         value={ props.attributes.blockicon }
-                                         onChange={ onChangeBlockicon }
-                            />
-                        </PanelRow>
+
+
                         <PanelRow>
                             <BlockiconsSelect value={ props.attributes.blockicon } onChange={ onChangeBlockicon } />
                         </PanelRow>
