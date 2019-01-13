@@ -6,10 +6,38 @@
 const { Component }  = wp.element;
 const{ getBlockTypes, getBlockType } = wp.blocks;
 const { BlockIcon } = wp.editor;
+const { SelectControl } = wp.components;
 
-class BlockiconsSelect extends Component {
-    render() {
+function BlockiconsSelect( { value, onChange, ...props } ) {
 
+    const options = getOptions();
+
+    return (
+
+
+            <SelectControl label="Blocks" value={ value } options={ options } onChange={ onChange } />
+    );
+        //this.renderBlockiconList();
+
+    }
+
+    function getOptions() {
+        var block_types = getBlockTypes();
+        const options = block_types.map ( ( block ) => getBlockiconOption( block ) );
+        console.log( options );
+        return options;
+    }
+
+    function getBlockiconOption( block ) {
+        var label = block.name;
+        var value = block.name;
+        return {'label': label, 'value': value};
+    }
+
+
+class BlockiconList extends Component {
+
+    renderBlockiconList() {
         var block_types = getBlockTypes();
         /*console.log( block_types );*/
         return(
@@ -17,6 +45,7 @@ class BlockiconsSelect extends Component {
                 { block_types.map ( ( block ) => this.renderBlockicon( block ) )}
             </ul>
         );
+
     }
 
     renderBlockicon( block ) {

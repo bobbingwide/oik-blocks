@@ -91,7 +91,7 @@ export default registerBlockType(
                             />
                         </PanelRow>
                         <PanelRow>
-                            <BlockiconsSelect />
+                            <BlockiconsSelect value={ props.attributes.blockicon } onChange={ onChangeBlockicon } />
                         </PanelRow>
 
 
