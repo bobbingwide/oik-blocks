@@ -1,17 +1,25 @@
 /* oik-blockicon/style.scss */
-span.wp-block-oik-block-blockicon.svg64 svg {
+.wp-block-oik-block-blockicon.svg64 svg {
   width: 64px;
   height: 64px;
 }
 
-.wp-block-oik-block-blockicon {
-  .is-style-svg64 {
+.svg64 .editor-block-icon,
+.svg64 .editor-block-icon svg {
+  width: 64px;
+  height: 64px;
+  max-height: 64px;
+  max-width: 64px;
+}
+
+
+.wp-block-oik-block-blockicon .is-style-svg64 {
     svg {
       width: 64px;
       height: 64px;
       max-height: 64px;
       max-width: 64px;
     }
-  }
+
 
 }
