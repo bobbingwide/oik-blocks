@@ -93,10 +93,14 @@ class BlockiconList extends Component {
 
 }
 
-function BlockiconStyled( blockname ) {
+function BlockiconStyled( blockname, ...props ) {
     var block = getBlockType( blockname ) ;
 
-    return( block ? <BlockIcon icon={ block.icon.src } /> : <p>Hmm</p> );
+    return(
+        <div className={ props.className } >
+            { block ? <BlockIcon icon={ block.icon.src } /> : <p>Hmm</p> }
+        </div>
+    );
 }
 
 

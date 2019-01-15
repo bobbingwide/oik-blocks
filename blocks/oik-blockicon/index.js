@@ -5,8 +5,8 @@
  * @copyright (C) Copyright Bobbing Wide 2019
  * @author Herb Miller @bobbingwide
  */
-//import './style.scss';
-//import './editor.scss';
+import './style.scss';
+import './editor.scss';
 
 // Get just the __() localization function from wp.i18n
 const { __ } = wp.i18n;
@@ -64,11 +64,23 @@ export default registerBlockType(
 
             blockicon: {
                 type: 'string',
-                default: ''
+                default: 'oik-block/blockicon'
             }
 
 
         },
+
+        /**
+         * I could get some part of the Style Variations to work but could not get
+         * the SVG to adjust in size.
+         *
+         * https://code.tutsplus.com/tutorials/implementing-block-style-variations-in-gutenberg-part-1--cms-32243
+
+        styles: [
+            { name: 'default', label: 'Default', isDefault: true },
+            { name: 'svg64', label: 'Large' },
+        ],
+        */
 
         edit: props => {
 
@@ -77,7 +89,7 @@ export default registerBlockType(
                 props.setAttributes( { blockicon: event } );
             }
 
-            var blockicon = BlockiconStyled( props.attributes.blockicon );
+            var blockicon = BlockiconStyled( props.attributes.blockicon, props );
 
 
             return [
@@ -96,11 +108,9 @@ export default registerBlockType(
 
                 </InspectorControls>
                 ,
-                <p>
+                <div className={ props.className }>
                     { blockicon }
-
-
-                </p>
+                </div>
 
             ];
         },

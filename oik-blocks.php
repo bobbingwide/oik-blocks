@@ -107,7 +107,7 @@ function oik_blocks_frontend_scripts()
 }
 
 function oik_blocks_frontend_styles() {
-	gob();
+
     $stylePath = 'blocks/build/css/blocks.style.css';
     // Enqueue frontend and editor block styles
     wp_enqueue_style(
@@ -451,7 +451,7 @@ function oik_blocks_loaded() {
 	// Hook scripts and styles functions into enqueue_block_assets hook
 	
 	//add_action('enqueue_block_assets', 'oik_blocks_frontend_scripts');
-	//add_action('enqueue_block_assets', 'oik_blocks_frontend_styles');
+	add_action('enqueue_block_assets', 'oik_blocks_frontend_styles');
 	
 	// Hook scripts function into block editor hook
 	add_action( 'enqueue_block_editor_assets', 'oik_blocks_editor_scripts' );
