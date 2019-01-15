@@ -4,9 +4,9 @@
 * Donate link: https://www.oik-plugins.com/oik/oik-donate/
 * Tags: gutenberg, shortcode, blocks, oik
 * Requires at least: 4.9.8
-* Tested up to: 5.0.2
+* Tested up to: 5.0.3
 * Gutenberg compatible: Yes
-* Stable tag: 0.1.0-alpha-20190105
+* Stable tag: 0.1.0-alpha-20190115
 * License: GPLv3 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,13 +19,15 @@ as blocks for the new WordPress content editor.
 oik delivers over 80 shortcodes.
 Some of these are crying out to be converted into advanced WordPress blocks.
 
-oik-blocks provides 16 blocks
+oik-blocks provides 18 blocks
 
 - Address
+- Block icon
 - Contact form
 - Countdown
 - CSS
 - CSV
+- Dash icon
 - Fields
 - Follow me
 - GeSHi
@@ -83,6 +85,9 @@ Yes, it uses a number of other plugins:
 1. oik-blocks's address block
 
 ## Upgrade Notice 
+# 0.1.0-alpha-20190115 
+Upgrade for the Block icon and Dash icon blocks; needed for WP-a2z and oik-plugins
+
 # 0.1.0-alpha-20190105 
 Upgrade for minor improvements to the Fields block and the Address block
 
@@ -102,6 +107,12 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 ## Changelog 
+# 0.1.0-alpha-20190115 
+* Added: Block icon block. https://github.com/bobbingwide/oik-blocks/issues/24
+* Added: Dash icon block. https://github.com/bobbingwide/oik-blocks/issues/22
+* Tested: With WordPress 5.0.3
+* Tested: With Gutenberg 4.8.0
+
 # 0.1.0-alpha-20190105 
 * Changed: Change Address block to server side rendered., https://github.com/bobbingwide/oik-blocks/issues/5
 * Changed: Fields block - ensure shortcode fields are expanded, https://github.com/bobbingwide/oik-blocks/issues/21

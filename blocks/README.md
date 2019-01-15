@@ -12,10 +12,12 @@ Block            | Type    | Shortcode(s)        | Purpose
 -----            | ----    | --------            | -----
 github           | Static  | [github]            | Wrapper to [github] shortcode
 oik-address      | Static  | [bw_address]        | Address block
+oik-blockicon    | Static  | -                   | Block icon
 oik-contact-form | Dynamic | [bw_contact_form]   | Contact form 
 oik-countdown    | Static  | [bw_countdown]      | Countdown timer
 oik-css          | Dynamic | [bw_css]            | Inline CSS 
 oik-csv          | Dynamic | [bw_csv]            | Display CSV content
+oik-dashicon     | Dynamic SSR | [bw_dash[       | Dash icon
 oik-fields       | Dynamic SSR | [bw_fields]         | Displays fields / virtual fields
 oik-follow-me    | Static  | [bw_follow_me]      | Social media follow me
 oik-geshi        | Dynamic SSR | [bw_geshi] | Generic Syntax Highlighting: none, PHP, HTML, JavaScript, CSS
