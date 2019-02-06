@@ -1,6 +1,17 @@
 /**
- * Implements the Block icon block
+ * Implements the Block info block
  *
+ * This block displays the selected fields from a block's registration
+ *
+ * - BlockIcon, hopefully using oik-blockicon
+ * - block type name
+ * - Title
+ * - Description
+ * - Category - future
+ * - Keywords - future
+ *
+ * Each field is optional.
+ * You can't choose the order but you can try to style it!
  *
  * @copyright (C) Copyright Bobbing Wide 2019
  * @author Herb Miller @bobbingwide
@@ -41,12 +52,12 @@ import { BlockiconsSelect, BlockiconStyled } from './blockicons.js';
  */
 export default registerBlockType(
     // Namespaced, hyphens, lowercase, unique name
-    'oik-block/blockicon',
+    'oik-block/blockinfo',
     {
         // Localize title using wp.i18n.__()
-        title: __( 'Block icon' ),
+        title: __( 'Block info' ),
 
-        description: 'Displays a Block icon',
+        description: 'Displays a Block\'s information',
 
         // Category Options: common, formatting, layout, widgets, embed
         category: 'widgets',
@@ -56,7 +67,7 @@ export default registerBlockType(
 
         // Limit to 3 Keywords / Phrases
         keywords: [
-            __( 'icon' ),
+            __( 'info' ),
             __( 'oik' ),
             __( 'block'),
         ],
