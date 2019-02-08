@@ -26,15 +26,11 @@ const {
     FormToggle,
     ServerSideRender,
     TextControl,
-    ToggleControl,
     Dashicon,
 
 } = wp.components;
 
-
-//import { DashiconsSelect } from './dashicons.js';
 import { BlockiconsSelect, BlockiconStyled } from './blockicons.js';
-//import {ToggleControl} from "../../../gutenberg-source/packages/components/build-module";
 
 /**
  * Register the WordPress block
@@ -68,25 +64,7 @@ export default registerBlockType(
             blockicon: {
                 type: 'string',
                 default: 'oik-block/blockicon'
-            },
-
-            showBlockTypeName: {
-                type: 'boolean',
-                default: false
-            },
-
-            showTitle: {
-                type: 'boolean',
-                default: false
-            },
-
-            showDescription: {
-                type: 'boolean',
-                default: false
             }
-
-
-
 
         },
 
@@ -109,24 +87,8 @@ export default registerBlockType(
                 props.setAttributes( { blockicon: event } );
             }
 
-            const onChangeShowBlockTypeName = ( event ) => {
-                props.setAttributes(  { showBlockTypeName: ! props.attributes.showBlockTypeName } );
-            }
-            const onChangeShowTitle = ( event ) => {
-                props.setAttributes(  { showTitle: ! props.attributes.showTitle } );
-            }
-
-            const onChangeShowDescription = ( event ) => {
-                props.setAttributes(  { showDescription: ! props.attributes.showDescription } );
-            }
-
-            var blockicon = BlockiconStyled( props.attributes.blockicon,
-                props.attributes.showBlockTypeName,
-                props.attributes.showTitle,
-                props.attributes.showDescription,
-                props );
-
-
+            var blockicon = BlockiconStyled( props.attributes.blockicon, props );
+            
             return [
                 <InspectorControls >
                     <PanelBody>
@@ -135,32 +97,6 @@ export default registerBlockType(
 
                         <PanelRow>
                             <BlockiconsSelect value={ props.attributes.blockicon } onChange={ onChangeBlockicon } />
-                        </PanelRow>
-                        <PanelRow>
-                            <ToggleControl
-                                label={ __( 'Show block type name' ) }
-                                checked={ !! props.attributes.showBlockTypeName }
-                                onChange={ onChangeShowBlockTypeName }
-
-                            />
-                        </PanelRow>
-                        <PanelRow>
-                            <ToggleControl
-                                label={ __( 'Show block title' ) }
-                                checked={ !! props.attributes.showTitle }
-                                onChange={ onChangeShowTitle }
-
-                            />
-
-                        </PanelRow>
-                        <PanelRow>
-                            <ToggleControl
-                                label={ __( 'Show block description' ) }
-                                checked={ !! props.attributes.showDescription }
-                                onChange={ onChangeShowDescription }
-
-                            />
-
                         </PanelRow>
 
 
@@ -181,7 +117,7 @@ export default registerBlockType(
                 />
          */
         save: props => {
-            return BlockiconStyled( props.attributes.blockicon, props.attributes.showBlockTypeName, props.attributes.showTitle );
+            return BlockiconStyled( props.attributes.blockicon, props );
         },
     },
 );

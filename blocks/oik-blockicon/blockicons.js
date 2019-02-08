@@ -10,7 +10,7 @@
  *
  */
 
-const { Component, Fragment }  = wp.element;
+const { Component }  = wp.element;
 const{ getBlockTypes, getBlockType } = wp.blocks;
 const { BlockIcon } = wp.editor;
 const { SelectControl } = wp.components;
@@ -93,21 +93,14 @@ class BlockiconList extends Component {
 
 }
 
-function BlockiconStyled( blockname, showBlockTypeName, showTitle, showDescription, ...props ) {
+function BlockiconStyled( blockname, ...props ) {
     var block = getBlockType( blockname ) ;
-    var blockTypeName =  showBlockTypeName ? <div>{ blockname }</div> : null;
-    var blockTitle = showTitle ? <div> {block.title } </div> : null;
-    var blockDescription = showDescription ? <div> { block.description } </div> : null;
 
     return(
-        <Fragment>
-            <div className={ props.className } >
-                { block ? <BlockIcon icon={ block.icon.src } /> : <p>Hmm</p> }
-            </div>
-            { blockTypeName }
-            { blockTitle }
-            { blockDescription }
-        </Fragment>
+        <div className={ props.className } >
+            { block ? <BlockIcon icon={ block.icon.src } /> : <p>Hmm</p> }
+        </div>
+
 
     );
 }

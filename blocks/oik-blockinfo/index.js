@@ -44,7 +44,8 @@ const {
 
 
 //import { DashiconsSelect } from './dashicons.js';
-import { BlockiconsSelect, BlockiconStyled } from './blockicons.js';
+import { BlockiconsSelect, BlockiconStyled } from '../oik-blockicon/blockicons.js';
+import { BlockinfoStyled } from './blockinfo.js'
 //import {ToggleControl} from "../../../gutenberg-source/packages/components/build-module";
 
 /**
@@ -83,18 +84,19 @@ export default registerBlockType(
 
             showBlockTypeName: {
                 type: 'boolean',
-                default: false
+                default: true
             },
 
             showTitle: {
                 type: 'boolean',
-                default: false
+                default: true
             },
 
             showDescription: {
                 type: 'boolean',
-                default: false
+                default: true
             }
+
 
 
 
@@ -131,7 +133,7 @@ export default registerBlockType(
                 props.setAttributes(  { showDescription: ! props.attributes.showDescription } );
             }
 
-            var blockicon = BlockiconStyled( props.attributes.blockicon,
+            var blockicon = BlockinfoStyled( props.attributes.blockicon,
                 props.attributes.showBlockTypeName,
                 props.attributes.showTitle,
                 props.attributes.showDescription,
@@ -192,7 +194,7 @@ export default registerBlockType(
                 />
          */
         save: props => {
-            return BlockiconStyled( props.attributes.blockicon, props.attributes.showBlockTypeName, props.attributes.showTitle );
+            return BlockinfoStyled( props.attributes.blockicon, props.attributes.showBlockTypeName, props.attributes.showTitle );
         },
     },
 );
