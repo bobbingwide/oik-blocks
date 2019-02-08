@@ -24,6 +24,7 @@ const { __ } = wp.i18n;
 // Get registerBlockType from wp.blocks
 const {
     registerBlockType,
+    createBlock,
 } = wp.blocks;
 const {
     BlockIcon,
@@ -41,6 +42,7 @@ const {
     Dashicon,
 
 } = wp.components;
+const { Fragment }  = wp.element;
 
 
 //import { DashiconsSelect } from './dashicons.js';
@@ -97,10 +99,31 @@ export default registerBlockType(
                 default: true
             }
 
+        },
 
-
-
-
+        transforms: {
+            from: [
+                {
+                    type: 'block',
+                    blocks: ['oik-block/blockicon'],
+                    transform: function( attributes ) {
+                        return createBlock( 'oik-block/blockinfo', {
+                            blockicon: attributes.blockicon,
+                        });
+                    },
+                },
+            ],
+            to: [
+                {
+                    type: 'block',
+                    blocks: ['oik-block/blockicon'],
+                    transform: function( attributes ) {
+                        return createBlock( 'oik-block/blockicon', {
+                            blockicon: attributes.blockicon,
+                        });
+                    },
+                }
+            ]
         },
 
         /**
@@ -133,7 +156,7 @@ export default registerBlockType(
                 props.setAttributes(  { showDescription: ! props.attributes.showDescription } );
             }
 
-            var blockicon = BlockinfoStyled( props.attributes.blockicon,
+            var blockinfo = BlockinfoStyled( props.attributes.blockicon,
                 props.attributes.showBlockTypeName,
                 props.attributes.showTitle,
                 props.attributes.showDescription,
@@ -183,8 +206,9 @@ export default registerBlockType(
                 </InspectorControls>
                 ,
                 <div className={ props.className }>
-                    { blockicon }
+                { blockinfo }
                 </div>
+
 
             ];
         },
@@ -194,7 +218,7 @@ export default registerBlockType(
                 />
          */
         save: props => {
-            return BlockinfoStyled( props.attributes.blockicon, props.attributes.showBlockTypeName, props.attributes.showTitle );
+            return BlockinfoStyled( props.attributes.blockicon, props.attributes.showBlockTypeName, props.attributes.showTitle, props.attributes.showDescription, props );
         },
     },
 );

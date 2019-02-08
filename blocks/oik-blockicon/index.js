@@ -88,7 +88,7 @@ export default registerBlockType(
             }
 
             var blockicon = BlockiconStyled( props.attributes.blockicon, props );
-            
+
             return [
                 <InspectorControls >
                     <PanelBody>

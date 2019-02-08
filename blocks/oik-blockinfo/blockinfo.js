@@ -1,15 +1,12 @@
 /*
- * Block info - displays the fields for the block info block
+ * Block info renderer - displays the fields for the block info block
  *
  * @copyright (C) Copyright Bobbing Wide 2019
  * @author Herb Miller @bobbingwide
  *
  */
 
-const { Component, Fragment }  = wp.element;
-const { getBlockTypes, getBlockType } = wp.blocks;
-const { BlockIcon } = wp.editor;
-const { SelectControl } = wp.components;
+const { getBlockType } = wp.blocks;
 
 import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
 
@@ -21,15 +18,14 @@ function BlockinfoStyled( blockname, showBlockTypeName, showTitle, showDescripti
     var blockDescription = showDescription ? <div> { block.description } </div> : null;
 
     return(
-        <Fragment>
+        <div className={ props.className }>
             { blockicon }
             { blockTypeName }
             { blockTitle }
             { blockDescription }
-        </Fragment>
+        </div>
 
     );
 }
-
 
 export  { BlockinfoStyled };
