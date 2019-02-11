@@ -4,8 +4,8 @@
  * Plugin URI: https://www.oik-plugins.com/oik-plugins/oik-blocks
  * Description: WordPress 5.0 blocks, aka Gutenberg blocks, for oik shortcodes.
  * Author: Herb Miller
- * Author URI: https://herbmiller.me/about/mick
- * Version: 0.1.0-alpha-20190115
+ * Author URI: https://oik-plugins.com/author/bobbingwide
+ * Version: 0.2.0
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  *
@@ -281,6 +281,9 @@ function oik_blocks_uk_tides_attributes( $attributes ) {
 function oik_blocks_dynamic_block_fields( $attributes ) {
 	$html = oik_blocks_check_server_func( "shortcodes/oik-fields.php", "oik-fields", "bw_metadata");
 	if ( null === $html ) {
+		if ( function_exists( "oik_is_block_renderer") ) {
+			oik_is_block_renderer( true );
+		}
 		$attributes = oik_blocks_fields_attributes( $attributes );
 		$html = bw_metadata( $attributes, null, null );
 		$html = oik_blocks_fields_results( $html, $attributes );

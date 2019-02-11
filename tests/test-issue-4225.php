@@ -27,21 +27,24 @@ class Tests_issue_4225 extends BW_UnitTestCase {
 		$post = $this->dummy_post();
 		$GLOBALS['post'] = $post; 
 		setup_postdata( $post );
-		$this->show_pages();
+		//$this->show_pages();
 		//the_post();
 		$this->fiddle_globals( 3 );
 	 // print_r( $post );
 	  $content = get_the_content();
-		echo PHP_EOL;
-		echo "Content:" . PHP_EOL;
-		echo $content;
+		//echo PHP_EOL;
+		//echo "Content:" . PHP_EOL;
+		//echo $content;
 		
 		$excerpt = get_the_excerpt();
-		echo PHP_EOL;
-		echo "Excerpt:" . PHP_EOL;
+		//echo PHP_EOL;
+		//echo "Excerpt:" . PHP_EOL;
 		
-		echo $excerpt;
-		$this->assertNull( $excerpt );
+		//echo $excerpt;
+
+		// Page 3 excerpt
+		// <a href="https://s.b/wordpress/post-title/#more-1667" class="more-link">third</a>
+		$this->assertContains( "Page 3 excerpt", $excerpt );
 	
 	
 	}
