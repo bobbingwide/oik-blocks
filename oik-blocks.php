@@ -117,6 +117,7 @@ function oik_blocks_frontend_styles() {
         filemtime(plugin_dir_path(__FILE__) . $stylePath )
     );
 
+
 }
 
 
@@ -152,11 +153,13 @@ function oik_blocks_dynamic_block_contact_form( $attributes ) {
  */
 function oik_blocks_dynamic_block_css( $attributes ) {
 	//bw_backtrace();
-	$content = bw_array_get( $attributes, "css", null );
-	bw_trace2( $content, "Content" );
-	//$content = oik_blocks_fetch_dynamic_content( "wp:oik-blocks/css" );
-	oik_require( "shortcodes/oik-css.php", "oik-css" );
-	$html = oik_css( $attributes, $content );
+	$html = oik_blocks_check_server_func( "shortcodes/oik-css.php", "oik-css", "oik_css");
+	if ( !$html ) {
+		$content = bw_array_get( $attributes, "css", null );
+		bw_trace2( $content, "Content" );
+		//$content = oik_blocks_fetch_dynamic_content( "wp:oik-blocks/css" );
+		$html = oik_css( $attributes, $content );
+	}
 	return $html;
 }
 
@@ -172,11 +175,14 @@ function oik_blocks_dynamic_block_css( $attributes ) {
  */
 function oik_blocks_dynamic_block_csv( $attributes ) {
 	//bw_backtrace();
-	$content = bw_array_get( $attributes, "content", null );
-	bw_trace2( $content, "Content" );
-	oik_require( "shortcodes/oik-csv.php", "oik-bob-bing-wide" );
-	$html = bw_csv( $attributes, $content );
-	bw_trace2( $html, "html", false );
+	$html = oik_blocks_check_server_func( "shortcodes/oik-csv.php", "oik-bob-bing-wide", "oik_csv");
+	if ( !$html ) {
+		$content = bw_array_get( $attributes, "content", null );
+		bw_trace2( $content, "Content" );
+		//oik_require( "shortcodes/oik-csv.php", "oik-bob-bing-wide" );
+		$html = bw_csv( $attributes, $content );
+		bw_trace2( $html, "html", false );
+	}
 	return $html;
 }
 
@@ -338,7 +344,9 @@ function oik_blocks_dynamic_block_address( $attributes ) {
 /**
  * Checks if the server function is available
  *
- * Returns null if everything is OK, HTML if there's a problem
+ * Returns null if everything is OK, HTML if there's a problem.
+ *
+ * @TODO Check if the implementing plugin is actually activated!
  *
  * @param $filename - relative path for the file to load
  * @param $plugin - plugin name
