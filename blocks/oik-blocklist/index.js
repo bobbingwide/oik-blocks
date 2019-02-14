@@ -127,14 +127,6 @@ export default registerBlockType(
                 <InspectorControls >
                     <PanelBody>
 
-                        <PanelRow>
-                            <TextControl
-                                label="Prefix"
-                                value={ props.attributes.prefix }
-                                onChange={ onChangePrefix }
-                                onFocus={ focus }
-                            />
-                        </PanelRow>
 
                         <PanelRow>
                             <BlockPrefixSelect value={ props.attributes.prefix } onChange={ onChangePrefix } />

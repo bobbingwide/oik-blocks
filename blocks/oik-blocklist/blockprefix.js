@@ -50,7 +50,7 @@ function getOptions() {
     var block_types = getBlockTypes();
     const namespaces = getNameSpaces( block_types );
     const options = namespaces.map ( ( namespace ) => getBlockPrefixOption( namespace ) );
-    console.log( options );
+    //console.log( options );
     return options;
 }
 
@@ -66,8 +66,8 @@ function getNameSpaces( block_types) {
     var namespaces = block_types.map( ( block ) => getNameSpace( block ));
     var unique_namespaces = namespaces.filter( onlyUnique );
 
-    console.log( namespaces );
-    console.log( unique_namespaces );
+    //console.log( namespaces );
+    //console.log( unique_namespaces );
     return unique_namespaces;
 
 }
@@ -95,4 +95,4 @@ function getOptionLabel( block ) {
 
 
 
-export  { BlockPrefixSelect };
+export  { BlockPrefixSelect, getNameSpace };
