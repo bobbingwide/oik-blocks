@@ -8,6 +8,7 @@
 
 const { getBlockType, getBlockTypes } = wp.blocks;
 const { BlockIcon } = wp.editor;
+const Fragment = wp.element.Fragment;
 
 import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
 import { getNameSpace} from './blockprefix.js';
@@ -24,12 +25,14 @@ function BlockListStyled( prefix, showBlockTypeName, showTitle, showDescription,
 
     var block_types = getBlockTypes();
     block_types = block_types.filter( namespaceFilter, namespace );
+    //block_types = block_types.sortByField( "name");
+    block_types = block_types.sort( (a, b) => a.title.localeCompare(b.title));
     //console.log( block_types );
     return(
-        <ul>
-            <li>Blocks for {namespace}</li>
+        <dl>
+
             { block_types.map ( ( block ) => BlockListItem( block ) )}
-        </ul>
+        </dl>
 
     );
 
@@ -47,10 +50,17 @@ function namespaceFilter( element, index, array ) {
 function BlockListItem( block ) {
 /* { block.icon */
 /* console.log( block ); */
-    return( <li>
-        <BlockIcon icon={block.icon.src} />
-        {block.name } {block.title }
-        </li> );
+    return( <Fragment>
+            <dt>
+                <BlockIcon icon={block.icon.src} />
+
+            </dt>
+            <dd>
+                {block.title } - {block.name }<br />
+                {block.description}
+            </dd>
+        </Fragment>
+        );
 }
 
 export  { BlockListStyled };
