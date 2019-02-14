@@ -6,7 +6,7 @@
 * Requires at least: 4.9.8
 * Tested up to: 5.0.3
 * Gutenberg compatible: Yes
-* Stable tag: 0.2.0
+* Stable tag: 0.2.1
 * License: GPLv3 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,11 +19,12 @@ as blocks for the new WordPress content editor.
 oik delivers over 80 shortcodes.
 Some of these are crying out to be converted into advanced WordPress blocks.
 
-oik-blocks provides 19 blocks
+oik-blocks provides 20 blocks
 
 - Address
 - Block icon
 - Block info
+- Block list
 - Contact form
 - Countdown
 - CSS
@@ -86,6 +87,9 @@ Yes, it uses a number of other plugins:
 1. oik-blocks's address block
 
 ## Upgrade Notice 
+# 0.2.1 
+Upgrade for the Block list block to display all the blocks in a selected namespace.
+
 # 0.2.0 
 Upgrade for the Block info block to replace the Block icon block in the Block catalogs.
 
@@ -111,6 +115,11 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 ## Changelog 
+# 0.2.1 
+* Added: Block list block, https://github.com/bobbingwide/oik/issues/27
+* Changed: Improved robustness of CSS and CSV blocks which depend on other plugins
+
+
 # 0.2.0 
 * Changed: No longer an Alpha version even though many blocks need improvements
 * Added: Block info block, which displays the Block icon and some more information https://github.com/bobbingwide/oik-blocks/issues/24
