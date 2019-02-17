@@ -506,7 +506,13 @@ function oik_blocks_register_dynamic_blocks() {
 												, 'script' => null
 												, 'style' => null
 												] );
-		register_block_type( 'oik-block/css', [ 'render_callback' => 'oik_blocks_dynamic_block_css' ] );
+		register_block_type( 'oik-block/css',
+			[ 'render_callback' => 'oik_blocks_dynamic_block_css',
+				'attributes' => [
+					'css' => [ 'type' => 'string'],
+					'text' => ['type' => 'string']
+				]
+			] );
 		register_block_type( 'oik-block/csv', [ 'render_callback' => 'oik_blocks_dynamic_block_csv' ] );
 		register_block_type( 'oik-block/dummy',
 												[ 'render_callback' => 'oik_blocks_dummy' 

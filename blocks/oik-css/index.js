@@ -1,3 +1,11 @@
+/**
+ * Implements CSS block
+ *
+ * Uses [bw_css] shortcode from oik-css plugin
+ *
+ * @copyright (C) Copyright Bobbing Wide 2018, 2019
+ * @author Herb Miller @bobbingwide
+ */
 import './style.scss';
 import './editor.scss';
 
@@ -12,6 +20,7 @@ const {
 	Editable,
   InspectorControls,
 	PlainText,
+	ServerSideRender,
  } = wp.editor;
 	 
 const {
@@ -22,8 +31,10 @@ const {
   PanelRow,
   FormToggle,
 	TextControl,
+	TextareaControl,
 
 } = wp.components;
+const Fragment = wp.element.Fragment;
 
 const {
 	withInstanceId,
@@ -85,7 +96,7 @@ export default registerBlockType(
 		},
 			
 		edit: withInstanceId(
-			( { attributes, setAttributes, instanceId, focus } ) => {
+			( { attributes, setAttributes, instanceId, focus, isSelected } ) => {
 				const inputId = `blocks-css-input-${ instanceId }`;
 				
 				
@@ -97,23 +108,36 @@ export default registerBlockType(
 					setAttributes( { css: value } );
 				};
 	
-				return [
+				return (
+					<Fragment>
 				
             <InspectorControls key="css">
 								<PanelBody>
-									<TextControl label="Text" value={attributes.text} onChange={onChangeText} />
+									<TextareaControl label="Text" value={attributes.text} onChange={onChangeText} />
 								</PanelBody>
               </InspectorControls>
-  					,
-					<div className="wp-block-oik-block-css wp-block-shortcode" key="css-input">
-						<PlainText
-							id={ inputId }
-							value={ attributes.css }
-							placeholder={ __( 'Write CSS' ) }
-							onChange={onChangeCSS}
-						/>
-					</div>
-				];
+						<Fragment>
+
+						<div className="wp-block-oik-block-css wp-block-shortcode" key="css-input">
+							<PlainText
+								id={inputId}
+								value={attributes.css}
+								placeholder={__('Write CSS')}
+								onChange={onChangeCSS}
+							/>
+						</div>
+
+							{!isSelected &&
+
+
+							<ServerSideRender
+								block="oik-block/css" attributes={attributes}
+							/>
+							}
+						</Fragment>
+
+					</Fragment>
+				);
 			}
 		),
 				
