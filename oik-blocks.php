@@ -175,7 +175,7 @@ function oik_blocks_dynamic_block_css( $attributes ) {
  */
 function oik_blocks_dynamic_block_csv( $attributes ) {
 	//bw_backtrace();
-	$html = oik_blocks_check_server_func( "shortcodes/oik-csv.php", "oik-bob-bing-wide", "oik_csv");
+	$html = oik_blocks_check_server_func( "shortcodes/oik-csv.php", "oik-bob-bing-wide", "bw_csv");
 	if ( !$html ) {
 		$content = bw_array_get( $attributes, "content", null );
 		bw_trace2( $content, "Content" );
