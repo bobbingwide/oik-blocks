@@ -167,7 +167,7 @@ function oik_blocks_dynamic_block_css( $attributes ) {
 /**
  * Server rendering dynamic CSV block
  * 
- * Assumes that the oik-bob-bing-wide plugin is installed.
+ * Checks that the oik-bob-bing-wide plugin is installed.
  * The plugin doesn't need to be activated.
  * 
  * @param array $attributes
@@ -513,7 +513,14 @@ function oik_blocks_register_dynamic_blocks() {
 					'text' => ['type' => 'string']
 				]
 			] );
-		register_block_type( 'oik-block/csv', [ 'render_callback' => 'oik_blocks_dynamic_block_csv' ] );
+		register_block_type( 'oik-block/csv',
+			[ 'render_callback' => 'oik_blocks_dynamic_block_csv',
+			  'attributes' => [
+				  'content' => [ 'type' => 'string'],
+				  'uo' => ['type' => 'string'],
+				  'text' => ['type' => 'string']
+			  ]
+			] );
 		register_block_type( 'oik-block/dummy',
 												[ 'render_callback' => 'oik_blocks_dummy' 
 												,	'editor_script' => 'oik_blocks-dummy-js'

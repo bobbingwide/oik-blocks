@@ -1,5 +1,14 @@
+/**
+ * Implements CSV block
+ *
+ * Uses [bw_csv] shortcode from oik- plugin
+ *
+ * @copyright (C) Copyright Bobbing Wide 2018, 2019
+ * @author Herb Miller @bobbingwide
+ */
 import './style.scss';
 import './editor.scss';
+import portOptions from "../oik-uk-tides/tidetimes-co-uk";
 
 // Get just the __() localization function from wp.i18n
 const { __ } = wp.i18n;
@@ -14,6 +23,7 @@ const {
   AlignmentToolbar,
   BlockControls,
   InspectorControls,
+	ServerSideRender,
  } = wp.editor;
 	 
 const {
@@ -24,6 +34,7 @@ const {
   PanelRow,
   FormToggle,
 	TextControl,
+	SelectControl,
 } = wp.components;
 
 const {
@@ -32,10 +43,13 @@ const {
 
 const Fragment = wp.element.Fragment;
 const RawHTML = wp.element.RawHTML;
+import { map } from 'lodash';
 // Set the header for the block since it is reused
 //const blockHeader = <h3>{ __( 'Person' ) }</h3>;
 
 //var TextControl = wp.blocks.InspectorControls.TextControl;
+
+import icons from './icons.js';
 
 /**
  * Register the oik-block/csv block
@@ -51,7 +65,7 @@ export default registerBlockType(
         // Localize title using wp.i18n.__()
         title: __( 'CSV' ),
 				
-				description: 'Displays CSV content',
+		description: 'Displays CSV content',
 
         // Category Options: common, formatting, layout, widgets, embed
         category: 'layout',
@@ -80,7 +94,7 @@ export default registerBlockType(
 					
 					uo: { 
 						type: 'string',
-						default: 'u',
+						default: '',
 					},
 					
         },
@@ -93,100 +107,138 @@ export default registerBlockType(
 			
 		edit: withInstanceId(
 			( { attributes, setAttributes, instanceId, isSelected } ) => {
-				const inputId = `blocks-csv-input-${ instanceId }`;
-				
-				
-				const onChangeText = ( value ) => {
-						setAttributes( { text: value } );
+				const inputId = `blocks-csv-input-${instanceId}`;
+
+
+				const onChangeText = (value) => {
+					setAttributes({text: value});
 				};
-				
-				const onChangeContent = ( value ) => {
-					setAttributes( { content: value } );
+
+				const onChangeContent = (value) => {
+					setAttributes({content: value});
 				};
-				
-				const onChangeAlignment = ( value ) => {
-					
+
+				const onChangeAlignment = (value) => {
+
 				};
-				
-				const onChangeUo = ( value ) => {
-					setAttributes( { uo: value } );
+
+				const onChangeUo = (value) => {
+					setAttributes({uo: value});
 				};
-				
+
 				function isTable() {
 					return attributes.uo == "";
 				}
-				
+
 				function isUl() {
 					return attributes.uo == "u";
 				}
+
 				function isOl() {
 					return attributes.uo == "o";
 				}
-				
-				function setTable() {
-					setAttributes( { uo: "" } );
-				}
-				
-				function setUl() {
-					setAttributes( { uo: "u" } );
-				}
-				
-				function setOl() {
-					setAttributes( { uo: "o" } );
+				function isDl() {
+					return attributes.uo == "d";
 				}
 
-				
-	
-				return [
-				
-  					  <InspectorControls key="csv">
-								<PanelBody>
-									<TextControl label="Text" value={attributes.text} onChange={onChangeText} />
-									<TextControl label="uo" value={attributes.uo} onChange={onChangeUo} />
-								</PanelBody>
-              </InspectorControls>
-  					,
-					 						
-                  <BlockControls key="flagbogtiddle"
-										controls={ [
-										{
-											icon: 'editor-table',
-											title: __( 'Display as table' ),
-											isActive:  isTable(),
-											onClick: setTable,
-										},
-										
-										{
-											icon: 'editor-ul',
-											title: __( 'Display as unordered list' ),
-											isActive:  isUl(),
-											onClick: setUl,
-										},
-										
-										{
-											icon: 'editor-ol',
-											title: __( 'Display as ordered list' ),
-											isActive:  isOl(),
-											onClick: setOl,
-											
-										},
-										] }
-									
-									
-                  />
-						,
-					<div className="wp-block-oik-block-csv wp-block-shortcode" key="css-input">
-						<PlainText
-							id={ inputId }
-							value={ attributes.content }
-							placeholder={ __( 'Enter your CSV data' ) }
-							onChange={onChangeContent}
+				function setTable() {
+					setAttributes({uo: ""});
+				}
+
+				function setUl() {
+					setAttributes({uo: "u"});
+				}
+
+				function setOl() {
+					setAttributes({uo: "o"});
+				}
+				function setDl() {
+					setAttributes({uo: "d"});
+				}
+
+				const uoOptions = {
+					"": "Table",
+					"u": "Unordered list",
+					"o": "Ordered list",
+					"d": "Description list",
+				};
+
+				var mapped = map(uoOptions, (key, label) => ({value: label, label: key}));
+				console.log( mapped );
+
+
+				return (
+
+					<Fragment>
+
+						<InspectorControls key="csv">
+							<PanelBody>
+								<SelectControl label="Format" value={attributes.uo} onChange={onChangeUo}
+											   options={mapped}
+								/>
+								<TextControl label="Text" value={attributes.text} onChange={onChangeText}/>
+							</PanelBody>
+						</InspectorControls>
+
+
+						<BlockControls key="flagbogtiddle"
+									   controls={[
+										   {
+											   icon: 'editor-table',
+											   title: __('Display as table'),
+											   isActive: isTable(),
+											   onClick: setTable,
+										   },
+
+										   {
+											   icon: 'editor-ul',
+											   title: __('Display as unordered list'),
+											   isActive: isUl(),
+											   onClick: setUl,
+										   },
+
+										   {
+											   icon: 'editor-ol',
+											   title: __('Display as ordered list'),
+											   isActive: isOl(),
+											   onClick: setOl,
+
+										   },
+										   {
+										   		icon: icons.descriptionList,
+											   title: __('Display as description list'),
+											   isActive: isDl(),
+											   onClick: setDl,
+										   }
+									   ]}
+
+
 						/>
-					</div>
-				 					
-				];
+
+
+						<Fragment>
+							<div className="wp-block-oik-block-csv wp-block-shortcode" key="css-input">
+								<PlainText
+									id={inputId}
+									value={attributes.content}
+									placeholder={__('Enter your CSV data')}
+									onChange={onChangeContent}
+								/>
+							</div>
+							{!isSelected &&
+								<ServerSideRender block="oik-block/csv" attributes={attributes}/>
+							}
+						</Fragment>
+
+
+					</Fragment>
+				);
 			}
 		),
+
+
+
+
 				
 
 		/**
