@@ -91,7 +91,14 @@ export default registerBlockType(
             showDescription: {
                 type: 'boolean',
                 default: true
+            },
+
+            showBatch: {
+                type: 'boolean',
+                default: false
             }
+
+
 
         },
 
@@ -116,11 +123,18 @@ export default registerBlockType(
                 props.setAttributes(  { showDescription: ! props.attributes.showDescription } );
             }
 
+            const onChangeShowBatch = ( event ) => {
+                props.setAttributes( { showBatch: ! props.attributes.showBatch } );
+            }
+
             var blocklist = BlockListStyled( props.attributes.prefix,
                 props.attributes.showBlockTypeName,
                 props.attributes.showTitle,
                 props.attributes.showDescription,
+                props.attributes.showBatch,
                 props );
+
+
 
 
             return [
@@ -149,10 +163,19 @@ export default registerBlockType(
 
                         </PanelRow>
                         <PanelRow>
+                        <ToggleControl
+                            label={ __( 'Show block description' ) }
+                            checked={ !! props.attributes.showDescription }
+                            onChange={ onChangeShowDescription }
+
+                        />
+
+                    </PanelRow>
+                        <PanelRow>
                             <ToggleControl
-                                label={ __( 'Show block description' ) }
-                                checked={ !! props.attributes.showDescription }
-                                onChange={ onChangeShowDescription }
+                                label={ __( 'Show batch commands' ) }
+                                checked={ !! props.attributes.showBatch }
+                                onChange={ onChangeShowBatch }
 
                             />
 
@@ -167,6 +190,7 @@ export default registerBlockType(
                 <div className={ props.className }>
                 { blocklist }
                 </div>
+                ,
 
 
             ];
@@ -177,7 +201,7 @@ export default registerBlockType(
                 />
          */
         save: props => {
-            return BlockListStyled( props.attributes.prefix, props.attributes.showBlockTypeName, props.attributes.showTitle, props.attributes.showDescription, props );
+            return BlockListStyled( props.attributes.prefix, props.attributes.showBlockTypeName, props.attributes.showTitle, props.attributes.showDescription, props.attributes.showBatch, props );
         },
     },
 );

@@ -13,7 +13,7 @@ const Fragment = wp.element.Fragment;
 import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
 import { getNameSpace} from './blockprefix.js';
 
-function BlockListStyled( prefix, showBlockTypeName, showTitle, showDescription, ...props ) {
+function BlockListStyled( prefix, showBlockTypeName, showTitle, showDescription, showBatch, ...props ) {
     //var block = getBlockType( blockname ) ;
     //var blockicon =  BlockiconStyled( blockname, props  );
     //var blockTypeName =  showBlockTypeName ? <div>{ blockname }</div> : null;
@@ -28,13 +28,25 @@ function BlockListStyled( prefix, showBlockTypeName, showTitle, showDescription,
     //block_types = block_types.sortByField( "name");
     block_types = block_types.sort( (a, b) => a.title.localeCompare(b.title));
     //console.log( block_types );
-    return(
+
+    if ( showBatch ) {
+        var blocklist =  <pre>
+            cd ~/public_html/wp-content/plugins/oik-shortcodes/admin
+            {block_types.map( (block) => BlockCreateItem( block )) }
+        </pre>
+    } else
+    {
+        var blocklist =
         <dl>
 
-            { block_types.map ( ( block ) => BlockListItem( block ) )}
+            {block_types.map((block) => BlockListItem(block))}
         </dl>
+    }
+    ;
 
-    );
+
+
+    return( blocklist  );
 
 
 }
@@ -61,6 +73,11 @@ function BlockListItem( block ) {
             </dd>
         </Fragment>
         );
+}
+
+function BlockCreateItem( block ) {
+                console.log( block );
+    return( <Fragment><br/>oikwp oik-create-blocks.php {block.name} "{block.title}" component url=blocks.wp-a2z.org</Fragment> );
 }
 
 export  { BlockListStyled };
