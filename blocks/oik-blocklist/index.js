@@ -96,6 +96,11 @@ export default registerBlockType(
             showBatch: {
                 type: 'boolean',
                 default: false
+            },
+
+            component: {
+                type: 'string',
+                default: ""
             }
 
 
@@ -127,11 +132,16 @@ export default registerBlockType(
                 props.setAttributes( { showBatch: ! props.attributes.showBatch } );
             }
 
+            const onChangeComponent = ( event ) => {
+                props.setAttributes( { component: event } );
+            }
+
             var blocklist = BlockListStyled( props.attributes.prefix,
                 props.attributes.showBlockTypeName,
                 props.attributes.showTitle,
                 props.attributes.showDescription,
                 props.attributes.showBatch,
+                props.attributes.component,
                 props );
 
 
@@ -181,6 +191,10 @@ export default registerBlockType(
 
                         </PanelRow>
 
+                    <PanelRow>
+                        <TextControl label={"Component"} value={ props.attributes.component} onChange={ onChangeComponent }/>
+                    </PanelRow>
+
 
 
                     </PanelBody>
@@ -201,7 +215,7 @@ export default registerBlockType(
                 />
          */
         save: props => {
-            return BlockListStyled( props.attributes.prefix, props.attributes.showBlockTypeName, props.attributes.showTitle, props.attributes.showDescription, props.attributes.showBatch, props );
+            return BlockListStyled( props.attributes.prefix, props.attributes.showBlockTypeName, props.attributes.showTitle, props.attributes.showDescription, props.attributes.showBatch, props.attributes.component, props );
         },
     },
 );
