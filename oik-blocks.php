@@ -177,6 +177,10 @@ function oik_blocks_dynamic_block_csv( $attributes ) {
 	//bw_backtrace();
 	$html = oik_blocks_check_server_func( "shortcodes/oik-csv.php", "oik-bob-bing-wide", "bw_csv");
 	if ( !$html ) {
+		if ( function_exists( "oik_is_block_renderer") ) {
+			oik_is_block_renderer( true );
+		}
+		do_action( "oik_add_shortcodes");
 		$content = bw_array_get( $attributes, "content", null );
 		bw_trace2( $content, "Content" );
 		//oik_require( "shortcodes/oik-csv.php", "oik-bob-bing-wide" );
