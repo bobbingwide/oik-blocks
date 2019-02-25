@@ -3,10 +3,10 @@
 * Contributors: bobbingwide
 * Donate link: https://www.oik-plugins.com/oik/oik-donate/
 * Tags: gutenberg, shortcode, blocks, oik
-* Requires at least: 4.9.8
+* Requires at least: 5.0.3
 * Tested up to: 5.0.3
 * Gutenberg compatible: Yes
-* Stable tag: 0.2.1
+* Stable tag: 0.3.0
 * License: GPLv3 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -87,6 +87,9 @@ Yes, it uses a number of other plugins:
 1. oik-blocks's address block
 
 ## Upgrade Notice 
+# 0.3.0 
+Upgrade for Block list Show batch commands option to help autogenerate block CPTs for a component.
+
 # 0.2.1 
 Upgrade for the Block list block to display all the blocks in a selected namespace.
 
@@ -115,10 +118,16 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 ## Changelog 
+# 0.3.0 
+* Added: Block list Show batch commands toggle,https://github.com/bobbingwide/oik-blocks/issues/27
+* Changed: Add logic to support shortcode expansion in CSV block server side rendering, https://github.com/bobbingwide/oik-blocks/issues/2
+* Changed: Improve logic for selecting format using tool icons and a select list. Add support for Description list - including a hand crafted icon.,https://github.com/bobbingwide/oik-blocks/issues/2
+* Changed: Change CSS block to server side rendered,github bobbingwide oik-blocks issue 13]
+* Fixed: Correct robustness checking for CSV block
+
 # 0.2.1 
 * Added: Block list block, https://github.com/bobbingwide/oik/issues/27
 * Changed: Improved robustness of CSS and CSV blocks which depend on other plugins
-
 
 # 0.2.0 
 * Changed: No longer an Alpha version even though many blocks need improvements
