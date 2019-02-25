@@ -13,6 +13,7 @@ const Fragment = wp.element.Fragment;
 import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
 import { getNameSpace} from './blockprefix.js';
 
+
 function BlockListStyled( prefix, showBlockTypeName, showTitle, showDescription, showBatch, component, ...props ) {
     //var block = getBlockType( blockname ) ;
     //var blockicon =  BlockiconStyled( blockname, props  );
@@ -33,12 +34,12 @@ function BlockListStyled( prefix, showBlockTypeName, showTitle, showDescription,
         var blocklist =  <pre>
             cd ~/public_html/wp-content/plugins/oik-shortcodes/admin
             {block_types.map( (block) => BlockCreateItem( block, component )) }
+            <br />
         </pre>
     } else
     {
         var blocklist =
         <dl>
-
             {block_types.map((block) => BlockListItem(block))}
         </dl>
     }
@@ -65,7 +66,6 @@ function BlockListItem( block ) {
     return( <Fragment>
             <dt>
                 <BlockIcon icon={block.icon.src} />
-
             </dt>
             <dd>
                 {block.title } - {block.name }<br />
@@ -76,8 +76,12 @@ function BlockListItem( block ) {
 }
 
 function BlockCreateItem( block, component ) {
-                console.log( block );
-    return( <Fragment><br/>oikwp oik-create-blocks.php {block.name} "{block.title}" {component} url=blocks.wp-a2z.org</Fragment> );
+    //console.log( block );
+    var keywords = block.keywords ? block.keywords.join() : null;
+    return( <Fragment>
+        <br/>oikwp oik-create-blocks.php {block.name} "{block.title}" {component} url=blocks.wp-a2z.org
+        <br/>oikwp oik-update-blocks.php {block.name} "{keywords}" {block.category} url=blocks.wp-a2z.org
+    </Fragment> );
 }
 
 export  { BlockListStyled };
