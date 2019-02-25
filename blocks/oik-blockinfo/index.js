@@ -97,6 +97,15 @@ export default registerBlockType(
             showDescription: {
                 type: 'boolean',
                 default: true
+            },
+
+            showCategory: {
+                type: 'boolean',
+                default: true
+            },
+            showKeywords: {
+                type: 'boolean',
+                default: true
             }
 
         },
@@ -155,11 +164,19 @@ export default registerBlockType(
             const onChangeShowDescription = ( event ) => {
                 props.setAttributes(  { showDescription: ! props.attributes.showDescription } );
             }
+            const onChangeShowCategory = ( event ) => {
+                props.setAttributes(  { showCategory: ! props.attributes.showCategory } );
+            }
+            const onChangeShowKeywords = ( event ) => {
+                props.setAttributes(  { showKeywords: ! props.attributes.showKeywords } );
+            }
 
             var blockinfo = BlockinfoStyled( props.attributes.blockicon,
                 props.attributes.showBlockTypeName,
                 props.attributes.showTitle,
                 props.attributes.showDescription,
+                props.attributes.showCategory,
+                props.attributes.showKeywords,
                 props );
 
 
@@ -198,6 +215,24 @@ export default registerBlockType(
                             />
 
                         </PanelRow>
+                        <PanelRow>
+                            <ToggleControl
+                                label={ __( 'Show category' ) }
+                                checked={ !! props.attributes.showCategory }
+                                onChange={ onChangeShowCategory }
+
+                            />
+
+                        </PanelRow>
+                        <PanelRow>
+                            <ToggleControl
+                                label={ __( 'Show keywords' ) }
+                                checked={ !! props.attributes.showKeywords }
+                                onChange={ onChangeShowKeywords }
+
+                            />
+
+                        </PanelRow>
 
 
 
@@ -218,7 +253,10 @@ export default registerBlockType(
                 />
          */
         save: props => {
-            return BlockinfoStyled( props.attributes.blockicon, props.attributes.showBlockTypeName, props.attributes.showTitle, props.attributes.showDescription, props );
+            return BlockinfoStyled( props.attributes.blockicon, props.attributes.showBlockTypeName, props.attributes.showTitle, props.attributes.showDescription,
+                props.attributes.showCategory,
+                props.attributes.showKeywords,
+                props );
         },
     },
 );
