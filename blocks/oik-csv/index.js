@@ -35,6 +35,7 @@ const {
   FormToggle,
 	TextControl,
 	SelectControl,
+	ToggleControl,
 } = wp.components;
 
 const {
@@ -87,15 +88,16 @@ export default registerBlockType(
             type: 'string',
  
           },
-					text: {
-						type: 'string',
-						default: '',
-					},
-					
-					uo: { 
-						type: 'string',
-						default: '',
-					},
+
+		 uo: {
+			type: 'string',
+			default: '',
+		},
+
+			th: {
+          		type: 'boolean',
+				default: true,
+			}
 					
         },
 				
@@ -109,10 +111,6 @@ export default registerBlockType(
 			( { attributes, setAttributes, instanceId, isSelected } ) => {
 				const inputId = `blocks-csv-input-${instanceId}`;
 
-
-				const onChangeText = (value) => {
-					setAttributes({text: value});
-				};
 
 				const onChangeContent = (value) => {
 					setAttributes({content: value});
@@ -156,6 +154,10 @@ export default registerBlockType(
 					setAttributes({uo: "d"});
 				}
 
+				const onChangeTh = ( event ) => {
+					setAttributes(  { th: ! attributes.th } );
+				}
+
 				const uoOptions = {
 					"": "Table",
 					"u": "Unordered list",
@@ -176,7 +178,15 @@ export default registerBlockType(
 								<SelectControl label="Format" value={attributes.uo} onChange={onChangeUo}
 											   options={mapped}
 								/>
-								<TextControl label="Text" value={attributes.text} onChange={onChangeText}/>
+								<PanelRow>
+									<ToggleControl
+										label={ __( 'Format table heading' ) }
+										checked={ !! attributes.th }
+										onChange={ onChangeTh }
+
+									/>
+
+								</PanelRow>
 							</PanelBody>
 						</InspectorControls>
 

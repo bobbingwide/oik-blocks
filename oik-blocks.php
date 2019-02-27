@@ -522,8 +522,9 @@ function oik_blocks_register_dynamic_blocks() {
 			  'attributes' => [
 				  'content' => [ 'type' => 'string'],
 				  'uo' => ['type' => 'string'],
-				  'text' => ['type' => 'string']
+				  'th' => ['type' => 'boolean']
 			  ]
+
 			] );
 		register_block_type( 'oik-block/dummy',
 												[ 'render_callback' => 'oik_blocks_dummy' 
