@@ -1,3 +1,53 @@
-/* I can't think of anything to put here
+/* Front end style for Person block
+* @TODO Margin or padding left not that effective when the gravatar's image is to the left.
+* @TODO Follow me needs to be below the description?
 */
+
+.wp-block-oik-block-person {
+  div.gravatar span.label,
+  div.gravatar span.sep,
+  div.display_name span.label,
+  div.display_name span.sep,
+  div.description span.label,
+  div.description span.sep,
+  div.follow_me span.label,
+  div.follow_me span.sep {
+    display: none;
+  }
+
+  div.display_name {
+    margin-bottom: 10px;
+    padding-left: 0px;
+
+    span.value {
+      font-weight: bolder;
+
+    }
+  }
+  div.description {
+    margin-bottom: 10px;
+    padding-left: 0px;
+  }
+
+  div.gravatar img {
+    padding-right: 20px;
+  }
+
+  display: block;
+
+  div.bw_user-fields-0.gravatar {
+    width: 20%;
+  }
+  div.bw_user-fields-1 {
+    width: 80%;
+  }
+
+}
+
+.wp-block-oik-block-person::after {
+  display: table;
+  content: "";
+  clear:both;
+}
+
 

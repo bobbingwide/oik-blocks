@@ -1,3 +1,12 @@
+/**
+ * Implements the Person block as a server rendered block
+ *
+ * - Depends on oik-user
+ *
+ * @copyright (C) Copyright Bobbing Wide 2018,2019
+ * @author Herb Miller @bobbingwide
+ */
+
 import './style.scss';
 import './editor.scss';
 
@@ -13,6 +22,7 @@ const {
 const { 
 	Editable,
   InspectorControls,
+    InnerBlocks,
 } = wp.editor;
 	 
 const {
@@ -25,11 +35,10 @@ const {
 	TextControl,
 
 } = wp.components;
-// Set the header for the block since it is reused
-const blockHeader = <h3 key="h3person">{ __( 'Person' ) }</h3>;
-
 
 const Fragment = wp.element.Fragment;
+
+
 
 //var TextControl = wp.blocks.InspectorControls.TextControl;
 
@@ -70,8 +79,7 @@ export default registerBlockType(
         edit: props => {
           const onChangeInput = ( event ) => {
             props.setAttributes( { issue: event.target.value } );
-						bit = 'bit'; 
-						props.setAttributes( { bit: bit } );
+
           };
 					
 					//const focus = ( focus ) => {
@@ -81,6 +89,12 @@ export default registerBlockType(
 						console.log( event );
 						props.setAttributes( { user: event } );
 					};
+
+            var lsb = '[';
+            var rsb = ']';
+            var user = props.attributes.user;
+
+
 					
           return [
 					
@@ -103,9 +117,15 @@ export default registerBlockType(
               </InspectorControls>
   					,
             <div className={ props.className } key="perinspector">
-							{blockHeader}
-							 <p>This is where the person information for {props.attributes.user} will appear.</p>
-						</div>
+
+
+                <Fragment>
+                    {lsb}
+                    bw_user user="{user}" fields=gravatar/about,bio,follow_me
+                    {rsb}
+                </Fragment>
+
+            </div>
           ];
         },
 				
@@ -113,18 +133,18 @@ export default registerBlockType(
         save: props => {
 					// console.log( props );
 					//var shortcode =  {props.attributes.issue} ;
-					var lsb = '[';
-					var rsb = ']';
-					var user = props.attributes.user;
+            var lsb = '[';
+            var rsb = ']';
+            var user = props.attributes.user;
+
+
+
           return (
             <div className={props.className } key="person">
-						{blockHeader}
+
 						<Fragment>
 						{lsb}
-						bw_user user={user} fields=name,bio
-						{rsb}
-						{lsb}
-						bw_follow_me user={user}
+						bw_user user="{user}" fields=gravatar/about,bio,follow_me
 						{rsb}
 						</Fragment>
             </div>
