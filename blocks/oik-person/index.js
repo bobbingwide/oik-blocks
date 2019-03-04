@@ -23,6 +23,7 @@ const {
 	Editable,
   InspectorControls,
     InnerBlocks,
+    ServerSideRender,
 } = wp.editor;
 	 
 const {
@@ -73,6 +74,10 @@ export default registerBlockType(
             type: 'string',
 						default: '', 
           },
+          fields: {
+              type: 'string',
+              default: 'gravatar/about,bio,follow_me',
+          }
 					
         },
 
@@ -90,9 +95,12 @@ export default registerBlockType(
 						props.setAttributes( { user: event } );
 					};
 
-            var lsb = '[';
-            var rsb = ']';
+            var lsb = '['; // &#91;
+            var rsb = ']'; // &#93;
             var user = props.attributes.user;
+
+
+            var equivalent_shortcode = `${lsb}bw_user user="${user}" fields="${ props.attributes.fields }${rsb}"`;
 
 
 					
@@ -109,7 +117,11 @@ export default registerBlockType(
 											id="user"
 											onChange={ onChangeUser }
 									/>
-								</PanelRow> 
+								</PanelRow>
+                                    <PanelRow>
+                                        Equivalent shortcode<br />
+                                        {equivalent_shortcode}
+                                    </PanelRow>
 
 								</PanelBody>
 
@@ -120,9 +132,18 @@ export default registerBlockType(
 
 
                 <Fragment>
-                    {lsb}
-                    bw_user user="{user}" fields=gravatar/about,bio,follow_me
-                    {rsb}
+
+                    {equivalent_shortcode}
+
+                    <hr />
+
+                    {!props.isSelected &&
+
+
+                    <ServerSideRender
+                        block="oik-block/person" attributes={props.attributes}
+                    />
+                    }
                 </Fragment>
 
             </div>
@@ -130,7 +151,7 @@ export default registerBlockType(
         },
 				
 				
-        save: props => {
+        saver: props => {
 					// console.log( props );
 					//var shortcode =  {props.attributes.issue} ;
             var lsb = '[';
@@ -146,9 +167,19 @@ export default registerBlockType(
 						{lsb}
 						bw_user user="{user}" fields=gravatar/about,bio,follow_me
 						{rsb}
+						<hr />
 						</Fragment>
             </div>
           );
+        },
+
+        /**
+         * We intend to render this dynamically. The content created by the user
+         * is stored in the content attribute.
+         *
+         */
+        save( { attributes } ) {
+            return null;
         },
     },
 );

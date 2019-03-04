@@ -344,6 +344,21 @@ function oik_blocks_dynamic_block_address( $attributes ) {
 	return $html;
 }
 
+/**
+ * Server side rendering the the Person block
+ */
+function oik_blocks_dynamic_block_person( $attributes ) {
+	$html = oik_blocks_check_server_func( null, "oik-user", "oiku_loaded");
+	if ( null === $html ) {
+		$html = oik_blocks_check_server_func( "shortcodes/oik-user.php", "oik-user", "oiku_user" );
+	}
+	if ( null === $html ) {
+		$attributes['class'] = bw_array_get( $attributes, 'className', null);
+		$html = oiku_user( $attributes, null, null );
+	}
+	return $html;
+}
+
 
 /**
  * Checks if the server function is available
@@ -363,12 +378,15 @@ function oik_blocks_check_server_func( $filename, $plugin, $funcname ) {
 	if ( is_callable( $funcname )) {
 		return $html;
 	}
-	$path = oik_path( $filename, $plugin );
-	if ( file_exists( $path ) ) {
-		require_once $path;
+
+	if ( $filename && $plugin ) {
+		$path = oik_path( $filename, $plugin );
+		if ( file_exists( $path ) ) {
+			require_once $path;
+		}
 	}
 	if ( !is_callable( $funcname )) {
-		$html = "Server function $funcname not available";
+		$html = "Server function $funcname not available. <br />Check $plugin is installed and activated.";
 	}
 	return $html;
 }
@@ -576,6 +594,16 @@ function oik_blocks_register_dynamic_blocks() {
 			[ 'render_callback' => 'oik_blocks_dynamic_block_address',
 			  'attributes' => [
 			  	'tag' => [ 'type' => 'string']
+			  ]
+			]
+
+		);
+		register_block_type( "oik-block/person",
+			[ 'render_callback' => 'oik_blocks_dynamic_block_person',
+			  'attributes' => [
+				  'user' => [ 'type' => 'string'],
+				  'fields' => ['type' => 'string', 'default' => 'gravatar/about,bio,follow_me'],
+				  'className' => [ 'type' => 'string']
 			  ]
 			]
 
