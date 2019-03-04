@@ -33,11 +33,23 @@ const {
   PanelBody,
   PanelRow,
   FormToggle,
+  SelectControl,
 	TextControl,
 
 } = wp.components;
 
 const Fragment = wp.element.Fragment;
+
+import { map } from 'lodash';
+
+var themeOptions = {
+    none: "Logos",
+    //dash: "Dashicons",
+    gener: "Genericons",
+
+};
+themeOptions = map( themeOptions, ( key, label ) => ( { value: label, label: key } ) );
+//console.log( themeOptions );
 
 
 
@@ -72,11 +84,17 @@ export default registerBlockType(
 				
           user: {
             type: 'string',
-						default: '', 
+			default: '',
           },
+
           fields: {
               type: 'string',
               default: 'gravatar/about,bio,follow_me',
+          },
+
+          theme: {
+              type: 'string',
+              default: '',
           }
 					
         },
@@ -87,29 +105,29 @@ export default registerBlockType(
 
           };
 					
-					//const focus = ( focus ) => {
-					 	//props.setAttributes( { issue: 'fred' } );
-					//};
-					const onChangeUser = ( event ) => {
-						console.log( event );
-						props.setAttributes( { user: event } );
-					};
+		  const onChangeUser = ( event ) => {
+			    props.setAttributes( { user: event } );
+		    };
 
-            var lsb = '['; // &#91;
-            var rsb = ']'; // &#93;
-            var user = props.attributes.user;
+		  const onChangeTheme = ( event ) => {
+		      props.setAttributes( { theme: event } );
+		  }
 
-
-            var equivalent_shortcode = `${lsb}bw_user user="${user}" fields="${ props.attributes.fields }${rsb}"`;
+		  var lsb = '['; // &#91;
+          var rsb = ']'; // &#93;
+          var user = props.attributes.user;
 
 
-					
+          var equivalent_shortcode = `${lsb}bw_user user="${user}" fields="${ props.attributes.fields }"
+            theme="${ props.attributes.theme }"${rsb}`;
+
+
           return [
 					
 					
 					
   					
-              <InspectorControls key="perinspector">
+              <InspectorControls>
 								<PanelBody key="pb">
 								<PanelRow key="pruser">
 									<TextControl label="User" 
@@ -118,6 +136,10 @@ export default registerBlockType(
 											onChange={ onChangeUser }
 									/>
 								</PanelRow>
+                                    <PanelRow>
+                                        <SelectControl label="Follow me icons style" value={ props.attributes.theme } options={ themeOptions } onChange={ onChangeTheme } />
+                                    </PanelRow>
+
                                     <PanelRow>
                                         Equivalent shortcode<br />
                                         {equivalent_shortcode}

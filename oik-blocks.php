@@ -603,7 +603,8 @@ function oik_blocks_register_dynamic_blocks() {
 			  'attributes' => [
 				  'user' => [ 'type' => 'string'],
 				  'fields' => ['type' => 'string', 'default' => 'gravatar/about,bio,follow_me'],
-				  'className' => [ 'type' => 'string']
+				  'className' => [ 'type' => 'string'],
+				  'theme' => ['type' => 'string']
 			  ]
 			]
 
