@@ -3,7 +3,7 @@
  *
  *
  *
- * @copyright (C) Copyright Bobbing Wide 2018
+ * @copyright (C) Copyright Bobbing Wide 2018, 2019
  * @author Herb Miller @bobbingwide
  */
 import './style.scss';
@@ -45,7 +45,7 @@ const {
 const blockAttributes = {
 	user: {
 		type: 'string',
-		default: 'mick',
+		default: '',
 	},
 	alt: {
 		type: 'string',
@@ -53,8 +53,13 @@ const blockAttributes = {
 	},
 	network: {
 		type: 'string',
-		default: 'Twitter',
+		default: '',
 	},
+
+	theme: {
+		type: 'string',
+		default: '',
+	}
 	
 };
 
@@ -126,9 +131,15 @@ export default registerBlockType(
 
               <InspectorControls key="follow-me">
 								<PanelBody key="pb">
+								<PanelRow>
 								<TextControl label="User" value={props.attributes.user} id="hm001" instanceId="fm-user" onChange={onChangeUser}  />
-								<TextControl label="Alt" value={props.attributes.alt} id="hm002" instanceId="fm-alt" onChange={onChangeAlt}  /> 
-								<TextControl label="Network" value={props.attributes.network} id="hm003" instanceId="fm-network" onChange={onChangeNetwork}  /> 
+								</PanelRow>
+								<PanelRow>
+								<TextControl label="Alt" value={props.attributes.alt} id="hm002" instanceId="fm-alt" onChange={onChangeAlt}  />
+								</PanelRow>
+								<PanelRow>
+								<TextControl label="Network(s)" value={props.attributes.network} id="hm003" instanceId="fm-network" onChange={onChangeNetwork}  />
+								</PanelRow>
 								 </PanelBody>
               </InspectorControls>
   					,
