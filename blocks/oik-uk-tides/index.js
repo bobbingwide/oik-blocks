@@ -20,6 +20,7 @@ const {
 } = wp.blocks;
 const {
     InspectorControls,
+    ServerSideRender,
 } = wp.editor;
 
 const {
@@ -27,7 +28,6 @@ const {
     PanelBody,
     PanelRow,
     FormToggle,
-    ServerSideRender,
     TextControl,
     SelectControl,
 

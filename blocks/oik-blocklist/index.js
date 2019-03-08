@@ -22,6 +22,7 @@ const {
 const {
     BlockIcon,
     InspectorControls,
+    ServerSideRender,
 } = wp.editor;
 
 const {
@@ -29,7 +30,6 @@ const {
     PanelBody,
     PanelRow,
     FormToggle,
-    ServerSideRender,
     TextControl,
     ToggleControl,
     Dashicon,

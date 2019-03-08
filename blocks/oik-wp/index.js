@@ -1,9 +1,9 @@
 /**
-* Implements [wp] shortcode as a server rendered block
+* Implements [wp] shortcode as a server side rendered block
 *
 * Uses [wp] shortcode from oik-bob-bing-wide plugin
 *
-* @copyright (C) Copyright Bobbing Wide 2018
+* @copyright (C) Copyright Bobbing Wide 2018, 2019
 * @author Herb Miller @bobbingwide
 */
 import './style.scss';
@@ -17,6 +17,7 @@ const {
 } = wp.blocks;
 const { 
   InspectorControls,
+    ServerSideRender,
 } = wp.editor;
 	 
 const {
@@ -24,7 +25,7 @@ const {
    PanelBody,
   PanelRow,
   FormToggle,
-  ServerSideRender,
+
 	TextControl,
 
 } = wp.components;

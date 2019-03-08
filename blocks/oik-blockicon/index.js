@@ -24,7 +24,6 @@ const {
     PanelBody,
     PanelRow,
     FormToggle,
-    ServerSideRender,
     TextControl,
     Dashicon,
 
