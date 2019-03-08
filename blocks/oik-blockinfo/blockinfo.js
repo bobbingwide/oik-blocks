@@ -12,13 +12,17 @@ import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
 
 function BlockinfoStyled( blockname, showBlockTypeName, showTitle, showDescription, showCategory, showKeywords, ...props ) {
     var block = getBlockType( blockname ) ;
-    var blockicon =  BlockiconStyled( blockname, props  );
-    var blockTypeName =  showBlockTypeName ? <div>{ blockname }</div> : null;
-    var blockTitle = showTitle ? <div> {block.title } </div> : null;
-    var blockDescription = showDescription ? <div> { block.description } </div> : null;
-    var blockCategory = showCategory? <div> {block.category } </div> : null;
+    if ( block === undefined ) {
+        block = getBlockType("core/missing");
+    }
+    var blockicon = BlockiconStyled(blockname, props);
+    var blockTypeName = showBlockTypeName ? <div>{blockname}</div> : null;
+    var blockTitle = showTitle ? <div> {block.title} </div> : null;
+    var blockDescription = showDescription ? <div> {block.description} </div> : null;
+    var blockCategory = showCategory ? <div> {block.category} </div> : null;
     var keywords = block.keywords ? block.keywords.join() : null;
-    var blockKeywords = showKeywords? <div> {keywords } </div> : null;
+    var blockKeywords = showKeywords ? <div> {keywords} </div> : null;
+
 
     return(
         <div className={ props.className }>
