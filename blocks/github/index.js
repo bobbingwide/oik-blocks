@@ -16,7 +16,7 @@ const {
 	registerBlockType, 
 } = wp.blocks;
 // Set the h2 header for the block since it is reused
-const blockHeader = <h3>{ __( 'GitHub Issue' ) }</h3>;
+const blockHeader = <h3>{ __( 'GitHub Issue', 'oik-blocks' ) }</h3>;
 
 const { 
 	TextControl,
@@ -30,7 +30,7 @@ export default registerBlockType(
     'oik-block/github',
     {
         // Localize title using wp.i18n.__()
-        title: __( 'GitHub Issue' ),
+        title: __( 'GitHub Issue', 'oik-blocks' ),
 				
 				description: 'Display a link to a GitHub issue',
 
@@ -42,9 +42,9 @@ export default registerBlockType(
 
         // Limit to 3 Keywords / Phrases
         keywords: [
-            __( 'GitHub Issue' ),
-            __( 'Link' ),
-						__( 'oik' ),
+            __( 'GitHub Issue', 'oik-blocks' ),
+            __( 'Link', 'oik-blocks' ),
+			__( 'oik', 'oik-blocks' ),
         ],
 
         // Set for each piece of dynamic data used in your block
@@ -71,6 +71,14 @@ export default registerBlockType(
           const onChangeInput = ( event ) => {
             props.setAttributes( { issue: event } );
           };
+
+          const onChangeOwner = ( event ) => {
+          	props.setAttributes( { owner: event } );
+          };
+
+          const onChangeRepo = ( event ) => {
+				props.setAttributes( { repo: event } );
+          };
 					
 					
 					
@@ -79,10 +87,25 @@ export default registerBlockType(
 					//};
 					
           return (
-            <div className={ props.className }>
-							{blockHeader}
-							<TextControl 
-								id="issue" 
+			  <div className={ props.className }>
+				  {blockHeader}
+				  <TextControl
+					  id="owner"
+					  label="Owner"
+					  value={ props.attributes.owner }
+					  onChange={ onChangeOwner }
+					  onFocus={ focus }
+				  />
+				  <TextControl
+					  id="repo"
+					  label="Repository"
+					  value={ props.attributes.repo }
+					  onChange={ onChangeRepo }
+					  onFocus={ focus }
+				  />
+
+			  	<TextControl
+								id="issue"
 								label="Issue" 
 								value={ props.attributes.issue }
 								onChange={ onChangeInput }
