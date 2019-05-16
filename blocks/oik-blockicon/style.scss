@@ -23,3 +23,36 @@
 
 
 }
+
+@mixin sizeablesvg( $svg-size, $sizepx ) {
+  .wp-block-oik-block-blockicon.#{$svg-size} svg {
+    width: $sizepx;
+    height: $sizepx;
+  }
+
+  .#{$svg-size} .editor-block-icon,
+  .#{$svg-size} .editor-block-icon svg {
+    width: $sizepx;
+    height: $sizepx;
+    max-height: $sizepx;
+    max-width: $sizepx;
+  }
+
+
+  .wp-block-oik-block-blockicon .is-style-#{$svg-size} {
+    svg {
+      width: $sizepx;
+      height: $sizepx;
+      max-height: $sizepx;
+      max-width: $sizepx;
+    }
+
+
+  }
+
+}
+@include sizeablesvg( svg100, 100px );
+@include sizeablesvg( svg150, 150px );
+
+
+
