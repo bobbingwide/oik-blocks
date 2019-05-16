@@ -3,7 +3,7 @@ Contributors: bobbingwide
 Donate link: https://www.oik-plugins.com/oik/oik-donate/
 Tags: gutenberg, shortcode, blocks, oik
 Requires at least: 5.0.3
-Tested up to: 5.0.3
+Tested up to: 5.2.0
 Gutenberg compatible: Yes
 Stable tag: 0.3.0
 License: GPLv3 or later
@@ -86,6 +86,9 @@ Yes, it uses a number of other plugins:
 1. oik-blocks's address block
 
 == Upgrade Notice ==
+= 0.4.0-alpha-20190516
+Needed for "My Favourite Block - Annotated" on herbmiller.me
+
 = 0.3.0 =
 Upgrade for Block list Show batch commands option to help autogenerate block CPTs for a component.
 
@@ -117,6 +120,16 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 == Changelog ==
+= 0.4.0-alpha-20190516 = 
+* Changed: Improve CSV block with table heading toggle, [github bobbingwide oik-blocks issue 2]
+* Changed: Improve GitHub block. Owner and Repository fields, [github bobbingwide oik-blocks issue 4]
+* Changed: Improve Person block. [github bobbingwide oik-blocks issue 6]
+* Fixed: Change tidetimes.org.uk URL to have www. prefix, [github bobbingwide oik-blocks issues 19]
+* Changed: Improve Blockicon block. Ssupport Additional CSS svg100 and svg150, [github bobbingwide oik-blocks issue 24]
+* Fixed: Import ServerSideRender from wp.editor not wp.components
+* Changed: Change Follow me defaults and put each TextField in a PanelRow
+* Changed: Allow for unregistered blocks in Blockinfo, [github bobbingwide oik-blocks issues 27]
+
 = 0.3.0 =
 * Added: Block list Show batch commands toggle,[github bobbingwide oik-blocks issues 27]
 * Changed: Add logic to support shortcode expansion in CSV block server side rendering, [github bobbingwide oik-blocks issue 2]
