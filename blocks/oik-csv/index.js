@@ -227,7 +227,7 @@ export default registerBlockType(
 
 
 						<Fragment>
-							<div className="wp-block-oik-block-csv wp-block-shortcode" key="css-input">
+							<div className="wp-block-oik-block-csv">
 								<PlainText
 									id={inputId}
 									value={attributes.content}
