@@ -5,9 +5,11 @@
  * Description: WordPress 5.0 blocks, aka Gutenberg blocks, for oik shortcodes.
  * Author: Herb Miller
  * Author URI: https://oik-plugins.com/author/bobbingwide
- * Version: 0.3.0
+ * Version: 0.4.0-alpha-20190516
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
+ * Text Domain: oik-blocks
+ * Domain Path: /languages/
  *
  * @package oik-blocks
  */
@@ -274,7 +276,7 @@ function oik_blocks_uk_tides_attributes( $attributes ) {
 			$tideurl = "https://tidetimes.co.uk/rss/$port-tide-times";
 			break;
 		default:
-			$tideurl = "https://tidetimes.org.uk/$port-tide-times.rss";
+			$tideurl = "https://www.tidetimes.org.uk/$port-tide-times.rss";
 	}
 	$attributes[ 'tideurl'] = $tideurl;
 	$attributes[ 'store'] = $tideurl;
@@ -634,9 +636,10 @@ function oik_blocks_register_editor_scripts() {
 		wp_register_script( $name,
 			plugins_url( $blockPath, __FILE__ ),
 			// [],
-			[ 'wp-blocks', 'wp-element', 'wp-components', 'wp-editor' ],
+			[ 'wp-blocks', 'wp-element', 'wp-components', 'wp-editor', 'wp-i18n' ],
 			filemtime( plugin_dir_path(__FILE__) . $blockPath )
 		);
+        wp_set_script_translations( $name, 'oik-block' );
 	}
 	
 }
