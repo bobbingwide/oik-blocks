@@ -9,15 +9,18 @@
 const { getBlockType, getBlockTypes } = wp.blocks;
 const { BlockIcon } = wp.editor;
 const Fragment = wp.element.Fragment;
+// Get just the __() localization function from wp.i18n
+const { __ } = wp.i18n;
+const { select } = wp.data;
 
 import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
 import { getNameSpace} from './blockprefix.js';
 
 
-function BlockListStyled( prefix, showBlockTypeName, showTitle, showDescription, showBatch, component, ...props ) {
+function BlockListStyled( prefix, showBlockLink, showTitle, showDescription, showBatch, component, ...props ) {
     //var block = getBlockType( blockname ) ;
     //var blockicon =  BlockiconStyled( blockname, props  );
-    //var blockTypeName =  showBlockTypeName ? <div>{ blockname }</div> : null;
+    //var BlockLink =  showBlockLink ? <div>{ blockname }</div> : null;
     //var blockTitle = showTitle ? <div> {block.title } </div> : null;
     //var blockDescription = showDescription ? <div> { block.description } </div> : null;
 
@@ -40,7 +43,7 @@ function BlockListStyled( prefix, showBlockTypeName, showTitle, showDescription,
     {
         var blocklist =
         <dl>
-            {block_types.map((block) => BlockListItem(block))}
+            {block_types.map((block) => BlockListItem(block, showBlockLink))}
         </dl>
     }
     ;
@@ -59,17 +62,59 @@ function namespaceFilter( element, index, array ) {
     return filter_result;
 }
 
+    function getBlockLink( block ) {
+        var blockTitle = block.title.replace( ' ', '-' );
+        var blockName = block.name.replace( '/', '-' );
+        var blockLink = null;
+        var prefix = null;
+        const { getCurrentPostType, getPermalinkParts } = select('core/editor' );
+        //console.log(getCurrentPostType());
+        var siteurl = getPermalinkParts();
 
-function BlockListItem( block ) {
+        if ( siteurl !== null ) {
+
+            console.log(siteurl);
+            console.log(getCurrentPostType());
+
+            prefix = siteurl.prefix.replace(getCurrentPostType(), 'block');
+        }
+
+        //alert( "hey");
+        blockLink = `${prefix}${blockTitle}-${blockName}`;
+        return blockLink;
+    }
+
+
+function BlockListItem( block, showBlockLink ) {
 /* { block.icon */
 /* console.log( block ); */
+    var blockLink = null;
+
+    if ( showBlockLink ) {
+        blockLink = getBlockLink( block );
+    }
+
     return( <Fragment>
             <dt>
                 <BlockIcon icon={block.icon.src} />
             </dt>
+
             <dd>
-                {block.title } - {block.name }<br />
-                {block.description}
+                { showBlockLink && (
+                    <a
+                        href={ blockLink }
+                        title={ __( 'View block', 'oik-blocks' ) }
+                    >
+
+                {block.title } - {block.name }
+                    </a> ) }
+                {!showBlockLink && (
+                    <span>
+                        {block.title} - {block.name} </span>)
+                }
+                <br />
+                {block.description}<br />
+
             </dd>
         </Fragment>
         );
@@ -77,10 +122,14 @@ function BlockListItem( block ) {
 
 function BlockCreateItem( block, component ) {
     //console.log( block );
+    var url = window.location.hostname;
     var keywords = block.keywords ? block.keywords.join() : null;
+    if ( component == '') {
+        component = "?enter component?";
+    }
     return( <Fragment>
-        <br/>oikwp oik-create-blocks.php {block.name} "{block.title}" {component} url=blocks.wp-a2z.org
-        <br/>oikwp oik-update-blocks.php {block.name} "{keywords}" {block.category} url=blocks.wp-a2z.org
+        <br/>oikwp oik-create-blocks.php {block.name} "{block.title}" {component} url={url}
+        <br/>oikwp oik-update-blocks.php {block.name} "{keywords}" {block.category} url={url}
     </Fragment> );
 }
 
