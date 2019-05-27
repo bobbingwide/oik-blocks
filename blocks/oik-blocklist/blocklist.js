@@ -67,16 +67,19 @@ function namespaceFilter( element, index, array ) {
         var blockName = block.name.replace( '/', '-' );
         var blockLink = null;
         var prefix = null;
-        const { getCurrentPostType, getPermalinkParts } = select('core/editor' );
+        //const { getCurrentPostType, getPermalinkParts } = select('core/editor' );
         //console.log(getCurrentPostType());
-        var siteurl = getPermalinkParts();
+        var siteurl = select('core/editor').getPermalinkParts();
 
         if ( siteurl !== null ) {
 
             console.log(siteurl);
-            console.log(getCurrentPostType());
+            var postType = select( 'core/editor').getCurrentPostType();
+            console.log( postType );
 
-            prefix = siteurl.prefix.replace(getCurrentPostType(), 'block');
+            prefix = siteurl.prefix.replace( postType, 'block');
+        } else {
+            console.log( "SiteURL's null");
         }
 
         //alert( "hey");
@@ -94,8 +97,8 @@ function BlockListItem( block, showBlockLink ) {
         blockLink = getBlockLink( block );
     }
 
-    return( <Fragment>
-            <dt>
+    return( <Fragment key={block.name}>
+            <dt >
                 <BlockIcon icon={block.icon.src} />
             </dt>
 
