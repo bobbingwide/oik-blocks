@@ -6,22 +6,24 @@
  *
  */
 
-const { getBlockType, getBlockTypes } = wp.blocks;
+const { getBlockType, getBlockTypes, getBlockContent, serialize } = wp.blocks;
 const { BlockIcon } = wp.editor;
-const Fragment = wp.element.Fragment;
+const { Fragment, renderToString } = wp.element;
 // Get just the __() localization function from wp.i18n
+//const { renderToString } = wp.element.renderToString;
 const { __ } = wp.i18n;
 const { select } = wp.data;
+const { addQueryArgs} = wp.url;
 
 import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
 import { getNameSpace} from './blockprefix.js';
 
 
-function BlockListStyled( prefix, showBlockLink, showTitle, showDescription, showBatch, component, ...props ) {
+function BlockListStyled( prefix, showBlockLink, showCreateBlockLink, showDescription, showBatch, component, ...props ) {
     //var block = getBlockType( blockname ) ;
     //var blockicon =  BlockiconStyled( blockname, props  );
     //var BlockLink =  showBlockLink ? <div>{ blockname }</div> : null;
-    //var blockTitle = showTitle ? <div> {block.title } </div> : null;
+    //var blockTitle = showCreateBlockLink ? <div> {block.title } </div> : null;
     //var blockDescription = showDescription ? <div> { block.description } </div> : null;
 
     var prefix_array = prefix.split( '/' );
@@ -33,12 +35,24 @@ function BlockListStyled( prefix, showBlockLink, showTitle, showDescription, sho
     block_types = block_types.sort( (a, b) => a.title.localeCompare(b.title));
     //console.log( block_types );
 
+    var count_blocks = block_types.length;
+    //var blocklist = null;
+
     if ( showBatch ) {
-        var blocklist =  <pre>
+        if ( showCreateBlockLink ) {
+            var blocklist = <pre>
+                {block_types.map((block ) => BlockCreateBlockLink( block, component )) }
+
+            </pre>
+        } else {
+            var blocklist = <pre>
+            rem Blocks {count_blocks}
+                <br/>
             cd ~/public_html/wp-content/plugins/oik-shortcodes/admin
-            {block_types.map( (block) => BlockCreateItem( block, component )) }
-            <br />
-        </pre>
+                {block_types.map((block) => BlockCreateItem(block, component))}
+                <br/>
+            </pre>
+        }
     } else
     {
         var blocklist =
@@ -46,13 +60,7 @@ function BlockListStyled( prefix, showBlockLink, showTitle, showDescription, sho
             {block_types.map((block) => BlockListItem(block, showBlockLink))}
         </dl>
     }
-    ;
-
-
-
     return( blocklist  );
-
-
 }
 
 function namespaceFilter( element, index, array ) {
@@ -134,6 +142,36 @@ function BlockCreateItem( block, component ) {
         <br/>oikwp oik-create-blocks.php {block.name} "{block.title}" {component} url={url}
         <br/>oikwp oik-update-blocks.php {block.name} "{keywords}" {block.category} url={url}
     </Fragment> );
+}
+
+function BlockCreateBlockLink( block, component ) {
+    //return( BlockCreateItem( block, component ));
+
+    var url = ajaxurl;
+    //console.log( ajaxurl );
+    //console.log( userSettings);
+    var keywords = block.keywords ? block.keywords.join() : null;
+    url = addQueryArgs( url, { action: 'oiksc_create_or_update_block' });
+    url = addQueryArgs( url, { title: block.title });
+    url = addQueryArgs( url, { name: block.name });
+    url = addQueryArgs( url, { description: block.description });
+    url = addQueryArgs( url, { component: component});
+    url = addQueryArgs( url, { keywords: keywords});
+    url = addQueryArgs( url, { category: block.category});
+
+    //var blockIcon =  <BlockIcon icon={block.icon.src}/>
+
+    console.log( block.icon );
+    //var blockContent = getBlockContent( block.icon.src );
+    var blockIcon = renderToString( <BlockIcon icon={block.icon.src } /> );
+    url = addQueryArgs( url, { icon: blockIcon });
+    //console.log( url );
+    return( <a href={ url } title={`Create {block.title}`}>
+
+        Create/Update: {block.title} - {block.name}<br />
+    </a>
+    );
+
 }
 
 export  { BlockListStyled };

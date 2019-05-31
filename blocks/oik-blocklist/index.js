@@ -83,7 +83,7 @@ export default registerBlockType(
                 default: true
             },
 
-            showTitle: {
+            showCreateBlockLink: {
                 type: 'boolean',
                 default: true
             },
@@ -120,8 +120,8 @@ export default registerBlockType(
             const onChangeShowBlockLink = ( event ) => {
                 props.setAttributes(  { showBlockLink: ! props.attributes.showBlockLink } );
             }
-            const onChangeShowTitle = ( event ) => {
-                props.setAttributes(  { showTitle: ! props.attributes.showTitle } );
+            const onChangeshowCreateBlockLink = ( event ) => {
+                props.setAttributes(  { showCreateBlockLink: ! props.attributes.showCreateBlockLink } );
             }
 
             const onChangeShowDescription = ( event ) => {
@@ -138,7 +138,7 @@ export default registerBlockType(
 
             var blocklist = BlockListStyled( props.attributes.prefix,
                 props.attributes.showBlockLink,
-                props.attributes.showTitle,
+                props.attributes.showCreateBlockLink,
                 props.attributes.showDescription,
                 props.attributes.showBatch,
                 props.attributes.component,
@@ -165,9 +165,9 @@ export default registerBlockType(
                         </PanelRow>
                         <PanelRow>
                             <ToggleControl
-                                label={ __( 'Show block title' ) }
-                                checked={ !! props.attributes.showTitle }
-                                onChange={ onChangeShowTitle }
+                                label={ __( 'Show create/update block links' ) }
+                                checked={ !! props.attributes.showCreateBlockLink }
+                                onChange={ onChangeshowCreateBlockLink }
 
                             />
 
@@ -215,7 +215,7 @@ export default registerBlockType(
                 />
          */
         save: props => {
-            return BlockListStyled( props.attributes.prefix, props.attributes.showBlockLink, props.attributes.showTitle, props.attributes.showDescription, props.attributes.showBatch, props.attributes.component, props );
+            return BlockListStyled( props.attributes.prefix, props.attributes.showBlockLink, props.attributes.showCreateBlockLink, props.attributes.showDescription, props.attributes.showBatch, props.attributes.component, props );
         },
     },
 );
