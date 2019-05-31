@@ -145,11 +145,7 @@ function BlockCreateItem( block, component ) {
 }
 
 function BlockCreateBlockLink( block, component ) {
-    //return( BlockCreateItem( block, component ));
-
     var url = ajaxurl;
-    //console.log( ajaxurl );
-    //console.log( userSettings);
     var keywords = block.keywords ? block.keywords.join() : null;
     url = addQueryArgs( url, { action: 'oiksc_create_or_update_block' });
     url = addQueryArgs( url, { title: block.title });
@@ -158,20 +154,13 @@ function BlockCreateBlockLink( block, component ) {
     url = addQueryArgs( url, { component: component});
     url = addQueryArgs( url, { keywords: keywords});
     url = addQueryArgs( url, { category: block.category});
-
-    //var blockIcon =  <BlockIcon icon={block.icon.src}/>
-
-    console.log( block.icon );
-    //var blockContent = getBlockContent( block.icon.src );
     var blockIcon = renderToString( <BlockIcon icon={block.icon.src } /> );
     url = addQueryArgs( url, { icon: blockIcon });
     //console.log( url );
-    return( <a href={ url } title={`Create {block.title}`}>
-
+    return( <a href={ url }>
         Create/Update: {block.title} - {block.name}<br />
     </a>
     );
-
 }
 
 export  { BlockListStyled };
