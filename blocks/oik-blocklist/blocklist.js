@@ -71,12 +71,10 @@ function namespaceFilter( element, index, array ) {
 }
 
     function getBlockLink( block ) {
-        var blockTitle = block.title.replace( ' ', '-' );
+        var blockTitle = block.title.replace( / /g, '-' );
         var blockName = block.name.replace( '/', '-' );
         var blockLink = null;
         var prefix = null;
-        //const { getCurrentPostType, getPermalinkParts } = select('core/editor' );
-        //console.log(getCurrentPostType());
         var siteurl = select('core/editor').getPermalinkParts();
 
         if ( siteurl !== null ) {
@@ -89,8 +87,6 @@ function namespaceFilter( element, index, array ) {
         } else {
             console.log( "SiteURL's null");
         }
-
-        //alert( "hey");
         blockLink = `${prefix}${blockTitle}-${blockName}`;
         return blockLink;
     }

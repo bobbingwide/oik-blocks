@@ -87,6 +87,9 @@ Yes, it uses a number of other plugins:
 1. oik-blocks's address block
 
 ## Upgrade Notice 
+# 0.4.0-alpha-20190604 
+Update for corrections to the Block list block's links
+
 # 0.4.0-alpha-20190531 
 Update for improvements to the Block list block help with creating / updating block CPTs on blocks.wp-a2z.org
 
@@ -124,6 +127,9 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 ## Changelog 
+# 0.4.0-alpha-20190604 
+* Fixed: Correct Block list block links,https://github.com/bobbingwide/oik-blocks/issues/27
+
 # 0.4.0-alpha-20190531 
 * Changed: Eliminate unwanted white space in the Block Info's optional divs: title, description, category and keywords https://github.com/bobbingwide/oik-blocks/issues/24
 * Changed: Add logic to create/update a block CPT using an AJAX request to oik-shortcodes https://github.com/bobbingwide/oik-blocks/issues/27
