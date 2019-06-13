@@ -12,7 +12,7 @@
 
 const { Component }  = wp.element;
 const{ getBlockTypes, getBlockType } = wp.blocks;
-const { BlockIcon } = wp.editor;
+const { BlockIcon } = wp.blockEditor;
 const { SelectControl } = wp.components;
 
 function BlockiconsSelect( { value, onChange, ...props } ) {

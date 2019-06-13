@@ -7,7 +7,7 @@
  */
 
 const { getBlockType, getBlockTypes, getBlockContent, serialize } = wp.blocks;
-const { BlockIcon } = wp.editor;
+const { BlockIcon } = wp.blockEditor;
 const { Fragment, renderToString } = wp.element;
 // Get just the __() localization function from wp.i18n
 //const { renderToString } = wp.element.renderToString;
