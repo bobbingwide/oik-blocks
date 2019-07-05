@@ -72,6 +72,7 @@ function namespaceFilter( element, index, array ) {
 
     function getBlockLink( block ) {
         var blockTitle = block.title.replace( / /g, '-' );
+        blockTitle = blockTitle.toLowerCase();
         var blockName = block.name.replace( '/', '-' );
         var blockLink = null;
         var prefix = null;
