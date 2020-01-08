@@ -4,7 +4,7 @@
 * Donate link: https://www.oik-plugins.com/oik/oik-donate/
 * Tags: gutenberg, shortcode, blocks, oik
 * Requires at least: 5.0.3
-* Tested up to: 5.2.0
+* Tested up to: 5.3.2
 * Gutenberg compatible: Yes
 * Stable tag: 0.3.0
 * License: GPLv3 or later
@@ -87,6 +87,9 @@ Yes, it uses a number of other plugins:
 1. oik-blocks's address block
 
 ## Upgrade Notice 
+# 0.4.0-beta-20200108 
+Version for bobbingwide.com/problem-solving
+
 # 0.4.0-alpha-20190604 
 Update for corrections to the Block list block's links
 
@@ -127,6 +130,9 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 ## Changelog 
+# 0.4.0-beta-20200108 
+Lots of changes I'll write about later
+
 # 0.4.0-alpha-20190604 
 * Fixed: Correct Block list block links,https://github.com/bobbingwide/oik-blocks/issues/27
 

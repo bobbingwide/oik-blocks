@@ -1,4 +1,4 @@
-<?php // (C) Copyright Bobbing Wide 2018
+<?php // (C) Copyright Bobbing Wide 2018-2020
 
 class Tests_issue_4225 extends BW_UnitTestCase {
 
@@ -7,7 +7,7 @@ class Tests_issue_4225 extends BW_UnitTestCase {
 	 * 
 	 * - ensure any database updates are rolled back
 	 */
-	function setUp() {
+	function setUp(): void {
 		parent::setUp();
 	}
 	
@@ -44,7 +44,7 @@ class Tests_issue_4225 extends BW_UnitTestCase {
 
 		// Page 3 excerpt
 		// <a href="https://s.b/wordpress/post-title/#more-1667" class="more-link">third</a>
-		$this->assertContains( "Page 3 excerpt", $excerpt );
+		$this->assertStringContainsString( "Page 3 excerpt", $excerpt );
 	
 	
 	}

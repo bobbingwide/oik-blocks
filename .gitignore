@@ -3,3 +3,4 @@ node_modules-renamed
 package-lock.json
 .idea/
 .~lock*
+.phpunit.result.cache
