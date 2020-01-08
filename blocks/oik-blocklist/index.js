@@ -6,7 +6,7 @@
  *
  *
  *
- * @copyright (C) Copyright Bobbing Wide 2019
+ * @copyright (C) Copyright Bobbing Wide 2019, 2020
  * @author Herb Miller @bobbingwide
  */
 import './style.scss';
@@ -21,9 +21,12 @@ const {
 } = wp.blocks;
 const {
     BlockIcon,
-    InspectorControls,
     ServerSideRender,
 } = wp.editor;
+const {
+    InspectorControls,
+} = wp.blockEditor;
+
 
 const {
     Toolbar,
@@ -105,6 +108,8 @@ export default registerBlockType(
 
 
 
+        },
+        example: {
         },
 
 
