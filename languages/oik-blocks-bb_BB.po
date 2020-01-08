@@ -1,0 +1,76 @@
+# Copyright (C) 2019 oik-blocks
+# This file is distributed under the same license as the oik-blocks package.
+msgid ""
+msgstr ""
+"Project-Id-Version: oik-blocks 0.3.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/oik-blocks\n"
+"POT-Creation-Date: 2019-04-15 15:17:23+00:00\n"
+"MIME-Version: 1.0\n"
+"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"Language: bb_BB\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+#: libs/oik-depends.php:100 libs/oik-depends.php:147
+msgid " version "
+msgstr " vreison "
+
+
+#: libs/oik-depends.php:103
+msgid "Plugin %1$s may not be fully functional."
+msgstr "Pulign %1$s mAy nOt bE fluly fnutcoianl."
+
+
+#: libs/oik-depends.php:106 libs/oik-depends.php:152
+msgid ""
+"Please install and activate the required minimum version of this plugin: %1$s"
+msgstr ""
+"Pelsae isnatll And atcvitae thE rqeiuerd mnimium vreison Of tihs pulign: %1$s"
+
+
+#: libs/oik-depends.php:150
+msgid "%1$s may not be fully functional."
+msgstr "%1$s mAy nOt bE fluly fnutcoianl."
+
+
+#: libs/oik-depends.php:284
+msgid "Install %1$s"
+msgstr "Isnatll %1$s"
+
+
+#: libs/oik-depends.php:312
+msgid "Activate %1$s"
+msgstr "Atcvitae %1$s"
+
+
+#: libs/oik-depends.php:330
+msgid "Upgrade %1$s"
+msgstr "Ugparde %1$s"
+
+
+#. Plugin Name of the plugin/theme
+msgid "oik-blocks"
+msgstr "OIk-bolkcs"
+
+
+#. Plugin URI of the plugin/theme
+msgid "https://www.oik-plugins.com/oik-plugins/oik-blocks"
+msgstr "https://www.oik-plugins.com/oik-plugins/oik-blocks"
+
+
+#. Description of the plugin/theme
+msgid "WordPress 5.0 blocks, aka Gutenberg blocks, for oik shortcodes."
+msgstr "WroPderss 5.0 bolkcs, AkA Gtuneebrg bolkcs, fOr OIk sohtroceds."
+
+
+#. Author of the plugin/theme
+msgid "Herb Miller"
+msgstr "Hreb Mlielr"
+
+
+#. Author URI of the plugin/theme
+msgid "https://oik-plugins.com/author/bobbingwide"
+msgstr "https://oik-plugins.com/author/bobbingwide"
+
