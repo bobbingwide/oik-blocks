@@ -13,8 +13,10 @@ const {
 	PlainText,
   AlignmentToolbar,
   BlockControls,
-  InspectorControls,
  } = wp.editor;
+const {
+	InspectorControls,
+} = wp.blockEditor;
 	 
 const {
   Toolbar,

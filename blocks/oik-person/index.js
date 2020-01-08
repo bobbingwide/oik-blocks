@@ -3,7 +3,7 @@
  *
  * - Depends on oik-user
  *
- * @copyright (C) Copyright Bobbing Wide 2018,2019
+ * @copyright (C) Copyright Bobbing Wide 2018,2019, 2020
  * @author Herb Miller @bobbingwide
  */
 
@@ -21,10 +21,13 @@ const {
 } = wp.blocks;
 const { 
 	Editable,
-  InspectorControls,
+
     InnerBlocks,
     ServerSideRender,
 } = wp.editor;
+const {
+    InspectorControls,
+} = wp.blockEditor;
 	 
 const {
   Toolbar,

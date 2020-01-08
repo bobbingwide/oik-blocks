@@ -1,3 +1,12 @@
+/**
+ * Implements the Countdown block
+ *
+ * Equivalent to [bw_countdown]
+ *
+ *
+ * @copyright (C) Copyright Bobbing Wide 2019, 2020
+ * @author Herb Miller @bobbingwide
+ */
 import './style.scss';
 import './editor.scss';
 
@@ -12,7 +21,7 @@ const {
 
 const { 
   InspectorControls,
-} = wp.editor;
+} = wp.blockEditor;
 	 
 const {
   Toolbar,

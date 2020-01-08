@@ -6,7 +6,7 @@
  * - Supports easier to use parameter for specifying the location ( Port )
  * - Server side rendering when the block is not selected.
  *
- * @copyright (C) Copyright Bobbing Wide 2018
+ * @copyright (C) Copyright Bobbing Wide 2018-2020
  * @author Herb Miller @bobbingwide
  */
 //import './style.scss';
@@ -19,9 +19,11 @@ const {
     registerBlockType,
 } = wp.blocks;
 const {
-    InspectorControls,
     ServerSideRender,
 } = wp.editor;
+const {
+    InspectorControls,
+} = wp.blockEditor;
 
 const {
     Toolbar,

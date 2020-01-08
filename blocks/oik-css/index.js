@@ -5,7 +5,7 @@
  *
  * Uses [bw_css] shortcode from oik-css plugin
  *
- * @copyright (C) Copyright Bobbing Wide 2018, 2019
+ * @copyright (C) Copyright Bobbing Wide 2018, 2019, 2020
  * @author Herb Miller @bobbingwide
  */
 import './style.scss';
@@ -20,10 +20,12 @@ const {
 
 const {
 	Editable,
-  InspectorControls,
 	PlainText,
 	ServerSideRender,
  } = wp.editor;
+const {
+	InspectorControls,
+} = wp.blockEditor;
 	 
 const {
   Toolbar,

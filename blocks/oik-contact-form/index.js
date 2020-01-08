@@ -1,3 +1,11 @@
+/**
+ * Implements the Contact form block
+ *
+ * Equivalent to [bw_contact_form]
+ *
+ * @copyright (C) Copyright Bobbing Wide 2018, 2020
+ * @author Herb Miller @bobbingwide
+ */
 import './style.scss';
 import './editor.scss';
 
@@ -10,8 +18,10 @@ const { __ } = wp.i18n;
 const { 
 	registerBlockType, 
 	Editable,
-  InspectorControls,
  } = wp.blocks;
+const {
+    InspectorControls,
+} = wp.blockEditor;
 	 
 const {
   Toolbar,

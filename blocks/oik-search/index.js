@@ -4,7 +4,7 @@
  * Originally intended to uses [bw_search] shortcode from oik-bob-bing-wide plugin
  * but it's much easier to use get_search_form... that's all that [bw_search] does.
  *
- * @copyright (C) Copyright Bobbing Wide 2018
+ * @copyright (C) Copyright Bobbing Wide 2018-2020
  * @author Herb Miller @bobbingwide
  */
 //import './style.scss';
@@ -17,9 +17,11 @@ const {
     registerBlockType,
 } = wp.blocks;
 const {
-    InspectorControls,
     ServerSideRender
 } = wp.editor;
+const {
+    InspectorControls,
+} = wp.blockEditor;
 
 const {
     Toolbar,
@@ -60,6 +62,8 @@ export default registerBlockType(
         attributes: {
 
 
+        },
+        example: {
         },
         supports: {
             customClassName: false,

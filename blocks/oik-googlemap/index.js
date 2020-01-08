@@ -3,7 +3,7 @@
  * 
  * Uses [bw_show_googlemap] shortcode.
  *
- * @copyright (C) Copyright Bobbing Wide 2018
+ * @copyright (C) Copyright Bobbing Wide 2018-2020
  * @author Herb Miller @bobbingwide
  */
 

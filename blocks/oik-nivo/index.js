@@ -3,7 +3,7 @@
  * 
  * Uses [nivo] shortcode.
  *
- * @copyright (C) Copyright Bobbing Wide 2018
+ * @copyright (C) Copyright Bobbing Wide 2018-2020
  * @author Herb Miller @bobbingwide
  */
 
@@ -22,8 +22,10 @@ const {
 
 const { 
 	Editable,
-  InspectorControls,
  } = wp.editor;
+const {
+	InspectorControls,
+} = wp.blockEditor;
 	 
 const {
   Toolbar,

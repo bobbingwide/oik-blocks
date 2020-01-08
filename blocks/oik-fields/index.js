@@ -8,7 +8,7 @@
  * - Not yet aware of the Fields associated with a CPT
  * - Does not require fields to be exposed in the REST API
  *
- * @copyright (C) Copyright Bobbing Wide 2018
+ * @copyright (C) Copyright Bobbing Wide 2018-2020
  * @author Herb Miller @bobbingwide
  */
 //import './style.scss';
@@ -21,9 +21,12 @@ const {
     registerBlockType,
 } = wp.blocks;
 const {
-    InspectorControls,
     ServerSideRender,
 } = wp.editor;
+const {
+    InspectorControls,
+} = wp.blockEditor;
+
 
 const {
     Toolbar,
@@ -91,6 +94,8 @@ export default registerBlockType(
             },
 
 
+        },
+        example: {
         },
         supports: {
             customClassName: false,

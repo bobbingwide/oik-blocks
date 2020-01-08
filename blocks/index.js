@@ -5,7 +5,7 @@
  * The build directory is the target. 
  * See webpack.config.js
  * 
- * @copyright (C) Copyright Bobbing Wide 2018, 2019
+ * @copyright (C) Copyright Bobbing Wide 2018, 2019, 2020
  * @author Herb Miller @bobbingwide
  */
 import './github';	         // From oik-bob-bing-wide
