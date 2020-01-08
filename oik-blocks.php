@@ -341,6 +341,7 @@ function oik_blocks_fields_featured_image_not_set() {
 function oik_blocks_dynamic_block_address( $attributes ) {
 	$html = oik_blocks_check_server_func( "shortcodes/oik-address.php", "oik", "bw_address" );
 	if ( null === $html ) {
+		$attributes['tag'] = bw_array_get( $attributes, 'tag', 'div');
 		$html = bw_address( $attributes, null, null );
 	}
 	return $html;

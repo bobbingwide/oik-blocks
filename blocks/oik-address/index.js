@@ -77,10 +77,12 @@ export default registerBlockType(
         attributes: {
             tag: {
                 type: 'string',
-                default: ''
+                default: 'div',
             }
 
 					
+        },
+        example: {
         },
 
         supports: {
