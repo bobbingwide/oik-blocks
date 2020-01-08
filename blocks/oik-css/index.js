@@ -1,5 +1,7 @@
 /**
+ * @package oik-blocks
  * Implements CSS block
+ *
  *
  * Uses [bw_css] shortcode from oik-css plugin
  *

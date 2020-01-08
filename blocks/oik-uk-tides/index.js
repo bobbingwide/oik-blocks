@@ -82,10 +82,11 @@ export default registerBlockType(
             },
             port: {
                 type: 'string',
-                default: 'chichester-harbour'
+                default: 'chichester-harbour-entrance'
             }
 
         },
+
         supports: {
             customClassName: true,
             className: true,
