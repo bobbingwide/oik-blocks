@@ -80,9 +80,9 @@ function namespaceFilter( element, index, array ) {
 
         if ( siteurl !== null ) {
 
-            console.log(siteurl);
+            //console.log(siteurl);
             var postType = select( 'core/editor').getCurrentPostType();
-            console.log( postType );
+            //console.log( postType );
 
             prefix = siteurl.prefix.replace( postType, 'block');
         } else {
