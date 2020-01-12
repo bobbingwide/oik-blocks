@@ -9,6 +9,7 @@
 import './style.scss';
 import './editor.scss';
 import portOptions from "../oik-uk-tides/tidetimes-co-uk";
+import { transforms } from './transforms.js';
 
 // Get just the __() localization function from wp.i18n
 const { __ } = wp.i18n;
@@ -103,6 +104,7 @@ export default registerBlockType(
 			}
 					
         },
+		transforms,
 				
 		supports: {
 			customClassName: false,
@@ -116,6 +118,8 @@ export default registerBlockType(
 
 
 				const onChangeContent = (value) => {
+					value = value.replace( /<br>/g, '\n' );
+					console.log( value );
 					setAttributes({content: value});
 				};
 
