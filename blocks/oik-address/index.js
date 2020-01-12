@@ -2,7 +2,7 @@
  * Implements [bw_address] as a server rendered block
  *
  * - Depends on oik
- * -
+ * - When used with oik-user we need to set the alt= parameter or user=  parameter
  *
  * @copyright (C) Copyright Bobbing Wide 2018,2019, 2020
  * @author Herb Miller @bobbingwide
@@ -17,7 +17,7 @@ import './editor.scss';
 // Get just the __() localization function from wp.i18n
 const { __ } = wp.i18n;
 // Get registerBlockType and Editable from wp.blocks
-const { registerBlockType, Editable } = wp.blocks;
+const { registerBlockType, Editable, getBlockType } = wp.blocks;
 
 const {
     ServerSideRender,
@@ -52,94 +52,88 @@ const tagOptions =
 /**
  * Register e
  */
-export default registerBlockType(
-    // Namespaced, hyphens, lowercase, unique name
-    'oik-block/address',
-    {
-        // Localize title using wp.i18n.__()
-        title: __( 'Address' ),
-				
-		description: 'Displays your address',
+var block = getBlockType( 'oik-block/address');
+if ( block === undefined ) {
 
-        // Category Options: common, formatting, layout, widgets, embed
-        category: 'common',
 
-        // Dashicons Options - https://goo.gl/aTM1DQ
-        icon: 'building',
+    registerBlockType(
+        // Namespaced, hyphens, lowercase, unique name
+        'oik-block/address',
+        {
+            // Localize title using wp.i18n.__()
+            title: __('Address'),
 
-        // Limit to 3 Keywords / Phrases
-        keywords: [
-            __( 'Address' ),
-            __( 'oik' ),
-        ],
+            description: 'Displays your address',
 
-        // Set for each piece of dynamic data used in your block
-        attributes: {
-            tag: {
-                type: 'string',
-                default: 'div',
+            // Category Options: common, formatting, layout, widgets, embed
+            category: 'common',
+
+            // Dashicons Options - https://goo.gl/aTM1DQ
+            icon: 'building',
+
+            // Limit to 3 Keywords / Phrases
+            keywords: [
+                __('Address'),
+                __('oik'),
+            ],
+
+            // Set for each piece of dynamic data used in your block
+            attributes: {
+                tag: {
+                    type: 'string',
+                    default: 'div',
+                }
+
+
+            },
+            example: {},
+
+            supports: {
+                customClassName: false,
+                className: false,
+                html: false,
+            },
+
+            edit: props => {
+                function onChangeAttr(key, value) {
+                    props.setAttributes({[key]: value});
+                };
+
+
+                return (
+
+                    <Fragment>
+                        <InspectorControls>
+                            <PanelBody>
+                                <PanelRow>
+                                    <SelectControl label="Display" value={props.attributes.tag}
+                                                   options={map(tagOptions, (key, label) => ({
+                                                       value: label,
+                                                       label: key
+                                                   }))}
+                                                   onChange={partial(onChangeAttr, 'tag')}
+                                    />
+
+                                </PanelRow>
+                                <PanelRow>
+                                    Equivalent shortcode<br/>
+                                    &#91;bw_address tag={props.attributes.tag}&#93;
+                                </PanelRow>
+                            </PanelBody>
+
+                        </InspectorControls>
+
+                        <ServerSideRender
+                            block="oik-block/address" attributes={props.attributes}
+                        />
+                    </Fragment>
+                );
+            },
+
+            save() {
+                return null;
             }
-
-					
         },
-        example: {
-        },
+    );
 
-        supports: {
-            customClassName: false,
-            className: false,
-            html: false,
-        },
-
-        edit: props => {
-            function onChangeAttr( key, value ) {
-                props.setAttributes( { [key] : value } );
-            };
-
-
-					
-          return (
-
-              <Fragment>
-              <InspectorControls >
-              <PanelBody>
-            <PanelRow>
-                <SelectControl label="Display" value={props.attributes.tag}
-                                     options={ map( tagOptions, ( key, label ) => ( { value: label, label: key } ) ) }
-                                     onChange={partial( onChangeAttr, 'tag' )}
-            />
-
-            </PanelRow>
-                  <PanelRow>
-                      Equivalent shortcode<br />
-                      &#91;bw_address tag={props.attributes.tag}&#93;
-                  </PanelRow>
-            </PanelBody>
-
-        </InspectorControls>
-
-        <ServerSideRender
-            block="oik-block/address" attributes={ props.attributes }
-            />
-        </Fragment>
-          );
-        },
-        saver: props => {
-					// console.log( props );
-					//var shortcode =  {props.attributes.issue} ;
-					var lsb = '[';
-					var rsb = ']';
-          return (
-            <div>
-						{blockHeader}
-						{lsb}
-						bw_address
-						{rsb}
-            </div>
-          );
-        },
-        save() {
-                  return null;
-        }
-    },
-);
+}
