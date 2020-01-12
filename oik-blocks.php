@@ -524,21 +524,21 @@ function oik_blocks_register_dynamic_blocks() {
 	if ( function_exists( "register_block_type" ) ) {
 		//oik_blocks_register_editor_scripts();
 		oik_blocks_boot_libs();
-		register_block_type( 'oik-block/contact-form',
+		oik_blocks_maybe_register_block_type( 'oik-block/contact-form',
 												[ 'render_callback' => 'oik_blocks_dynamic_block_contact_form' 
 												,	'editor_script' => 'oik_blocks-blocks-js'
 												, 'editor_style' => null
 												, 'script' => null
 												, 'style' => null
 												] );
-		register_block_type( 'oik-block/css',
+		oik_blocks_maybe_register_block_type( 'oik-block/css',
 			[ 'render_callback' => 'oik_blocks_dynamic_block_css',
 				'attributes' => [
 					'css' => [ 'type' => 'string'],
 					'text' => ['type' => 'string']
 				]
 			] );
-		register_block_type( 'oik-block/csv',
+		oik_blocks_maybe_register_block_type( 'oik-block/csv',
 			[ 'render_callback' => 'oik_blocks_dynamic_block_csv',
 			  'attributes' => [
 				  'content' => [ 'type' => 'string'],
@@ -547,14 +547,14 @@ function oik_blocks_register_dynamic_blocks() {
 			  ]
 
 			] );
-		register_block_type( 'oik-block/dummy',
+		oik_blocks_maybe_register_block_type( 'oik-block/dummy',
 												[ 'render_callback' => 'oik_blocks_dummy' 
 												,	'editor_script' => 'oik_blocks-dummy-js'
 												, 'script' => 'oik_blocks-dummy-js'
 												]
 											 );
-		register_block_type( 'oik-block/shortcode-block', [ 'render_callback' => 'oik_blocks_dynamic_block_shortcode' ] );
-		register_block_type( 'oik-block/wp',
+		oik_blocks_maybe_register_block_type( 'oik-block/shortcode-block', [ 'render_callback' => 'oik_blocks_dynamic_block_shortcode' ] );
+		oik_blocks_maybe_register_block_type( 'oik-block/wp',
 			[ 'render_callback' => 'oik_blocks_dynamic_block_wp',
 			  'attributes' => [ 'v' =>  [ 'type' => 'string', ]
 				               , 'p' => ['type' => 'string' ]
@@ -562,7 +562,7 @@ function oik_blocks_register_dynamic_blocks() {
 				  ]
 			]
 		);
-		register_block_type( 'oik-block/geshi',
+		oik_blocks_maybe_register_block_type( 'oik-block/geshi',
 			[ 'render_callback' => 'oik_blocks_dynamic_block_geshi',
 			  'attributes' => [ 'lang' =>  [ 'type' => 'string', ]
 				  , 'text' => ['type' => 'string' ]
@@ -570,11 +570,11 @@ function oik_blocks_register_dynamic_blocks() {
 			  ]
 			]
 		);
-		register_block_type( "oik-block/search",
+		oik_blocks_maybe_register_block_type( "oik-block/search",
 		[ 'render_callback' => 'oik_blocks_dynamic_block_search' ]
 			);
 
-		register_block_type( "oik-block/uk-tides",
+		oik_blocks_maybe_register_block_type( "oik-block/uk-tides",
 			[ 'render_callback' => 'oik_blocks_dynamic_block_uk_tides',
 			  'attributes' => [
 			  	    'site' => [ 'type' => 'string' ]
@@ -583,7 +583,7 @@ function oik_blocks_register_dynamic_blocks() {
 			]
 
 		);
-		register_block_type( "oik-block/fields",
+		oik_blocks_maybe_register_block_type( "oik-block/fields",
 			[ 'render_callback' => 'oik_blocks_dynamic_block_fields',
 			  'attributes' => [
 				  'fields' => [ 'type' => 'string' ],
@@ -593,7 +593,7 @@ function oik_blocks_register_dynamic_blocks() {
 			]
 
 		);
-		register_block_type( "oik-block/address",
+		oik_blocks_maybe_register_block_type( "oik-block/address",
 			[ 'render_callback' => 'oik_blocks_dynamic_block_address',
 			  'attributes' => [
 			  	'tag' => [ 'type' => 'string']
@@ -601,7 +601,7 @@ function oik_blocks_register_dynamic_blocks() {
 			]
 
 		);
-		register_block_type( "oik-block/person",
+		oik_blocks_maybe_register_block_type( "oik-block/person",
 			[ 'render_callback' => 'oik_blocks_dynamic_block_person',
 			  'attributes' => [
 				  'user' => [ 'type' => 'string'],
@@ -612,6 +612,12 @@ function oik_blocks_register_dynamic_blocks() {
 			]
 
 		);
+	}
+}
+
+function oik_blocks_maybe_register_block_type( $name, $args ) {
+	if ( ! WP_Block_Type_Registry::get_instance()->is_registered( $name ) ) {
+		register_block_type( $name, $args );
 	}
 }
 
