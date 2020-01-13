@@ -30,6 +30,7 @@ const {
     Dashicon,
 
 } = wp.components;
+const Fragment = wp.element.Fragment;
 
 import { BlockiconsSelect, BlockiconStyled } from './blockicons.js';
 
@@ -92,7 +93,8 @@ export default registerBlockType(
 
             var blockicon = BlockiconStyled( props.attributes.blockicon, props );
 
-            return [
+            return (
+                <Fragment>
                 <InspectorControls >
                     <PanelBody>
 
@@ -107,12 +109,13 @@ export default registerBlockType(
                     </PanelBody>
 
                 </InspectorControls>
-                ,
+
                 <div className={ props.className }>
                     { blockicon }
                 </div>
+                </Fragment>
 
-            ];
+            );
         },
         /*
         <ServerSideRender
