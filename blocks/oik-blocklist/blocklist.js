@@ -135,7 +135,7 @@ function BlockCreateItem( block, component ) {
     if ( component == '') {
         component = "?enter component?";
     }
-    return( <Fragment>
+    return( <Fragment key={block.name}>
         <br/>oikwp oik-create-blocks.php {block.name} "{block.title}" {component} url={url}
         <br/>oikwp oik-update-blocks.php {block.name} "{keywords}" {block.category} url={url}
     </Fragment> );
@@ -154,7 +154,7 @@ function BlockCreateBlockLink( block, component ) {
     var blockIcon = renderToString( <BlockIcon icon={block.icon.src } /> );
     url = addQueryArgs( url, { icon: blockIcon });
     //console.log( url );
-    return( <a href={ url }>
+    return( <a key={block.name} href={ url }>
         Create/Update: {block.title} - {block.name}<br />
     </a>
     );

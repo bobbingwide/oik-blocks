@@ -152,7 +152,9 @@ export default registerBlockType(
 
 
 
-            return [
+            return (
+
+                <Fragment>
                 <InspectorControls >
                     <PanelBody>
 
@@ -205,14 +207,15 @@ export default registerBlockType(
                     </PanelBody>
 
                 </InspectorControls>
-                ,
+
                 <div className={ props.className }>
                 { blocklist }
                 </div>
-                ,
+                    </Fragment>
 
 
-            ];
+
+            );
         },
         /*
         <ServerSideRender
