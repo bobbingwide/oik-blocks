@@ -20,11 +20,11 @@ const {
 } = wp.blocks;
 const {
     Editable,
-    PlainText,
     AlignmentToolbar,
     BlockControls,
 } = wp.editor;
 const {
+	PlainText,
 	InspectorControls,
 } = wp.blockEditor;
 	 

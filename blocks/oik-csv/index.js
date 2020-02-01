@@ -20,13 +20,14 @@ const {
 
 const { 
 	Editable,
-	PlainText,
+
   AlignmentToolbar,
   BlockControls,
 
 	ServerSideRender,
  } = wp.editor;
 const {
+	PlainText,
 	InspectorControls,
 } = wp.blockEditor;
 	 

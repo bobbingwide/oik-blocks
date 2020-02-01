@@ -20,10 +20,10 @@ const {
 
 const {
 	Editable,
-	PlainText,
 	ServerSideRender,
  } = wp.editor;
 const {
+	PlainText,
 	InspectorControls,
 } = wp.blockEditor;
 	 
