@@ -640,6 +640,7 @@ function oik_blocks_register_dynamic_blocks() {
 						[ 'shortcode' => [ 'type'=>'string' ]
 						,'content' => [ 'type' => 'string ']
 						, 'parameters' => [ 'type' => 'string']
+						, 'post_type' => ['type' => 'string']
 
 						]
 				] );

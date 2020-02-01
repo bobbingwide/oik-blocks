@@ -6,10 +6,14 @@
 ///>
 
 
+import {bw_shortcodes} from "./bw_shortcodes";
+
 const { withSelect, select, subscribe } = wp.data;
 const { Component } = wp.element;
 //const { getPostTypes } = subscribe( 'core' );
 //const bw_post_types = subscribe( 'core' ).getPostTypes();
+
+const { SelectControl } = wp.components;
 
 
 
@@ -18,8 +22,10 @@ export class PostTypes extends Component {
         super( ...arguments );
         this.state = {
             postTypes: [],
-            postType: "",
+
         };
+        console.log( this.state);
+        console.log( this );
     }
 
     componentDidMount() {
@@ -45,13 +51,39 @@ export class PostTypes extends Component {
         }
     }
 
+
+    postTypeListSelect( props ) {
+        var postTypes = this.state.postTypes;
+        if ( postTypes ) {
+            var options = postTypes.map(( postType ) => this.postTypeOption( postType ) );
+            return(
+                <SelectControl label="Post Type" value={this.props.postType}
+                           options={options}
+                           onChange={ this.props.onChange}
+                />
+            );
+        } else {
+            return( <p>Loading post types</p>);
+        }
+    }
+
+    /**
+     * Map the postTypes to a select list
+     * @param postType
+     * @returns {*}
+     */
+
     postTypeMap( postType ) {
         console.log( postType );
         return( <li>{postType.slug}</li>);
     }
 
+    postTypeOption( postType ) {
+        return( { value: postType.slug, label: postType.name });
+    }
+
     render() {
-        return( this.postTypeList()
+        return( this.postTypeListSelect()
         );
     }
 

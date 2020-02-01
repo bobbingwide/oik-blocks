@@ -70,7 +70,7 @@ const shortcode_attributes =
             default: '',
         },
 
-        postType: {
+        post_type: {
             type: 'string',
             default: '',
         }
@@ -152,6 +152,11 @@ export default registerBlockType(
                     setAttributes( { [key] : value } );
                 };
 
+                const onChangePostType = ( value ) => {
+                    attributes = getAttributes( value );
+                    setAttributes( { post_type: value });
+                }
+
 
                 /*
                                    <GenericAttrs value={attributes.shortcode} />
@@ -177,7 +182,7 @@ export default registerBlockType(
                                                  placeholder={ __( 'Enter your shortcode content' ) }
                                                  onChange={onChangeContent}
                                 />
-                                <PostTypes />
+                                <PostTypes value={ attributes.post_type } onChange={onChangePostType } />
 
 
 
@@ -195,9 +200,11 @@ export default registerBlockType(
 
 
                         </div>
+                        <div>
                         <ServerSideRender
                             block="oik/content-block" attributes={ attributes }
                         />
+                        </div>
                     </Fragment>
 
                 );
