@@ -638,11 +638,11 @@ function oik_blocks_register_dynamic_blocks() {
 					//, 'script'        => null
 					, 'attributes'    =>
 						[ 'shortcode' => [ 'type'=>'string' ]
-						,'content' => [ 'type' => 'string ']
+						, 'content' => [ 'type' => 'string ']
 						, 'parameters' => [ 'type' => 'string']
 						, 'post_type' => ['type' => 'string']
 						, 'post_parent' => ['type' => 'string']
-						, 'number_posts' => ['type' => 'string']
+						, 'numberposts' => ['type' => 'integer']
 
 						]
 				] );

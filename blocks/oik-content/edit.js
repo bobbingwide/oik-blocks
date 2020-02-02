@@ -28,6 +28,7 @@ const {
     TextControl,
     TextareaControl,
     SelectControl,
+    RangeControl,
 } = wp.components;
 const Fragment = wp.element.Fragment;
 import { map, partial, has } from 'lodash';
@@ -37,6 +38,7 @@ import { map, partial, has } from 'lodash';
 
 import {bw_shortcodes, getAttributes} from "./bw_shortcodes";
 import {PostTypes} from "./post_type";
+import{ NumberPosts } from './numberposts';
 
 const edit= withInstanceId(
     ( { attributes, setAttributes, instanceId, isSelected } ) => {
@@ -75,7 +77,7 @@ const edit= withInstanceId(
         }
 
         const onChangeNumberPosts = ( value ) => {
-            setAttributes( { number_posts: value } );
+            setAttributes( { numberposts: value } );
         }
 
 
@@ -92,20 +94,17 @@ const edit= withInstanceId(
                                        onChange={partial( onChangeAttr, 'shortcode' )}
                         />
 
-                        <PostTypes value={ attributes.post_type } onChange={onChangePostType } />
+                        <PostTypes value={ attributes.post_type } onChange={ onChangePostType } />
+                        <RangeControl label="Number posts" value={ attributes.numberposts } onChange={ onChangeNumberPosts } min={-1} max={100} />
+                        <TextControl value={ attributes.post_parent} onChange={ onChangePostParent } label="Post Parent" />
 
-                        <TextareaControl label="Parameters"
+                        <TextareaControl label="Advanced Parameters"
                                          value={ attributes.parameters }
-                                         placeholder={ __( 'Enter your shortcode parameters' ) }
+                                         placeholder={ __( 'Enter your advanced shortcode parameters' ) }
                                          onChange={onChangeParameters}
                                          rows="1"
                         />
-                        <TextareaControl label="Content"
-                                         id={ inputId }
-                                         value={ attributes.content }
-                                         placeholder={ __( 'Enter your shortcode content' ) }
-                                         onChange={onChangeContent}
-                        />
+
 
 
 

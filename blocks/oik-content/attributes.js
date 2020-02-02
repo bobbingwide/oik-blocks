@@ -5,12 +5,7 @@ const shortcode_attributes =
             default: '',
         },
 
-        content: {
-            type: 'string',
-            default: '',
-        },
-
-        parameters: {
+       parameters: {
             type: 'string',
             default: '',
         },
@@ -25,8 +20,8 @@ const shortcode_attributes =
             default: '.',
         },
 
-        number_posts: {
-            type: 'string',
+        numberposts: {
+            type: 'integer',
             default: 10,
         }
 
