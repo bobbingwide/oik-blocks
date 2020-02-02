@@ -14,17 +14,6 @@ const {
     registerBlockType,
 } = wp.blocks;
 
-const {
-    Editable,
-
-    AlignmentToolbar,
-    BlockControls,
-    ServerSideRender,
-} = wp.editor;
-const {
-    PlainText,
-    InspectorControls,
-} = wp.blockEditor;
 
 const {
     Toolbar,
@@ -38,9 +27,6 @@ const {
     SelectControl,
 } = wp.components;
 
-const {
-    withInstanceId,
-} = wp.compose;
 
 const Fragment = wp.element.Fragment;
 const RawHTML = wp.element.RawHTML;
@@ -48,36 +34,15 @@ const RawHTML = wp.element.RawHTML;
 //var TextControl = wp.blocks.InspectorControls.TextControl;
 
 import { bw_shortcodes, getAttributes, bw_shortcodes_attrs } from './bw_shortcodes';
+import { BwQueryControls } from './query_controls';
+
 //import GenericAttrs from './GenericAttrs';
-import { bwPostTypes, bw_post_types, PostTypes } from './post_type';
+import { PostTypes } from './post_type';
+import { edit } from './edit';
 
 import { map, partial, has } from 'lodash';
 
-const shortcode_attributes =
-    {
-        shortcode: {
-            type: 'string',
-            default: '',
-        },
-
-        content: {
-            type: 'string',
-            default: '',
-        },
-
-        parameters: {
-            type: 'string',
-            default: '',
-        },
-
-        post_type: {
-            type: 'string',
-            default: '',
-        }
-
-
-    };
-
+import { shortcode_attributes} from './attributes';
 
 
 
@@ -123,100 +88,13 @@ export default registerBlockType(
             customClassName: false,
             className: false,
             html: false,
+            alignWide: true,
         },
 
-        edit: withInstanceId(
-            ( { attributes, setAttributes, instanceId, isSelected } ) => {
-                const inputId = `blocks-shortcode-input-${ instanceId }`;
-
-
-                const onChangeContent = ( value ) => {
-                    setAttributes( { content: value } );
-                };
-
-                const onChangeParameters = ( value ) => {
-                    setAttributes( { parameters: value } );
-                }
-
-                const onChangeShortcode = ( value ) => {
-
-                    attributes = getAttributes( value );
-                    setAttributes( { shortcode: value } );
-                };
-
-
-                function onChangeAttr( key, value ) {
-                    //var nextAttributes = {};
-                    //nextAttributes[ key ] = value;
-                    //setAttributes( nextAttributes );
-                    setAttributes( { [key] : value } );
-                };
-
-                const onChangePostType = ( value ) => {
-                    attributes = getAttributes( value );
-                    setAttributes( { post_type: value });
-                }
-
-
-                /*
-                                   <GenericAttrs value={attributes.shortcode} />
-                */
-                return (
-                    <Fragment>
-
-                        <InspectorControls>
-                            <PanelBody>
-                                <SelectControl label="Shortcode" value={attributes.shortcode}
-                                               options={ map( bw_shortcodes, ( key, label ) => ( { value: label, label: label + ' - ' + key } ) ) }
-                                               onChange={partial( onChangeAttr, 'shortcode' )}
-                                />
-                                <TextareaControl label="Parameters"
-                                                 value={ attributes.parameters }
-                                                 placeholder={ __( 'Enter your shortcode parameters' ) }
-                                                 onChange={onChangeParameters}
-                                                 rows="1"
-                                />
-                                <TextareaControl label="Content"
-                                                 id={ inputId }
-                                                 value={ attributes.content }
-                                                 placeholder={ __( 'Enter your shortcode content' ) }
-                                                 onChange={onChangeContent}
-                                />
-                                <PostTypes value={ attributes.post_type } onChange={onChangePostType } />
+        edit,
 
 
 
-
-                            </PanelBody>
-                        </InspectorControls>
-
-
-                        <div className="wp-block-oik-block-shortcode wp-block-shortcode">
-                            <SelectControl label="Shortcode" value={attributes.shortcode}
-                                           options={ map( bw_shortcodes, ( key, label ) => ( { value: label, label: label + ' - ' + key } ) ) }
-                                           onChange={partial( onChangeAttr, 'shortcode' )}
-                            />
-
-
-
-                        </div>
-                        <div>
-                        <ServerSideRender
-                            block="oik/content-block" attributes={ attributes }
-                        />
-                        </div>
-                    </Fragment>
-
-                );
-            }
-        ),
-
-
-        /**
-         * We intend to render this dynamically. The content created by the user
-         * is stored in the content attribute.
-         *
-         */
         save( { attributes } ) {
             return null;
         },

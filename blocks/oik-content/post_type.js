@@ -1,21 +1,12 @@
-//import {bw_shortcodes_attrs} from "./bw_shortcodes";
-
-//<SelectControl label="Post Type" value={attributes.post_type}
-//options={ map( bw_shortcodes_attrs.bw_posts.post_type, ( key, label ) => ( { value: label, label: key } ) ) }
-//onChange={partial( onChangeAttr, 'post_type' )}
-///>
-
-
-import {bw_shortcodes} from "./bw_shortcodes";
-
-const { withSelect, select, subscribe } = wp.data;
+/**
+ * Implements the PostTypes selection list
+ *
+ * @copyright (C) Copyright Bobbing Wide 2020
+ * @author Herb Miller @bobbingwide
+ */
+const { select, subscribe } = wp.data;
 const { Component } = wp.element;
-//const { getPostTypes } = subscribe( 'core' );
-//const bw_post_types = subscribe( 'core' ).getPostTypes();
-
 const { SelectControl } = wp.components;
-
-
 
 export class PostTypes extends Component {
     constructor() {
@@ -24,17 +15,17 @@ export class PostTypes extends Component {
             postTypes: [],
 
         };
-        console.log( this.state);
-        console.log( this );
+        //console.log( this.state);
+        //console.log( this );
     }
 
     componentDidMount() {
         const unsubscribe = subscribe( () => {
             const postTypes = select( 'core').getPostTypes( { per_page: -1 });
-            console.group( "PT");
-            console.log( this.state.postTypes);
-            console.log( postTypes );
-            console.groupEnd();
+            //console.group( "PT");
+            //console.log( this.state.postTypes);
+            //console.log( postTypes );
+            //console.groupEnd();
             this.setState( { postTypes } );
         })
     }
@@ -78,6 +69,12 @@ export class PostTypes extends Component {
         return( <li>{postType.slug}</li>);
     }
 
+    /**
+     * Map the postType to a select list option
+     *
+     * @param postType
+     * @returns {{label: *, value: *}}
+     */
     postTypeOption( postType ) {
         return( { value: postType.slug, label: postType.name });
     }
@@ -86,24 +83,4 @@ export class PostTypes extends Component {
         return( this.postTypeListSelect()
         );
     }
-
 }
-
-
-
-//const bw_post_types = select( 'core').getPostTypes();
-
-
-//console.log( bw_post_types );
-/*
-const bwPostTypes = withSelect( ( select ) => ( {
-        const { getPostTypes } = select( 'core');
-        return {
-            typesList: getPostTypes(),
-        }
-
-    } ) )(  );
-
- */
-
-export { bwPostTypes, bw_post_types };
