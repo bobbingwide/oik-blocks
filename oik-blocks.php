@@ -643,6 +643,8 @@ function oik_blocks_register_dynamic_blocks() {
 						, 'post_type' => ['type' => 'string']
 						, 'post_parent' => ['type' => 'string']
 						, 'numberposts' => ['type' => 'integer']
+						, 'orderby' => [ 'type' => 'string' ]
+						, 'order' => [ 'type' => 'string' ]
 
 						]
 				] );
