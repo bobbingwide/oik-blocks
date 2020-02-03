@@ -39,6 +39,7 @@ import { map, partial, has } from 'lodash';
 import {bw_shortcodes, getAttributes} from "./bw_shortcodes";
 import {PostTypes} from "./post_type";
 import{ NumberPosts } from './numberposts';
+import { orderby, order } from './attributes';
 
 const edit= withInstanceId(
     ( { attributes, setAttributes, instanceId, isSelected } ) => {
@@ -80,6 +81,13 @@ const edit= withInstanceId(
             setAttributes( { numberposts: value } );
         }
 
+        const onChangeOrderBy = ( value ) => {
+            setAttributes( { orderby: value } );
+        }
+
+        const onChangeOrder = ( value ) => {
+            setAttributes( { order: value } );
+        }
 
         /*
                            <GenericAttrs value={attributes.shortcode} />
@@ -95,6 +103,8 @@ const edit= withInstanceId(
                         />
 
                         <PostTypes value={ attributes.post_type } onChange={ onChangePostType } />
+                        <SelectControl label="Order by" value={ attributes.orderby} options={ orderby} onChange={onChangeOrderBy} />
+                        <SelectControl label="Order" value={ attributes.order} options={ order} onChange={onChangeOrder} />
                         <RangeControl label="Number posts" value={ attributes.numberposts } onChange={ onChangeNumberPosts } min={-1} max={100} />
                         <TextControl value={ attributes.post_parent} onChange={ onChangePostParent } label="Post Parent" />
 

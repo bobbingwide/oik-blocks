@@ -9,6 +9,7 @@
  */
 function oik_content_block( $attributes ) {
 	bw_trace2();
+
 	$shortcode=bw_array_get( $attributes, "shortcode", null );
 	$content  =bw_array_get( $attributes, "content", null );
 
@@ -18,12 +19,15 @@ function oik_content_block( $attributes ) {
 	unset( $attributes['content'] );
 	unset( $attributes['parameters'] );
 
+	$attributes['post_parent'] = bw_array_get( $attributes, 'post_parent', '0');
+
 	if ( $parameters ) {
 		$parameters=trim( $parameters );
 		$extra_atts=shortcode_parse_atts( $parameters );
 		$attributes+=$extra_atts;
 	}
 	bw_trace2( $attributes, "atts", false );
+
 
 	//BW_::p( $shortcode );
 	///BW_::p( $content );
