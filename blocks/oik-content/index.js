@@ -58,9 +58,9 @@ export default registerBlockType(
     'oik/content-block',
     {
         // Localize title using wp.i18n.__()
-        title: __( 'Content block for dynamic oik-shortcodes' ),
+        title: __( 'Dynamic content block' ),
 
-        description: 'Expands dynamic content oik shortcodes',
+        description: 'Expands content for dynamic oik shortcodes.',
 
         // Category Options: common, formatting, layout, widgets, embed
         category: 'layout',
@@ -72,6 +72,7 @@ export default registerBlockType(
         keywords: [
             __( 'Content' ),
             __( 'Shortcode' ),
+            __( 'Dynamic'),
             __( 'oik' ),
         ],
 
@@ -86,7 +87,7 @@ export default registerBlockType(
 
         supports: {
             customClassName: false,
-            className: false,
+            className: true,
             html: false,
             alignWide: true,
         },
