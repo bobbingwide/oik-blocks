@@ -98,7 +98,7 @@ const edit= withInstanceId(
                 <InspectorControls>
                     <PanelBody>
                         <SelectControl label="Display" value={attributes.shortcode}
-                                       options={ map( bw_shortcodes, ( key, label ) => ( { value: label, label: label + ' - ' + key } ) ) }
+                                       options={ map( bw_shortcodes, ( key, label ) => ( { value: label, label: key + ' - ' + label } ) ) }
                                        onChange={partial( onChangeAttr, 'shortcode' )}
                         />
 
@@ -127,7 +127,7 @@ const edit= withInstanceId(
 
                 <div className="wp-block-oik-block-shortcode wp-block-shortcode">
                     <SelectControl label="Display" value={attributes.shortcode}
-                                   options={ map( bw_shortcodes, ( key, label ) => ( { value: label, label: label + ' - ' + key } ) ) }
+                                   options={ map( bw_shortcodes, ( key, label ) => ( { value: label, label: key + ' - ' + label } ) ) }
                                    onChange={partial( onChangeAttr, 'shortcode' )}
                     />
 
