@@ -86,6 +86,9 @@ Yes, it uses a number of other plugins:
 1. oik-blocks's address block
 
 == Upgrade Notice ==
+= 0.4.0-beta-20200209 =
+Upgrade for Dynamic content block oik/content-block
+
 = 0.4.0-beta-20200108 = 
 Version for bobbingwide.com/problem-solving
 
@@ -129,8 +132,17 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 == Changelog ==
+= 0.4.0-beta-20200209 =
+* Added: Add Dynamic content block oik/content-block,[github bobbingwide oik-blocks issues 34]
+* Changed: Add transforms for [bw_csv] to oik-block/csv,[github bobbingwide oik-blocks issues 2]
+* Changed: Adjust CSS for blockicon svgnn class,[github bobbingwide oik-blocks issues 31]
+* Changed: Avoid messages along the lines of Warning: Each child in a list should have a unique key prop,[github bobbingwide oik-blocks issues 24]
+* Changed: Avoid messages along the lines of Warning: Each child in a list should have a unique key prop,[github bobbingwide oik-blocks issues 27]
+* Changed: No longer need to enqueue block editor stylesheets dependent upon wp-blocks,[github bobbingwide oik-blocks issues 33]
+* Changed: Various code tidying changes
+
 = 0.4.0-beta-20200108 = 
-Lots of changes I'll write about later
+Lots of changes I'll write about later. Well... sometime
 
 = 0.4.0-alpha-20190604 = 
 * Fixed: Correct Block list block links,[github bobbingwide oik-blocks issue 27]
