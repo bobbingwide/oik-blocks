@@ -6,7 +6,7 @@
  *
  */
 
-const { getBlockType, getBlockTypes, getBlockContent, serialize } = wp.blocks;
+const { getBlockType, getBlockTypes, getBlockContent, serialize, hasBlockSupport } = wp.blocks;
 const { BlockIcon } = wp.blockEditor;
 const { Fragment, renderToString } = wp.element;
 // Get just the __() localization function from wp.i18n
@@ -41,6 +41,8 @@ function BlockListStyled( prefix, showBlockLink, showCreateBlockLink, showDescri
     if ( showBatch ) {
         if ( showCreateBlockLink ) {
             var blocklist = <pre>
+                rem Blocks {count_blocks}
+                <br />
                 {block_types.map((block ) => BlockCreateBlockLink( block, component )) }
 
             </pre>
@@ -95,12 +97,15 @@ function namespaceFilter( element, index, array ) {
 
 function BlockListItem( block, showBlockLink ) {
 /* { block.icon */
-/* console.log( block ); */
+console.log( block );
     var blockLink = null;
 
     if ( showBlockLink ) {
         blockLink = getBlockLink( block );
     }
+
+    var blockSupportsInserter = null;
+    blockSupportsInserter = BlockSupportsInserter( block) ;
 
     return( <Fragment key={block.name}>
             <dt >
@@ -116,16 +121,26 @@ function BlockListItem( block, showBlockLink ) {
 
                 {block.title } - {block.name }
                     </a> ) }
+
+
                 {!showBlockLink && (
                     <span>
                         {block.title} - {block.name} </span>)
                 }
+                {blockSupportsInserter}
                 <br />
                 {block.description}<br />
+
+
 
             </dd>
         </Fragment>
         );
+}
+
+function BlockSupportsInserter( block ) {
+
+    return hasBlockSupport( block, 'inserter', true) ?  '' : ' ( Not insertable )';
 }
 
 function BlockCreateItem( block, component ) {
