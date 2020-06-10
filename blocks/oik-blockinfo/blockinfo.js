@@ -6,6 +6,8 @@
  *
  */
 
+import {BlockSupportsInserter} from "../oik-blockicon/blockicons";
+
 const { getBlockType } = wp.blocks;
 
 import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
@@ -23,10 +25,14 @@ function BlockinfoStyled( blockname, showBlockTypeName, showTitle, showDescripti
     var keywords = block.keywords ? block.keywords.join() : null;
     var blockKeywords = showKeywords ? <div>{keywords}</div> : null;
 
+    var blockSupportsInserter = null;
+    blockSupportsInserter = BlockSupportsInserter( block );
+
+
 
     return(
         <div className={ props.className }>
-            { blockicon }
+            { blockicon } <div>{blockSupportsInserter}</div>
             { blockTypeName }
             { blockTitle }
             { blockDescription }

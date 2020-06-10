@@ -11,7 +11,7 @@
  */
 
 const { Component }  = wp.element;
-const{ getBlockTypes, getBlockType } = wp.blocks;
+const{ getBlockTypes, getBlockType, hasBlockSupport } = wp.blocks;
 const { BlockIcon } = wp.blockEditor;
 const { SelectControl } = wp.components;
 
@@ -105,5 +105,10 @@ function BlockiconStyled( blockname, ...props ) {
     );
 }
 
+function BlockSupportsInserter( block ) {
 
-export  { BlockiconsSelect, BlockiconStyled };
+    return hasBlockSupport( block, 'inserter', true) ?  '' : ' ( Not insertable )';
+}
+
+
+export  { BlockiconsSelect, BlockiconStyled, BlockSupportsInserter };
