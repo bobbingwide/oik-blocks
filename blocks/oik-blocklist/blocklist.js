@@ -6,7 +6,7 @@
  *
  */
 
-const { getBlockType, getBlockTypes, getBlockContent, serialize, hasBlockSupport } = wp.blocks;
+const { getBlockType, getBlockTypes, getBlockContent, serialize } = wp.blocks;
 const { BlockIcon } = wp.blockEditor;
 const { Fragment, renderToString } = wp.element;
 // Get just the __() localization function from wp.i18n
@@ -15,7 +15,7 @@ const { __ } = wp.i18n;
 const { select } = wp.data;
 const { addQueryArgs} = wp.url;
 
-import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
+import { BlockiconStyled, BlockSupportsInserter } from '../oik-blockicon/blockicons.js';
 import { getNameSpace} from './blockprefix.js';
 
 
@@ -138,10 +138,6 @@ console.log( block );
         );
 }
 
-function BlockSupportsInserter( block ) {
-
-    return hasBlockSupport( block, 'inserter', true) ?  '' : ' ( Not insertable )';
-}
 
 function BlockCreateItem( block, component ) {
     //console.log( block );
