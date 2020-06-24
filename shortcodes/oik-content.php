@@ -23,17 +23,24 @@ function oik_content_block( $attributes ) {
      * We need to set defaults to the same values as in the browser.
      */
     $attributes = oik_content_block_attributes( $attributes );
-	$attributes['post_parent'] = bw_array_get( $attributes, 'post_parent', '0');
+	$attributes['post_parent'] = bw_array_get( $attributes, 'post_parent', null);
 	$attributes['orderby'] = bw_array_get( $attributes, 'orderby', 'date');
 	$attributes['order'] = bw_array_get( $attributes, 'order', 'desc');
 
 
 	switch ( $shortcode ) {
+
 	    case 'bw_attachments':
-	        if ( $attributes['post_parent'] !== '0') {
-                $attributes['post_parent'] = bw_current_post_id();
-            }
+		case 'bw_images':
+		case 'bw_pdf':
+		    if ( $attributes['post_parent'] === '.' ) {
+			    $attributes['post_parent'] = bw_current_post_id();
+		    }
+		    //} elseif ( $attributes['post_parent'] !== '0'   ) {
+            //    $attributes['post_parent'] = bw_current_post_id();
+            //}
 	    	unset( $attributes['post_type']);
+
 	    	//unset( $attributes['post_parent']);
 	    	break;
 
