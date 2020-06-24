@@ -5,7 +5,7 @@
  * @author Herb Miller @bobbingwide
  */
 //import './style.scss';
-//import './editor.scss';
+import './editor.scss';
 
 // Get just the __() localization function from wp.i18n
 const { __ } = wp.i18n;
@@ -89,7 +89,9 @@ export default registerBlockType(
             customClassName: false,
             className: true,
             html: false,
+            align: true,
             alignWide: true,
+            alignFull: true,
         },
 
         edit,

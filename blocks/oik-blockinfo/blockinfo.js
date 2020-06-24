@@ -32,7 +32,7 @@ function BlockinfoStyled( blockname, showBlockTypeName, showTitle, showDescripti
 
     return(
         <div className={ props.className }>
-            { blockicon } <div>{blockSupportsInserter}</div>
+            { blockicon }<div>{blockSupportsInserter}</div>
             { blockTypeName }
             { blockTitle }
             { blockDescription }
