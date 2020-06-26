@@ -29,8 +29,7 @@ function oik_content_block( $attributes ) {
 
 
 	switch ( $shortcode ) {
-
-	    case 'bw_attachments':
+		case 'bw_attachments':
 		case 'bw_images':
 		case 'bw_pdf':
 		    if ( $attributes['post_parent'] === '.' ) {
@@ -47,10 +46,19 @@ function oik_content_block( $attributes ) {
 
     }
 
+	/**
+	 * Apply advanced parameters to the set of attributes passed
+	 * allowing them to override the selected values
+	 * This enables the block to be used like the shortcode.
+	 * adding such things as posts_per_page=
+	 * Note: This appears to override numberposts=
+	 */
+
 	$parameters = trim( $parameters );
 	if ( $parameters ) {
 		$extra_atts=shortcode_parse_atts( $parameters );
-		$attributes+=$extra_atts;
+		//$attributes+=$extra_atts;
+		$attributes = array_merge( $attributes, $extra_atts );
 	}
 	bw_trace2( $attributes, "atts", false );
 
@@ -61,8 +69,10 @@ function oik_content_block( $attributes ) {
 	do_action( "oik_add_shortcodes" );
 
 	$result=bw_shortcode_event( $attributes, $content, $shortcode );
-	if ( null === $result ) {
+	bw_trace2( $result, 'result', true );
+	if ( '<span>&#91;</span>]' === $result ) {
 		$result="<!-- No result for shortcode $shortcode -->";
+		$result.= '<p>Select a Display type</p>';
 	}
 
 	return $result;
