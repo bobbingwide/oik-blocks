@@ -41,6 +41,11 @@ const shortcode_attributes =
             default: 'desc',
         },
 
+        format: {
+            type: 'string',
+            default: 'LIER',
+        },
+
         // categories=
         // category_name=
         // customcategoryname=
@@ -81,5 +86,7 @@ const order =
         },
 
     ];
+
+
 
 export { shortcode_attributes, orderby, order };

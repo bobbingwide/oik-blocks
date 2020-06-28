@@ -142,7 +142,11 @@ const bw_shortcodes = {
     // ,"bw_popup":"Display a popup after a timed delay"
     //,"bw_portfolio":"Display matched portfolio files"
     //,"bw_post":"Add Post button"
-     ,"bw_posts":"Display posts"
+
+    //
+    // bw_posts simply calls bw_list so we only need bw_list really
+    // all it does is to set parameters to default to the 10 most recent posts.
+    //,"bw_posts":"Display posts"
     //,"bw_power":"Powered by WordPress"
     //,"bw_qrcode":"Display an uploaded QR code image"
     //,"bw_register":"Display a link to the Registration form, if Registration is enabled
