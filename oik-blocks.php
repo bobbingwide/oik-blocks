@@ -512,6 +512,9 @@ function oik_blocks_loaded() {
 	add_action( "plugins_loaded", "oik_blocks_plugins_loaded", 100 );
 	
 	add_action( "init", "oik_blocks_register_dynamic_blocks" );
+	add_action( 'init', 'oik_blocks_register_block_patterns' );
+	// herbs_hack was an action added to Gutenberg's client-assets.php when expirementing with pattern registration
+	//add_action( 'herbs_hack', 'oik_blocks_register_block_patterns' );
 	add_action( "oik_pre_theme_field", "oik_blocks_pre_theme_field" );
 	
 	
@@ -645,7 +648,8 @@ function oik_blocks_register_dynamic_blocks() {
 						, 'numberposts' => ['type' => 'integer']
 						, 'orderby' => [ 'type' => 'string' ]
 						, 'order' => [ 'type' => 'string' ]
-
+						, 'align' => [ 'type' => 'string']
+						, 'format' => ['type' => 'string']
 						]
 				] );
 
@@ -657,6 +661,14 @@ function oik_blocks_maybe_register_block_type( $name, $args ) {
 		register_block_type( $name, $args );
 	}
 }
+
+function oik_blocks_register_block_patterns() {
+	if ( false ) {
+		oik_require( 'patterns/index.php', 'oik-blocks' );
+		oik_blocks_lazy_register_block_patterns();
+	}
+}
+
 
 /**
  * Registers the scripts we'll need	 for the editor
