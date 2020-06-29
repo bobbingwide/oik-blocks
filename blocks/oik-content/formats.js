@@ -1,13 +1,24 @@
+/**
+ * Implements a control to represent the format= parameter to the bw_pages shortcode.
+ *
+ * @copyright (C) Copyright Bobbing Wide 2020
+ * @author Herb Miller @bobbingwide
+ */
+
 const format_options = [
-    { label: 'Default', value: 'LIER',},
-    { label: 'Link,image', value: 'LI', },
+    { label: 'Link, image, excerpt, read more', value: 'LIER',},
+    { label: 'Link, image', value: 'LI', },
     { label: 'Link, image, excerpt', value: 'LIE' },
     { label: 'Image, link', value: 'IL', },
     { label: 'Image, link, excerpt', value: 'ILE' },
     { label: 'Link, Image, Date, Author', value: 'LI/d/a'},
-    { label: 'None', value: '' },
 ];
 
+/**
+ * Each of the different letters in the format_options value fields has a meaning.
+ * It would make sense to help the user to type the right characters when
+ * defining a Custom value.
+ */
 const single_format_options = [
     { label: 'None', value: null, },
     { label: 'Title', value: 'T', },
@@ -26,9 +37,8 @@ const single_format_options = [
     { label: 'Edit', value: 'e' },
     ];
 
-const { select, subscribe } = wp.data;
 const { Component } = wp.element;
-const { SelectControl } = wp.components;
+import { SelectTextControlCombo } from './SelectTextControlCombo';
 
 export class Formats extends Component {
     constructor() {
@@ -43,7 +53,7 @@ export class Formats extends Component {
         if (formats) {
             //var options = formats.map((format) => this.formatsOption(format));
             return (
-                <SelectControl label="Format" value={this.props.format}
+                <SelectTextControlCombo label="Format" value={this.props.format}
                            options={format_options}
                            onChange={this.props.onChange}
                 />
