@@ -4,7 +4,7 @@
 * Donate link: https://www.oik-plugins.com/oik/oik-donate/
 * Tags: gutenberg, shortcode, blocks, oik
 * Requires at least: 5.0.3
-* Tested up to: 5.3.2
+* Tested up to: 5.5-RC1
 * Gutenberg compatible: Yes
 * Stable tag: 0.3.0
 * License: GPLv3 or later
@@ -87,6 +87,9 @@ Yes, it uses a number of other plugins:
 1. oik-blocks's address block
 
 ## Upgrade Notice 
+# 0.4.0-RC1 
+Upgrade for an improved blockicon and blocklist blocks. Needed for Single Block (SB) plugins.
+
 # 0.4.0-beta-20200209 
 Upgrade for Dynamic content block oik/content-block
 
@@ -133,6 +136,15 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 ## Changelog 
+# 0.4.0-RC1 
+* Changed: Improve the Block info block to display a single block using same format as block list,https://github.com/bobbingwide/oik-blocks/issues/38
+* Changed: Start making use of the SelectTextControlCombo block for formats and orderby attributes,https://github.com/bobbingwide/oik-blocks/issues/37
+* Changed: Support the bw_pages shortcode format= parameter, https://github.com/bobbingwide/oik-blocks/issues/34
+* Changed: Output Select a Display type when shortcode not chosen.,https://github.com/bobbingwide/oik-blocks/issues/36
+* Changed: Improve advanced parameter override capability -  for bw_pages https://github.com/bobbingwide/oik-blocks/issues/34
+* Changed: Improve Dynamic content block for Attachments, Images and PDF,https://github.com/bobbingwide/oik-blocks/issues/34
+* Changed: Display block count in both style batch lists. Show if block is ' (Not insertable)', https://github.com/bobbingwide/oik-blocks/issues/27
+
 # 0.4.0-beta-20200209 
 * Added: Add Dynamic content block oik/content-block,https://github.com/bobbingwide/oik-blocks/issues/34
 * Changed: Add transforms for [bw_csv] to oik-block/csv,https://github.com/bobbingwide/oik-blocks/issues/2
