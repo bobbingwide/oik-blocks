@@ -171,4 +171,4 @@ function BlockCreateBlockLink( block, component ) {
     );
 }
 
-export  { BlockListStyled };
+export  { BlockListStyled, BlockListItem };

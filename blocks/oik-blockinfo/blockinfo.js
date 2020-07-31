@@ -11,36 +11,46 @@ import {BlockSupportsInserter} from "../oik-blockicon/blockicons";
 const { getBlockType } = wp.blocks;
 
 import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
+import { BlockListItem } from '../oik-blocklist/blocklist';
 
-function BlockinfoStyled( blockname, showBlockTypeName, showTitle, showDescription, showCategory, showKeywords, ...props ) {
+function BlockinfoStyled( blockname, showBlockLink, showBlockTypeName, showTitle, showDescription, showCategory, showKeywords, ...props ) {
     var block = getBlockType( blockname ) ;
     if ( block === undefined ) {
         block = getBlockType("core/missing");
     }
-    var blockicon = BlockiconStyled(blockname, props);
-    var blockTypeName = showBlockTypeName ? <div>{blockname}</div> : null;
-    var blockTitle = showTitle ? <div>{block.title}</div> : null;
-    var blockDescription = showDescription ? <div>{block.description}</div> : null;
-    var blockCategory = showCategory ? <div>{block.category}</div> : null;
-    var keywords = block.keywords ? block.keywords.join() : null;
-    var blockKeywords = showKeywords ? <div>{keywords}</div> : null;
 
-    var blockSupportsInserter = null;
-    blockSupportsInserter = BlockSupportsInserter( block );
+    if ( showBlockLink) {
+        var blockListItem = BlockListItem( block, showBlockLink );
+        return(
+            <dl>
+                {blockListItem}
+            </dl>
+        )
+    } else {
+        //console.log( block );
+        var blockicon = BlockiconStyled(blockname, props);
+        var blockTypeName = showBlockTypeName ? <div>{blockname}</div> : null;
+        var blockTitle = showTitle ? <div>{block.title}</div> : null;
+        var blockDescription = showDescription ? <div>{block.description}</div> : null;
+        var blockCategory = showCategory ? <div>{block.category}</div> : null;
+        var keywords = block.keywords ? block.keywords.join() : null;
+        var blockKeywords = showKeywords ? <div>{keywords}</div> : null;
 
+        var blockSupportsInserter = null;
+        blockSupportsInserter = BlockSupportsInserter( block );
+        return (
+            <div className={props.className}>
+                {blockicon}
+                <div>{blockSupportsInserter}</div>
+                {blockTypeName}
+                {blockTitle}
+                {blockDescription}
+                {blockCategory}
+                {blockKeywords}
+            </div>
 
-
-    return(
-        <div className={ props.className }>
-            { blockicon }<div>{blockSupportsInserter}</div>
-            { blockTypeName }
-            { blockTitle }
-            { blockDescription }
-            { blockCategory }
-            { blockKeywords }
-        </div>
-
-    );
+        );
+    }
 }
 
 export  { BlockinfoStyled };
