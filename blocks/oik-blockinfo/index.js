@@ -50,6 +50,7 @@ const { Fragment }  = wp.element;
 //import { DashiconsSelect } from './dashicons.js';
 import { BlockiconsSelect, BlockiconStyled } from '../oik-blockicon/blockicons.js';
 import { BlockinfoStyled } from './blockinfo.js'
+
 //import {ToggleControl} from "../../../gutenberg-source/packages/components/build-module";
 
 /**
@@ -108,6 +109,13 @@ export default registerBlockType(
             showKeywords: {
                 type: 'boolean',
                 default: true
+            },
+
+            // Default to false since this is a new field.
+            // If we default it to true the editor will attempt to change existing blocks.
+            showBlockLink: {
+                type: 'boolean',
+                default: false
             }
 
         },
@@ -176,7 +184,12 @@ export default registerBlockType(
                 props.setAttributes(  { showKeywords: ! props.attributes.showKeywords } );
             }
 
+            const onChangeShowBlockLink = ( event ) => {
+                props.setAttributes(  { showBlockLink: ! props.attributes.showBlockLink } );
+            }
+
             var blockinfo = BlockinfoStyled( props.attributes.blockicon,
+                props.attributes.showBlockLink,
                 props.attributes.showBlockTypeName,
                 props.attributes.showTitle,
                 props.attributes.showDescription,
@@ -195,6 +208,14 @@ export default registerBlockType(
 
                         <PanelRow>
                             <BlockiconsSelect value={ props.attributes.blockicon } onChange={ onChangeBlockicon } />
+                        </PanelRow>
+                        <PanelRow>
+                            <ToggleControl
+                                label={ __( 'Show block link' ) }
+                                checked={ !! props.attributes.showBlockLink }
+                                onChange={ onChangeShowBlockLink }
+
+                            />
                         </PanelRow>
                         <PanelRow>
                             <ToggleControl
@@ -255,13 +276,9 @@ export default registerBlockType(
 
             );
         },
-        /*
-        <ServerSideRender
-                    block="oik-block/dashicon" attributes={ props.attributes }
-                />
-         */
+
         save: props => {
-            return BlockinfoStyled( props.attributes.blockicon, props.attributes.showBlockTypeName, props.attributes.showTitle, props.attributes.showDescription,
+            return BlockinfoStyled( props.attributes.blockicon, props.attributes.showBlockLink, props.attributes.showBlockTypeName, props.attributes.showTitle, props.attributes.showDescription,
                 props.attributes.showCategory,
                 props.attributes.showKeywords,
                 props );
