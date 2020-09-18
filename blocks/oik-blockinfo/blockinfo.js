@@ -1,23 +1,38 @@
 /*
  * Block info renderer - displays the fields for the block info block
  *
- * @copyright (C) Copyright Bobbing Wide 2019
+ * @copyright (C) Copyright Bobbing Wide 2019,2020
  * @author Herb Miller @bobbingwide
  *
  */
 
-import {BlockSupportsInserter} from "../oik-blockicon/blockicons";
+import {BlockSupportsInserter, getBlockorVariation} from "../oik-blockicon/blockicons";
+import {BlockVariations } from "../oik-blockicon/blockvariations";
 
 const { getBlockType } = wp.blocks;
 
 import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
 import { BlockListItem } from '../oik-blocklist/blocklist';
 
-function BlockinfoStyled( blockname, showBlockLink, showBlockTypeName, showTitle, showDescription, showCategory, showKeywords, ...props ) {
-    var block = getBlockType( blockname ) ;
-    if ( block === undefined ) {
-        block = getBlockType("core/missing");
-    }
+
+/**
+ *
+ * @param blocknamebarvariation
+ * @param showBlockLink boolean - true if we only want to display a block link similar to the block list
+ * @param showBlockIcon - true when we want to display the block's icon
+ * @param showBlockTypeName
+ * @param showTitle
+ * @param showDescription
+ * @param showCategory
+ * @param showKeywords
+ * @param showVariations
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
+function BlockinfoStyled( blocknamebarvariation, showBlockLink, showBlockIcon, showBlockTypeName, showTitle, showDescription, showCategory, showKeywords, showVariations, ...props ) {
+    //console.log( blocknamebarvariation );
+    var block = getBlockorVariation( blocknamebarvariation );
 
     if ( showBlockLink) {
         var blockListItem = BlockListItem( block, showBlockLink );
@@ -28,8 +43,8 @@ function BlockinfoStyled( blockname, showBlockLink, showBlockTypeName, showTitle
         )
     } else {
         //console.log( block );
-        var blockicon = BlockiconStyled(blockname, props);
-        var blockTypeName = showBlockTypeName ? <div>{blockname}</div> : null;
+        var blockicon = showBlockIcon ? BlockiconStyled(blocknamebarvariation, props) : null;
+        var blockTypeName = showBlockTypeName ? <div>{block.block_name} {block.name}</div> : null;
         var blockTitle = showTitle ? <div>{block.title}</div> : null;
         var blockDescription = showDescription ? <div>{block.description}</div> : null;
         var blockCategory = showCategory ? <div>{block.category}</div> : null;
@@ -38,15 +53,18 @@ function BlockinfoStyled( blockname, showBlockLink, showBlockTypeName, showTitle
 
         var blockSupportsInserter = null;
         blockSupportsInserter = BlockSupportsInserter( block );
+        blockSupportsInserter = ( blockSupportsInserter === '') ? null : <div>{blockSupportsInserter}</div>;
+        var blockVariations = showVariations? BlockVariations( block ): null;
         return (
             <div className={props.className}>
                 {blockicon}
-                <div>{blockSupportsInserter}</div>
+                {blockSupportsInserter}
                 {blockTypeName}
                 {blockTitle}
                 {blockDescription}
                 {blockCategory}
                 {blockKeywords}
+                {blockVariations}
             </div>
 
         );

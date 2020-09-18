@@ -17,46 +17,45 @@ const { addQueryArgs} = wp.url;
 
 import { BlockiconStyled, BlockSupportsInserter } from '../oik-blockicon/blockicons.js';
 import { getNameSpace} from './blockprefix.js';
+import { getAllBlockVariations, getVariationLink } from '../oik-blockicon/blockvariations';
 
-
-function BlockListStyled( prefix, showBlockLink, showCreateBlockLink, showDescription, showBatch, component, ...props ) {
-    //var block = getBlockType( blockname ) ;
-    //var blockicon =  BlockiconStyled( blockname, props  );
-    //var BlockLink =  showBlockLink ? <div>{ blockname }</div> : null;
-    //var blockTitle = showCreateBlockLink ? <div> {block.title } </div> : null;
-    //var blockDescription = showDescription ? <div> { block.description } </div> : null;
-
+/**
+ * Returns the block list showing blocks and variations.
+ *
+ * @param prefix
+ * @param showBlockLink
+ * @param showDescription
+ * @param showBatch
+ * @param component
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
+function BlockListStyled( prefix, showBlockLink, showDescription, showBatch, component, ...props ) {
     var prefix_array = prefix.split( '/' );
     const namespace = prefix_array[0];
 
     var block_types = getBlockTypes();
     block_types = block_types.filter( namespaceFilter, namespace );
-    //block_types = block_types.sortByField( "name");
+    //console.log( block_types );
     block_types = block_types.sort( (a, b) => a.title.localeCompare(b.title));
+
+    var block_variations = getAllBlockVariations( block_types );
+    block_variations = block_variations.sort( (a, b) => a.title.localeCompare(b.title));
+
+    block_types = block_types.concat( block_variations );
     //console.log( block_types );
 
     var count_blocks = block_types.length;
     //var blocklist = null;
 
     if ( showBatch ) {
-        if ( showCreateBlockLink ) {
-            var blocklist = <pre>
-                rem Blocks {count_blocks}
-                <br />
-                {block_types.map((block ) => BlockCreateBlockLink( block, component )) }
-
-            </pre>
-        } else {
-            var blocklist = <pre>
-            rem Blocks {count_blocks}
-                <br/>
-            cd ~/public_html/wp-content/plugins/oik-shortcodes/admin
-                {block_types.map((block) => BlockCreateItem(block, component))}
-                <br/>
-            </pre>
-        }
-    } else
-    {
+        var blocklist = <pre>
+        rem Blocks {count_blocks}
+        <br />
+        {block_types.map((block ) => BlockCreateBlockLink( block, component )) }
+        </pre>
+    } else {
         var blocklist =
         <dl>
             {block_types.map((block) => BlockListItem(block, showBlockLink))}
@@ -72,7 +71,9 @@ function namespaceFilter( element, index, array ) {
     return filter_result;
 }
 
-    function getBlockLink( block ) {
+function getBlockLink( block ) {
+    //console.log( 'getBlockLink');
+    //console.log( block);
         var blockTitle = block.title.replace( / /g, '-' );
         blockTitle = blockTitle.toLowerCase();
         var blockName = block.name.replace( '/', '-' );
@@ -97,19 +98,23 @@ function namespaceFilter( element, index, array ) {
 
 function BlockListItem( block, showBlockLink ) {
 /* { block.icon */
-console.log( block );
+ //console.log( block );
     var blockLink = null;
 
     if ( showBlockLink ) {
-        blockLink = getBlockLink( block );
+        if ( undefined === block.block_name || '' === block.block_name ) {
+            blockLink = getBlockLink(block);
+        } else {
+            blockLink = getVariationLink( block );
+        }
     }
 
     var blockSupportsInserter = null;
     blockSupportsInserter = BlockSupportsInserter( block) ;
 
-    return( <Fragment key={block.name}>
+    return( <Fragment key={block.block_name + '|' + block.name}>
             <dt >
-                <BlockIcon icon={block.icon.src} />
+                <BlockIcon icon={block.icon} />
             </dt>
 
             <dd>
@@ -138,20 +143,19 @@ console.log( block );
         );
 }
 
+/**
+ * Removed BlockCreateItem - replaced by BlockCreateBlockLink
+ */
 
-function BlockCreateItem( block, component ) {
-    //console.log( block );
-    var url = window.location.hostname;
-    var keywords = block.keywords ? block.keywords.join() : null;
-    if ( component == '') {
-        component = "?enter component?";
-    }
-    return( <Fragment key={block.name}>
-        <br/>oikwp oik-create-blocks.php {block.name} "{block.title}" {component} url={url}
-        <br/>oikwp oik-update-blocks.php {block.name} "{keywords}" {block.category} url={url}
-    </Fragment> );
-}
-
+/**
+ * Note that the variation parameter is the parent name for a variation.
+ * If this parameter is not set then we're creating a normal block.
+ *
+ * @param block
+ * @param component
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function BlockCreateBlockLink( block, component ) {
     var url = ajaxurl;
     var keywords = block.keywords ? block.keywords.join() : null;
@@ -162,7 +166,8 @@ function BlockCreateBlockLink( block, component ) {
     url = addQueryArgs( url, { component: component});
     url = addQueryArgs( url, { keywords: keywords});
     url = addQueryArgs( url, { category: block.category});
-    var blockIcon = renderToString( <BlockIcon icon={block.icon.src } /> );
+    url = addQueryArgs( url, { variation: block.block_name});
+    var blockIcon = renderToString( <BlockIcon icon={block.icon } /> );
     url = addQueryArgs( url, { icon: blockIcon });
     //console.log( url );
     return( <a key={block.name} href={ url }>

@@ -5,15 +5,16 @@
  * I supposed it's just a syntax thing.. modern JavaScript ES2015 vs original.
  * So here we have a mixture.
  *
- * @copyright (C) Copyright Bobbing Wide 2019
+ * @copyright (C) Copyright Bobbing Wide 2019,2020
  * @author Herb Miller @bobbingwide
  *
  */
 
 const { Component }  = wp.element;
-const{ getBlockTypes, getBlockType, hasBlockSupport } = wp.blocks;
+const{ getBlockTypes, getBlockType, hasBlockSupport, getBlockVariations } = wp.blocks;
 const { BlockIcon } = wp.blockEditor;
 const { SelectControl } = wp.components;
+import { getAllBlockVariations, cloneVariation } from '../oik-blockicon/blockvariations';
 
 function BlockiconsSelect( { value, onChange, ...props } ) {
 
@@ -42,8 +43,12 @@ function BlockiconsSelect( { value, onChange, ...props } ) {
 
     function getOptions() {
         var block_types = getBlockTypes();
-        const options = block_types.map ( ( block ) => getBlockiconOption( block ) );
+        var block_variations = getAllBlockVariations( block_types );
+        var options = block_types.map ( ( block ) => getBlockiconOption( block ) );
         //console.log( options );
+        const optionsVariations = block_variations.map( ( block ) => getBlockVariationiconOption( block ) );
+        options = options.concat( optionsVariations );
+
         return options;
     }
 
@@ -54,6 +59,21 @@ function BlockiconsSelect( { value, onChange, ...props } ) {
         var value = block.name;
         return {'label': label, 'value': value };
     }
+
+/**
+ * With a block variation we need to know both the block name and the variation name.
+ * We use a vertical bar ('|') as separator
+ * @param block
+ * @returns {{label: string, value: *}}
+ */
+
+function getBlockVariationiconOption( block ) {
+        //var label = BlockiconStyled( block.name );
+
+        var label = getVariationOptionLabel( block );
+        var value = block.block_name + '|' + block.name;
+        return {'label': label, 'value': value };
+}
 
 /**
  * So how do I get the icon into the option label?
@@ -67,6 +87,11 @@ function getOptionLabel( block ) {
         var label = `${block.name} - ${ block.title }`;
         return label;
     }
+
+function getVariationOptionLabel( block ) {
+    var label = `${block.block_name} - ${block.name} - ${ block.title }`;
+    return label;
+}
 
 
 class BlockiconList extends Component {
@@ -93,16 +118,59 @@ class BlockiconList extends Component {
 
 }
 
-function BlockiconStyled( blockname, ...props ) {
-    var block = getBlockType( blockname ) ;
+/**
+ * Displays the icon for the selected block or block variation.
+ *
+ * How does Gutenberg do it?
+ *
+ * @param blockname
+ * @param props
+ * @returns {JSX.Element}
+ * @constructor
+ */
 
+function BlockiconStyled( blocknamebarvariation, ...props ) {
+    var block = getBlockorVariation( blocknamebarvariation );
     return(
         <div className={ props.className } >
-            { block ? <BlockIcon icon={ block.icon.src } /> : <p>Hmm</p> }
+            { block ? <BlockIcon icon={ block.icon } /> : <p>Hmm</p> }
         </div>
 
 
     );
+}
+
+/**
+ * Retrieves a block or block variation.
+ *
+ *
+ * @param blocknamebarvariation
+ * @returns {*}
+ */
+
+function getBlockorVariation( blocknamebarvariation ) {
+    //console.log( blocknamebarvariation );
+    var parts = blocknamebarvariation.split( '|');
+    var blockname = parts[0];
+    var block = getBlockType( blockname ) ;
+    if ( block === undefined ) {
+        block = getBlockType("core/missing");
+    }
+    var variation_name = undefined;
+    if ( parts.length > 1 ) {
+        variation_name = parts[1];
+        var variations = getBlockVariations( blockname, 'block');
+        var variation = variations.find( variation => variation.name === variation_name);
+        if ( variation ) {
+            block = cloneVariation( variation, block );
+        }
+
+    }
+    if ( block.block_name === undefined ) {
+        block.block_name = '';
+        block.block_title = '';
+    }
+    return block;
 }
 
 function BlockSupportsInserter( block ) {
@@ -111,4 +179,4 @@ function BlockSupportsInserter( block ) {
 }
 
 
-export  { BlockiconsSelect, BlockiconStyled, BlockSupportsInserter };
+export  { BlockiconsSelect, BlockiconStyled, BlockSupportsInserter, getBlockorVariation };

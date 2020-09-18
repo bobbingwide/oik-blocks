@@ -92,6 +92,11 @@ export default registerBlockType(
                 default: true
             },
 
+            showBlockIcon: {
+                type: 'boolean',
+                default: true,
+            },
+
             showTitle: {
                 type: 'boolean',
                 default: true
@@ -116,7 +121,12 @@ export default registerBlockType(
             showBlockLink: {
                 type: 'boolean',
                 default: false
-            }
+            },
+
+            showVariations: {
+                type: 'boolean',
+                default: true
+            },
 
         },
 
@@ -166,9 +176,11 @@ export default registerBlockType(
             const onChangeBlockicon = ( event ) => {
                 props.setAttributes( { blockicon: event } );
             }
-
             const onChangeShowBlockTypeName = ( event ) => {
                 props.setAttributes(  { showBlockTypeName: ! props.attributes.showBlockTypeName } );
+            }
+            const onChangeShowBlockIcon = ( event ) => {
+                props.setAttributes(  { showBlockIcon: ! props.attributes.showBlockIcon } );
             }
             const onChangeShowTitle = ( event ) => {
                 props.setAttributes(  { showTitle: ! props.attributes.showTitle } );
@@ -188,13 +200,19 @@ export default registerBlockType(
                 props.setAttributes(  { showBlockLink: ! props.attributes.showBlockLink } );
             }
 
+            const onChangeShowVariations = ( event ) => {
+                props.setAttributes( { showVariations: !props.attributes.showVariations } );
+            }
+
             var blockinfo = BlockinfoStyled( props.attributes.blockicon,
                 props.attributes.showBlockLink,
+                props.attributes.showBlockIcon,
                 props.attributes.showBlockTypeName,
                 props.attributes.showTitle,
                 props.attributes.showDescription,
                 props.attributes.showCategory,
                 props.attributes.showKeywords,
+                props.attributes.showVariations,
                 props );
 
 
@@ -214,6 +232,14 @@ export default registerBlockType(
                                 label={ __( 'Show block link' ) }
                                 checked={ !! props.attributes.showBlockLink }
                                 onChange={ onChangeShowBlockLink }
+
+                            />
+                        </PanelRow>
+                        <PanelRow>
+                            <ToggleControl
+                                label={ __( 'Show block icon' ) }
+                                checked={ !! props.attributes.showBlockIcon }
+                                onChange={ onChangeShowBlockIcon }
 
                             />
                         </PanelRow>
@@ -261,6 +287,15 @@ export default registerBlockType(
                             />
 
                         </PanelRow>
+                        <PanelRow>
+                            <ToggleControl
+                                label={ __( 'Show variations' ) }
+                                checked={ !! props.attributes.showVariations }
+                                onChange={ onChangeShowVariations }
+
+                            />
+
+                        </PanelRow>
 
 
 
@@ -278,7 +313,9 @@ export default registerBlockType(
         },
 
         save: props => {
-            return BlockinfoStyled( props.attributes.blockicon, props.attributes.showBlockLink, props.attributes.showBlockTypeName, props.attributes.showTitle, props.attributes.showDescription,
+            return BlockinfoStyled( props.attributes.blockicon,
+                props.attributes.showBlockIcon,
+                props.attributes.showBlockLink, props.attributes.showBlockTypeName, props.attributes.showTitle, props.attributes.showDescription,
                 props.attributes.showCategory,
                 props.attributes.showKeywords,
                 props );

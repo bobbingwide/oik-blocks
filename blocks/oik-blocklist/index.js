@@ -86,12 +86,7 @@ export default registerBlockType(
                 default: true
             },
 
-            showCreateBlockLink: {
-                type: 'boolean',
-                default: true
-            },
-
-            showDescription: {
+           showDescription: {
                 type: 'boolean',
                 default: true
             },
@@ -118,15 +113,12 @@ export default registerBlockType(
 
 
             const onChangePrefix = ( event ) => {
-                console.log( event );
+                //console.log( event );
                 props.setAttributes( { prefix: event } );
             }
 
             const onChangeShowBlockLink = ( event ) => {
                 props.setAttributes(  { showBlockLink: ! props.attributes.showBlockLink } );
-            }
-            const onChangeshowCreateBlockLink = ( event ) => {
-                props.setAttributes(  { showCreateBlockLink: ! props.attributes.showCreateBlockLink } );
             }
 
             const onChangeShowDescription = ( event ) => {
@@ -143,7 +135,6 @@ export default registerBlockType(
 
             var blocklist = BlockListStyled( props.attributes.prefix,
                 props.attributes.showBlockLink,
-                props.attributes.showCreateBlockLink,
                 props.attributes.showDescription,
                 props.attributes.showBatch,
                 props.attributes.component,
@@ -170,15 +161,7 @@ export default registerBlockType(
 
                             />
                         </PanelRow>
-                        <PanelRow>
-                            <ToggleControl
-                                label={ __( 'Show create/update block links' ) }
-                                checked={ !! props.attributes.showCreateBlockLink }
-                                onChange={ onChangeshowCreateBlockLink }
 
-                            />
-
-                        </PanelRow>
                         <PanelRow>
                         <ToggleControl
                             label={ __( 'Show block description' ) }
