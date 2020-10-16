@@ -104,8 +104,15 @@ export default registerBlockType(
 
 
         },
+
         example: {
+            attributes: {
+                showBlockLink: false,
+                prefix: 'oik',
+            }
         },
+
+
 
 
 
@@ -206,7 +213,8 @@ export default registerBlockType(
                 />
          */
         save: props => {
-            return BlockListStyled( props.attributes.prefix, props.attributes.showBlockLink, props.attributes.showCreateBlockLink, props.attributes.showDescription, props.attributes.showBatch, props.attributes.component, props );
+            console.log( "BlockListStyled - save");
+            return BlockListStyled( props.attributes.prefix, props.attributes.showBlockLink, props.attributes.showDescription, props.attributes.showBatch, props.attributes.component, props );
         },
     },
 );

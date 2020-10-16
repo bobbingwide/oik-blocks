@@ -314,10 +314,14 @@ export default registerBlockType(
 
         save: props => {
             return BlockinfoStyled( props.attributes.blockicon,
+                props.attributes.showBlockLink,
                 props.attributes.showBlockIcon,
-                props.attributes.showBlockLink, props.attributes.showBlockTypeName, props.attributes.showTitle, props.attributes.showDescription,
+                props.attributes.showBlockTypeName,
+                props.attributes.showTitle,
+                props.attributes.showDescription,
                 props.attributes.showCategory,
                 props.attributes.showKeywords,
+                props.attributes.showVariations,
                 props );
         },
     },

@@ -26,7 +26,8 @@ function BlockVariations( blockname ) {
     if ( blockname.variations === undefined ) {
         return null;
     }
-    const blockVariations = getBlockVariations( blockname.name, 'block');
+    //const blockVariations = getBlockVariations( blockname.name, 'block');
+    var blockVariations = blockname.variations;
     //console.log( blockVariations );
     return( <dl>
         { blockVariations.map(( variation ) => blockVariationLink( variation, blockname)) }
@@ -44,20 +45,6 @@ function BlockVariations( blockname ) {
 function blockVariationLink( variation, block_type ) {
     var variationasblock = cloneVariation( variation, block_type );
     return BlockListItem( variationasblock, true );
-}
-
-function unused_blockVariation( variation ) {
-    var blocklink = getBlockLink( variation );
-    return(<Fragment key={variation.name}>
-        <dt >
-            <BlockIcon icon={variation.icon} />
-        </dt>
-        <dd>{variation.title} - { variation.name }</dd>
-
-        <dd>{variation.description}</dd>
-        <dd>{variation.block_name}</dd>
-    </Fragment> );
-
 }
 
 /**
@@ -81,7 +68,8 @@ function getAllBlockVariations( block_types ) {
  */
 
 function getPrefixedBlockVariations( block_type ) {
-    var variations = getBlockVariations( block_type.name );
+   // var variations = getBlockVariations( block_type.name );
+    var variations = block_type.variations;
     var prefixed_variations = variations.map(( variation ) => cloneVariation( variation, block_type ));
     return prefixed_variations;
 }
@@ -112,6 +100,34 @@ function cloneVariation( variation, block_type ) {
 
 }
 
+
+function title_to_permalink_part( title ) {
+    var blockTitle = title;
+    blockTitle = blockTitle.replace(/ /g, '-');
+    blockTitle = blockTitle.replace( /\//g, '' );
+    blockTitle = blockTitle.replace( /--/g, '-' );
+    blockTitle = blockTitle.toLowerCase();
+    return blockTitle;
+}
+
+
+/**
+ * Returns the site's home URL.
+ *
+ * This should be similar to the value we'd get from the WordPress home URL logic
+ * returning the base URL from which to construct a link, including a trailing slash
+ * e.g. https://s.b/wp56/ for the installation in the wp56 folder
+ * or https://blocks.wp-a2z.org/ for a subdomain install in a WPMS network.
+ *
+ * @returns {*}
+ */
+function getHomeUrl() {
+    var windowLocationHref = window.location.href;
+    var originPathName = window.location.origin + window.location.pathname;
+    var homeUrl = originPathName.replace( 'wp-admin/post.php', '');
+    return homeUrl;
+}
+
 /**
  * Gets a link to the variation of the block
  *
@@ -120,18 +136,23 @@ function cloneVariation( variation, block_type ) {
  */
 
 function getVariationLink( block ) {
-    var blockTitle = block.block_title.replace(/ /g, '-');
-    blockTitle = blockTitle.replace( /\//g, '' );
-    blockTitle = blockTitle.replace( /--/g, '-' );
-    blockTitle = blockTitle.toLowerCase();
+    var blockTitle = title_to_permalink_part( block.block_title );
+    //.replace(/ /g, '-');
+    //blockTitle = blockTitle.replace( /\//g, '' );
+    //blockTitle = blockTitle.replace( /--/g, '-' );
+    //blockTitle = blockTitle.toLowerCase();
     //var blockName = block.name.replace('/', '-');
     var blockLink = null;
-    var prefix = null;
-    var siteurl = select('core/editor').getPermalinkParts();
-    var variationName = block.name;
+    //var prefix = null;
+    var prefix = getHomeUrl() + 'block/';
+    //var siteurl = select('core/editor').getPermalinkParts();
+    //console.log( block);
+    var variationTitle = title_to_permalink_part( block.title );
     var blockName = block.block_name.replace( '/', '-' );
 
+    /*
     if (siteurl !== null) {
+    
 
         //console.log(siteurl);
         var postType = select('core/editor').getCurrentPostType();
@@ -141,7 +162,8 @@ function getVariationLink( block ) {
     } else {
         console.log("SiteURL's null");
     }
-    blockLink = `${prefix}${blockTitle}-${blockName}/${variationName}`;
+    */
+    blockLink = `${prefix}${blockTitle}-${blockName}/${variationTitle}-${blockName}`;
     return blockLink;
 }
 

@@ -159,10 +159,13 @@ function getBlockorVariation( blocknamebarvariation ) {
     var variation_name = undefined;
     if ( parts.length > 1 ) {
         variation_name = parts[1];
-        var variations = getBlockVariations( blockname, 'block');
-        var variation = variations.find( variation => variation.name === variation_name);
-        if ( variation ) {
-            block = cloneVariation( variation, block );
+        //var variations = getBlockVariations( blockname, 'block');
+        if ( undefined !== block.variations ) {
+            var variations = block.variations;
+            var variation = variations.find(variation => variation.name === variation_name);
+            if (variation) {
+                block = cloneVariation(variation, block);
+            }
         }
 
     }
