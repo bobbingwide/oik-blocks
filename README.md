@@ -3,15 +3,15 @@
 * Contributors: bobbingwide
 * Donate link: https://www.oik-plugins.com/oik/oik-donate/
 * Tags: gutenberg, shortcode, blocks, oik
-* Requires at least: 5.0.3
-* Tested up to: 5.5-RC1
+* Requires at least: 5.5.1
+* Tested up to: 5.5.1
 * Gutenberg compatible: Yes
-* Stable tag: 0.3.0
+* Stable tag: 0.4.0
 * License: GPLv3 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 ## Description 
-WordPress 5.0 blocks, aka Gutenberg blocks, for oik shortcodes.
+WordPress blocks, aka Gutenberg blocks, for oik shortcodes.
 
 This is mostly prototype code delivering a number of the oik shortcodes
 as blocks for the new WordPress content editor.
@@ -87,6 +87,9 @@ Yes, it uses a number of other plugins:
 1. oik-blocks's address block
 
 ## Upgrade Notice 
+# 0.4.0 
+Upgrade for support of block variations.
+
 # 0.4.0-RC1 
 Upgrade for an improved blockicon and blocklist blocks. Needed for Single Block (SB) plugins.
 
@@ -136,6 +139,12 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 ## Changelog 
+# 0.4.0 
+* Changed: Add support for block variations to blockicon, blockinfo and blocklist,https://github.com/bobbingwide/oik-blocks/issues/39
+* Tested: With WordPress 5.5.1 and WordPress Multi Site
+* Tested: With Gutenberg 9.1.0
+* Tested: With PHP 7.4
+
 # 0.4.0-RC1 
 * Changed: Improve the Block info block to display a single block using same format as block list,https://github.com/bobbingwide/oik-blocks/issues/38
 * Changed: Start making use of the SelectTextControlCombo block for formats and orderby attributes,https://github.com/bobbingwide/oik-blocks/issues/37
