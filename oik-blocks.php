@@ -5,7 +5,7 @@
  * Description: WordPress 5.0 blocks, aka Gutenberg blocks, for oik shortcodes.
  * Author: Herb Miller
  * Author URI: https://oik-plugins.com/author/bobbingwide
- * Version: 0.4.0
+ * Version: 0.4.1
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: oik-blocks
@@ -109,7 +109,6 @@ function oik_blocks_frontend_scripts()
 }
 
 function oik_blocks_frontend_styles() {
-
     $stylePath = 'blocks/build/css/blocks.style.css';
     // Enqueue frontend and editor block styles
     wp_enqueue_style(
@@ -118,8 +117,15 @@ function oik_blocks_frontend_styles() {
         [ ],
         filemtime(plugin_dir_path(__FILE__) . $stylePath )
     );
-
-
+    /**
+     * The following blocks may want to display icons that ( still ) come from dashicons,
+     * which is no longer automatically enqueued in the front end.
+     *
+     * - oik-block/blockicon
+     * - oik-block/blockinfo
+     * - oik-block/blocklist
+     */
+    wp_enqueue_style( 'dashicons');
 }
 
 
