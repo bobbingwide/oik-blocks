@@ -50,6 +50,7 @@ function BlockListStyled( prefix, showBlockLink, showDescription, showBatch, com
     //var blocklist = null;
 
     if ( showBatch ) {
+
         var blocklist = <pre>
         rem Blocks {count_blocks}
         <br />
@@ -98,6 +99,7 @@ function getBlockLink( block ) {
 
 function BlockListItem( block, showBlockLink ) {
 /* { block.icon */
+
  //console.log( block );
     var blockLink = null;
 
@@ -112,7 +114,9 @@ function BlockListItem( block, showBlockLink ) {
     var blockSupportsInserter = null;
     blockSupportsInserter = BlockSupportsInserter( block) ;
 
+
     return( <Fragment key={block.block_name + '|' + block.name}>
+
             <dt >
                 <BlockIcon icon={block.icon} />
             </dt>
@@ -143,9 +147,11 @@ function BlockListItem( block, showBlockLink ) {
         );
 }
 
+
 /**
  * Removed BlockCreateItem - replaced by BlockCreateBlockLink
  */
+
 
 /**
  * Note that the variation parameter is the parent name for a variation.

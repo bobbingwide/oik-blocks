@@ -6,11 +6,10 @@
  *
  */
 
+
 import {BlockSupportsInserter, getBlockorVariation} from "../oik-blockicon/blockicons";
 import {BlockVariations } from "../oik-blockicon/blockvariations";
-
 const { getBlockType } = wp.blocks;
-
 import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
 import { BlockListItem } from '../oik-blocklist/blocklist';
 
@@ -32,11 +31,11 @@ import { BlockListItem } from '../oik-blocklist/blocklist';
  */
 function BlockinfoStyled( blocknamebarvariation, showBlockLink, showBlockIcon, showBlockTypeName, showTitle, showDescription, showCategory, showKeywords, showVariations, ...props ) {
     //console.log( blocknamebarvariation );
-    var block = getBlockorVariation( blocknamebarvariation );
+    var block = getBlockorVariation(blocknamebarvariation);
 
-    if ( showBlockLink) {
-        var blockListItem = BlockListItem( block, showBlockLink );
-        return(
+    if (showBlockLink) {
+        var blockListItem = BlockListItem(block, showBlockLink);
+        return (
             <dl>
                 {blockListItem}
             </dl>
@@ -52,9 +51,9 @@ function BlockinfoStyled( blocknamebarvariation, showBlockLink, showBlockIcon, s
         var blockKeywords = showKeywords ? <div>{keywords}</div> : null;
 
         var blockSupportsInserter = null;
-        blockSupportsInserter = BlockSupportsInserter( block );
-        blockSupportsInserter = ( blockSupportsInserter === '') ? null : <div>{blockSupportsInserter}</div>;
-        var blockVariations = showVariations? BlockVariations( block ): null;
+        blockSupportsInserter = BlockSupportsInserter(block);
+        blockSupportsInserter = (blockSupportsInserter === '') ? null : <div>{blockSupportsInserter}</div>;
+        var blockVariations = showVariations ? BlockVariations(block) : null;
         return (
             <div className={props.className}>
                 {blockicon}
@@ -69,6 +68,8 @@ function BlockinfoStyled( blocknamebarvariation, showBlockLink, showBlockIcon, s
 
         );
     }
+
+
 }
 
 export  { BlockinfoStyled };

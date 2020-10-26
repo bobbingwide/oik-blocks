@@ -93,6 +93,7 @@ Contains a fix to enqueue dashicons CSS needed for block icon, block info and bl
 # 0.4.0 
 Upgrade for support of block variations.
 
+
 # 0.4.0-RC1 
 Upgrade for an improved blockicon and blocklist blocks. Needed for Single Block (SB) plugins.
 
@@ -142,6 +143,7 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 ## Changelog 
+
 # 0.4.1 
 * Fixed: Enqueue dashicons CSS in the front end,https://github.com/bobbingwide/oik-blocks/issues/41
 

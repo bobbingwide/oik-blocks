@@ -121,6 +121,7 @@ export default registerBlockType(
             showBlockLink: {
                 type: 'boolean',
                 default: false
+
             },
 
             showVariations: {
@@ -199,6 +200,7 @@ export default registerBlockType(
             const onChangeShowBlockLink = ( event ) => {
                 props.setAttributes(  { showBlockLink: ! props.attributes.showBlockLink } );
             }
+
 
             const onChangeShowVariations = ( event ) => {
                 props.setAttributes( { showVariations: !props.attributes.showVariations } );
