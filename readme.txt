@@ -5,7 +5,7 @@ Tags: gutenberg, shortcode, blocks, oik
 Requires at least: 5.5.1
 Tested up to: 5.5.1
 Gutenberg compatible: Yes
-Stable tag: 0.4.0
+Stable tag: 0.4.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -86,6 +86,9 @@ Yes, it uses a number of other plugins:
 1. oik-blocks's address block
 
 == Upgrade Notice ==
+= 0.4.1 =
+Contains a fix to enqueue dashicons CSS needed for block icon, block info and block list blocks in the front end.
+
 = 0.4.0 =
 Upgrade for support of block variations.
 
@@ -138,6 +141,9 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 == Changelog ==
+= 0.4.1 = 
+* Fixed: Enqueue dashicons CSS in the front end,[github bobbingwide oik-blocks issues 41]
+
 = 0.4.0 =
 * Changed: Add support for block variations to blockicon, blockinfo and blocklist,[github bobbingwide oik-blocks issues 39]
 * Tested: With WordPress 5.5.1 and WordPress Multi Site
