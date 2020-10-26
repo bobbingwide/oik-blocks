@@ -13,17 +13,17 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
-    "browser-sync": "^2.26.3",
+    "browser-sync": "^2.26.12",
     "browser-sync-webpack-plugin": "^1.2.0",
     "classnames": "^2.2.5",
-    "cross-env": "^5.1.1",
+    "cross-env": "^5.2.1",
     "css-loader": "^0.28.7",
     "eslint": "^4.14.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-wordpress": "^2.0.0",
     "eslint-plugin-prettier": "^2.4.0",
     "extract-text-webpack-plugin": "^3.0.2",
-    "node-sass": "^4.9.4",
+    "node-sass": "^4.14.1",
     "postcss-loader": "^2.0.9",
     "raw-loader": "^0.5.1",
     "sass-loader": "^6.0.6",
@@ -33,6 +33,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "dependencies": {
+    "@wordpress/icons": "^2.6.0",
     "babel-plugin-lodash": "^3.3.4"
   }
 }
