@@ -67,8 +67,9 @@ div.bw_csv {
 */
 /* oik-blockicon/style.scss */
 .wp-block-oik-block-blockicon svg {
-  width: 20px;
-  height: 20px; }
+  width: 24px;
+  height: 24px;
+  fill: currentColor; }
 
 .wp-block-oik-block-blockicon.svg64 svg {
   width: 64px;
@@ -81,11 +82,17 @@ div.bw_csv {
   max-height: 64px;
   max-width: 64px; }
 
-.wp-block-oik-block-blockicon .is-style-svg64 svg {
+.wp-block-oik-block-blockicon.is-style-svg64 svg {
   width: 64px;
   height: 64px;
   max-height: 64px;
   max-width: 64px; }
+
+/**
+ Override default styling for block icons.
+ */
+.wp-block-oik-block-blockicon .block-editor-block-icon {
+  display: inline; }
 
 .wp-block-oik-block-blockicon.svg100 svg {
   width: 100px;
@@ -98,7 +105,7 @@ div.bw_csv {
   max-height: 100px;
   max-width: 100px; }
 
-.wp-block-oik-block-blockicon .is-style-svg100 svg {
+.wp-block-oik-block-blockicon.is-style-svg100 svg {
   width: 100px;
   height: 100px;
   max-height: 100px;
@@ -115,15 +122,15 @@ div.bw_csv {
   max-height: 150px;
   max-width: 150px; }
 
-.wp-block-oik-block-blockicon .is-style-svg150 svg {
+.wp-block-oik-block-blockicon.is-style-svg150 svg {
   width: 150px;
   height: 150px;
   max-height: 150px;
   max-width: 150px; }
 /* oik-blockinfo/style.scss */
 .wp-block-oik-block-blockinfo svg {
-  width: 20px;
-  height: 20px; }
+  width: 24px;
+  height: 24px; }
 
 .wp-block-oik-block-blockicon.svg64 svg {
   width: 64px;
