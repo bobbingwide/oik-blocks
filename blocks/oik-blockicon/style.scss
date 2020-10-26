@@ -1,7 +1,8 @@
 /* oik-blockicon/style.scss */
 .wp-block-oik-block-blockicon svg {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
 }
 
 .wp-block-oik-block-blockicon.svg64 svg {
@@ -18,7 +19,7 @@
 }
 
 
-.wp-block-oik-block-blockicon .is-style-svg64 {
+.wp-block-oik-block-blockicon.is-style-svg64 {
     svg {
       width: 64px;
       height: 64px;
@@ -27,6 +28,13 @@
     }
 
 
+}
+
+/**
+ Override default styling for block icons.
+ */
+.wp-block-oik-block-blockicon .block-editor-block-icon {
+  display: inline;
 }
 
 @mixin sizeablesvg( $svg-size, $sizepx ) {
@@ -44,7 +52,7 @@
   }
 
 
-  .wp-block-oik-block-blockicon .is-style-#{$svg-size} {
+  .wp-block-oik-block-blockicon.is-style-#{$svg-size} {
     svg {
       width: $sizepx;
       height: $sizepx;

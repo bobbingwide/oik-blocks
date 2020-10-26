@@ -77,12 +77,14 @@ export default registerBlockType(
          * the SVG to adjust in size.
          *
          * https://code.tutsplus.com/tutorials/implementing-block-style-variations-in-gutenberg-part-1--cms-32243
-
+         */
         styles: [
-            { name: 'default', label: 'Default', isDefault: true },
-            { name: 'svg64', label: 'Large' },
+            { name: 'svg24', label: '24px'},
+            { name: 'svg64', label: '64px', isDefault: true  },
+            { name: 'svg100', label: '100px'},
+            { name: 'svg150', label: '150px'},
         ],
-        */
+
 
         edit: props => {
 
