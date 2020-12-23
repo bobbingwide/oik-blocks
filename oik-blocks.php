@@ -390,7 +390,7 @@ function oik_blocks_dynamic_block_person( $attributes ) {
  * Returns null if everything is OK, HTML if there's a problem.
  *
  * @param $filename - relative path for the file to load
- * @param $plugin - plugin name
+ * @param $plugin - plugin slug
  * @param $funcname - required function name
  * @return string| null
  */
@@ -400,8 +400,12 @@ function oik_blocks_check_server_func( $filename, $plugin, $funcname ) {
 		return $html;
 	}
 
+	/**
+	 * We assume the plugin's main file is the same as the plugin name.
+	 * This is true for oik plugins.
+	 */
 	if ( $plugin ) {
-		$activated = is_plugin_active( $plugin );
+		$activated = is_plugin_active( "$plugin/$plugin.php" );
 		if ( !$activated) {
 			$html = "Plugin $plugin is not activated.";
 			return $html;
