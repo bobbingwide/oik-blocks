@@ -2,10 +2,10 @@
 /**
  * Plugin Name: oik-blocks
  * Plugin URI: https://www.oik-plugins.com/oik-plugins/oik-blocks
- * Description: WordPress 5.0 blocks, aka Gutenberg blocks, for oik shortcodes.
+ * Description: WordPress blocks, aka Gutenberg blocks, for oik shortcodes.
  * Author: Herb Miller
  * Author URI: https://oik-plugins.com/author/bobbingwide
- * Version: 0.4.1
+ * Version: 0.4.2
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: oik-blocks
@@ -384,24 +384,28 @@ function oik_blocks_dynamic_block_person( $attributes ) {
 	return $html;
 }
 
-
 /**
- * Checks if the server function is available
+ * Checks if the server function is available.
  *
  * Returns null if everything is OK, HTML if there's a problem.
- *
- * @TODO Check if the implementing plugin is actually activated!
  *
  * @param $filename - relative path for the file to load
  * @param $plugin - plugin name
  * @param $funcname - required function name
  * @return string| null
  */
-
 function oik_blocks_check_server_func( $filename, $plugin, $funcname ) {
 	$html = null;
 	if ( is_callable( $funcname )) {
 		return $html;
+	}
+
+	if ( $plugin ) {
+		$activated = is_plugin_active( $plugin );
+		if ( !$activated) {
+			$html = "Plugin $plugin is not activated.";
+			return $html;
+		}
 	}
 
 	if ( $filename && $plugin ) {
