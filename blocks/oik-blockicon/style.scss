@@ -27,6 +27,17 @@
       max-width: 64px;
     }
 
+  .dashicon, .dashicons-before:before {
+    width:64px;
+    height: 64px;
+    font-size: 64px;
+  }
+
+  .block-editor-block-icon {
+    width: 64px;
+    height: 64px;
+  }
+
 
 }
 
@@ -58,6 +69,17 @@
       height: $sizepx;
       max-height: $sizepx;
       max-width: $sizepx;
+    }
+
+    .dashicon, .dashicons-before:before {
+      width:$sizepx;
+      height: $sizepx;
+      font-size: $sizepx;
+    }
+
+    .block-editor-block-icon {
+      width: $sizepx;
+      height: $sizepx;
     }
 
 
