@@ -6,10 +6,25 @@
   height: 24px;
 }
 
-.wp-block-oik-block-blockicon.svg64 svg {
+.wp-block-oik-block-blockinfo.svg64 {
+
+  svg {
   width: 64px;
   height: 64px;
+  }
+
+  .dashicon, .dashicons-before:before {
+    width:64px;
+    height: 64px;
+    font-size: 64px;
+  }
+
+  .block-editor-block-icon {
+    width: 64px;
+    height: 64px;
+  }
 }
+
 
 .svg64 .editor-block-icon,
 .svg64 .editor-block-icon svg {
