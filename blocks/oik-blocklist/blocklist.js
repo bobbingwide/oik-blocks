@@ -50,12 +50,20 @@ function BlockListStyled( prefix, showBlockLink, showDescription, showBatch, com
     //var blocklist = null;
 
     if ( showBatch ) {
+        if ( showBlockLink ) {
 
-        var blocklist = <pre>
+            var blocklist = <pre>
         rem Blocks {count_blocks}
-        <br />
-        {block_types.map((block ) => BlockCreateBlockLink( block, component )) }
+                <br/>
+                {block_types.map((block) => BlockCreateBlockLink(block, component))}
         </pre>
+        } else {
+            var blocklist = <pre>
+                rem Block {count_blocks }
+                <br />
+                {block_types.map( (block) => BlockNoLink( block, component ))}
+            </pre>
+        }
     } else {
         var blocklist =
         <dl>
@@ -179,6 +187,12 @@ function BlockCreateBlockLink( block, component ) {
     return( <a key={block.name} href={ url }>
         Create/Update: {block.title} - {block.name}<br />
     </a>
+    );
+}
+
+function BlockNoLink( block, component ) {
+    return(
+        <Fragment>{block.title } - {block.name}<br /></Fragment>
     );
 }
 
