@@ -3,9 +3,9 @@ Contributors: bobbingwide
 Donate link: https://www.oik-plugins.com/oik/oik-donate/
 Tags: gutenberg, shortcode, blocks, oik
 Requires at least: 5.5.1
-Tested up to: 5.7
+Tested up to: 5.8-RC2
 Gutenberg compatible: Yes
-Stable tag: 0.5.0
+Stable tag: 0.6.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -86,6 +86,9 @@ Yes, it uses a number of other plugins:
 1. oik-blocks's address block
 
 == Upgrade Notice ==
+= 0.6.0 =
+Upgrade to oik-blocks v0.6.0 for three new fields displayed by the Fields block; post date, post modified and author name.
+
 = 0.5.0 = 
 Update for block icon style support.
 
@@ -147,6 +150,14 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 == Changelog ==
+= 0.6.0 = 
+* Changed: Add post_date, post_modified and author_name fields to the Fields block,[github bobbingwide oik-blocks issues 45]
+* Changed: Create a simpler blocklist when Show block link toggle is off and Show batch commands is On.,[github bobbingwide oik-blocks issues 27]
+* Tested: With WordPress 5.8-RC2 and WordPress Multi Site
+* Tested: With Gutenberg 11.0.0
+* Tested: With PHP 8.0
+* Tested: With PHPUnit 9
+
 = 0.5.0 = 
 * Changed: Set styles for different sizes of dashicons in blockicon and blockinfo,[github bobbingwide oik-blocks issues 42]
 * Changed: Update libs to latest versions for PHP 8.0
