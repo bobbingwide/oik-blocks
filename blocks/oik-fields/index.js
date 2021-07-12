@@ -8,7 +8,7 @@
  * - Not yet aware of the Fields associated with a CPT
  * - Does not require fields to be exposed in the REST API
  *
- * @copyright (C) Copyright Bobbing Wide 2018-2020
+ * @copyright (C) Copyright Bobbing Wide 2018-2021
  * @author Herb Miller @bobbingwide
  */
 //import './style.scss';
@@ -51,6 +51,10 @@ const fieldsOptions =
         "thumbnail": "Thumbnail",
         "googlemap": "Google Maps Map",
         "template": "Page template name",
+        "post_date": "Post date",
+        "post_modified": "Post modified date",
+        //"author": "Author",
+        "author_name": "Author name"
     };
 //import portOptions from './tidetimes-co-uk.js';
 
