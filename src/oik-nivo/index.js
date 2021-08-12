@@ -3,46 +3,36 @@
  * 
  * Uses [nivo] shortcode.
  *
- * @copyright (C) Copyright Bobbing Wide 2018-2020
+ * @copyright (C) Copyright Bobbing Wide 2018-2021
  * @author Herb Miller @bobbingwide
  */
-
-
 import './style.scss';
 import './editor.scss';
 
+import { registerBlockType } from '@wordpress/blocks';
+import {__} from "@wordpress/i18n";
 
-// Get just the __() localization function from wp.i18n
-const { __ } = wp.i18n;
-
-// Get registerBlockType from wp.blocks
-const { 
-	registerBlockType,
-} = wp.blocks;
-
-const { 
-	Editable,
- } = wp.editor;
-const {
-	InspectorControls,
-} = wp.blockEditor;
-	 
-const {
-  Toolbar,
-  Button,
-  Tooltip,
-  PanelBody,
-  PanelRow,
-  FormToggle,
+import classnames from 'classnames';
+import ServerSideRender from '@wordpress/server-side-render';
+/**
+ * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
+ * Those files can contain any CSS code that gets applied to the editor.
+ *
+ * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
+ */
+import {
+	Toolbar,
+	PanelBody,
+	PanelRow,
+	FormToggle,
 	TextControl,
-	SelectControl,
-} = wp.components;
-
-const RawHTML = wp.element.RawHTML;
-const Fragment = wp.element.Fragment;
-
+	TextareaControl,
+	ToggleControl,
+	SelectControl } from '@wordpress/components';
+import { Fragment, RawHTML } from '@wordpress/element';
 import { map, partial } from 'lodash';
 
+import {AlignmentControl, BlockControls, InspectorControls, useBlockProps, PlainText} from '@wordpress/block-editor';
 
 /**
  * Attempt to find an easier way to define each attribute
@@ -86,30 +76,15 @@ export default registerBlockType(
     // Namespaced, hyphens, lowercase, unique name
     'oik-block/nivo',
     {
-        // Localize title using wp.i18n.__()
-        title: __( 'Nivo slider' ),
-				
-				description: 'Nivo slider',
-
-        // Category Options: common, formatting, layout, widgets, embed
-        category: 'common',
-
-        // Dashicons Options - https://goo.gl/aTM1DQ
-        icon: 'slides',
-
-        // Limit to 3 Keywords / Phrases
-        keywords: [
-            __( 'Nivo' ),
-						__( 'slider' ),
-            __( 'oik' ),
-        ],
-
-        // Set for each piece of dynamic data used in your block
-        attributes: blockAttributes,
-				
-				supports: { html: false },
 
         edit: props => {
+			const { attributes, setAttributes, instanceId, focus, isSelected } = props;
+			const { textAlign, label } = props.attributes;
+			const blockProps = useBlockProps( {
+				className: classnames( {
+					[ `has-text-align-${ textAlign }` ]: textAlign,
+				} ),
+			} );
 				
 				
 					const onChangeTheme = ( event ) => {
@@ -167,33 +142,25 @@ export default registerBlockType(
   					,
 					
 					
-            <div className={ props.className } key="chatts">
-						<Fragment>{chatts}</Fragment>
-						</div>
+            <div {...blockProps}>
+				<Fragment>{chatts}</Fragment>
+			</div>
           ];
         },
         save: props => {
-					var lsb = '[';
-					var rsb = ']';
-					var atts = props.attributes;
-					var chatts = '[nivo'; 	
-					for (var key of Object.keys( atts )) {
-						var value = atts[key];
-						if ( value ) {
-							chatts = chatts + " " + key + "=\"" + value + '"';
-						}
-					}
-					chatts = chatts + ']';
-					
-					
-					//const createMarkup()
-					
-					//props.setAttributes( { content: chatts } );
-					console.log( chatts );
-					//console.log( props.attributes.content );
-          return( <RawHTML>{chatts}</RawHTML> );
-					 
-  
-        },
-    },
+			const blockProps = useBlockProps.save();
+			var lsb = '[';
+			var rsb = ']';
+			var atts = props.attributes;
+			var chatts = '[nivo';
+			for (var key of Object.keys( atts )) {
+				var value = atts[key];
+				if ( value ) {
+					chatts = chatts + " " + key + "=\"" + value + '"';
+				}
+			}
+			chatts = chatts + ']';
+			return( <RawHTML {...blockProps}>{chatts}</RawHTML> );
+        }
+    }
 );
