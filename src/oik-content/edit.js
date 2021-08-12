@@ -1,52 +1,48 @@
 /**
  * Implements the edit part of oik/content-block
  *
- * @copyright (C) Copyright Bobbing Wide 2020
+ * @copyright (C) Copyright Bobbing Wide 2020, 2021
  * @author Herb Miller @bobbingwide
  */
-const { __ } = wp.i18n;
-const {
-    Editable,
 
-    AlignmentToolbar,
-    BlockControls,
-    ServerSideRender,
-} = wp.editor;
-const {
-    PlainText,
-    InspectorControls,
-} = wp.blockEditor;
+import { __ } from '@wordpress/i18n';
+import classnames from 'classnames';
 
-const {
-   withInstanceId,
-} = wp.compose;
-
-const {
+import { registerBlockType, createBlock } from '@wordpress/blocks';
+import {AlignmentControl, BlockControls, InspectorControls, useBlockProps, PlainText, BlockIcon} from '@wordpress/block-editor';
+import ServerSideRender from '@wordpress/server-side-render';
+import {
+    Toolbar,
     PanelBody,
     PanelRow,
     FormToggle,
+    RangeControl,
     TextControl,
     TextareaControl,
-    SelectControl,
-    RangeControl,
-} = wp.components;
-const Fragment = wp.element.Fragment;
-import { map, partial, has } from 'lodash';
-
-
-
+    ToggleControl,
+    SelectControl } from '@wordpress/components';
+import { Fragment} from '@wordpress/element';
+import { map, partial } from 'lodash';
 
 import {bw_shortcodes, getAttributes} from "./bw_shortcodes";
-import {PostTypes} from "./post_type";
 import{ NumberPosts } from './numberposts';
 import { orderby, order } from './attributes';
 import { Formats } from './formats';
 import { SelectTextControlCombo } from './SelectTextControlCombo';
 
-const edit= withInstanceId(
-    ( { attributes, setAttributes, instanceId, isSelected } ) => {
-        const inputId = `blocks-shortcode-input-${ instanceId }`;
+import { BwQueryControls } from './query_controls';
 
+//import GenericAttrs from './GenericAttrs';
+import { PostTypes } from './post_type';
+
+export default function Edit ( props ) {
+    const { attributes, setAttributes, instanceId, focus, isSelected } = props;
+    const { textAlign, label } = props.attributes;
+    const blockProps = useBlockProps( {
+        className: classnames( {
+            [ `has-text-align-${ textAlign }` ]: textAlign,
+        } ),
+    } );
 
         const onChangeContent = ( value ) => {
             setAttributes( { content: value } );
@@ -150,6 +146,3 @@ const edit= withInstanceId(
 
         );
     }
-)
-
-export { edit };
