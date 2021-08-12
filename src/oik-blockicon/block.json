@@ -1,0 +1,55 @@
+{
+  "apiVersion": 2,
+  "name": "oik-block/blockicon",
+  "title": "Block icon",
+  "category": "widgets",
+  "icon": "block-default",
+  "description": "Displays a Block icon",
+  "attributes": {
+     "blockicon": {
+      "type": "string",
+      "default": "oik-block/blockicon"
+    },
+    "textAlign": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "style": {
+      "type": "object"
+    },
+    "fontSize": {
+      "type": "string"
+    },
+    "gradient": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "html": false,
+    "customClassName": true,
+    "className": true,
+    "color": {
+      "gradients": false,
+      "text": true,
+      "background": false,
+      "link": false
+    },
+    "typography": {
+      "fontSize": false,
+      "lineHeight": false
+    }
+  },
+  "keywords": [ "icon", "block", "oik" ],
+  "textdomain": "oik-blocks",
+  "editorScript": "file:../../build/index.js",
+  "editorStyle": "file:../../build/index.css",
+  "style": "file:../../build/style-index.css"
+}
