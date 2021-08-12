@@ -2,50 +2,41 @@
  * Implements the Block list block
  *
  * This block displays a list of blocks associated with a block type name prefix e.g. core, core-embed, oik-block
- * I intend to use it to help populate the list of blocks for each component that we want to document.
+ * It's used to help populate the list of blocks for each component that we want to document.
  *
+ * Note: If the prefix is used by more than one plugin then the list of blocks should be produced
+ * using the Block info block being repeated for each block that the plugin delivers.
  *
+ * In the future this could be determined from the presence of the block.json files.
  *
- * @copyright (C) Copyright Bobbing Wide 2019, 2020
+ * @copyright (C) Copyright Bobbing Wide 2019, 2020, 2021
  * @author Herb Miller @bobbingwide
  */
 import './style.scss';
 import './editor.scss';
 
-// Get just the __() localization function from wp.i18n
-const { __ } = wp.i18n;
-// Get registerBlockType from wp.blocks
-const {
-    registerBlockType,
-    createBlock,
-} = wp.blocks;
-const {
-    BlockIcon,
-    ServerSideRender,
-} = wp.editor;
-const {
-    InspectorControls,
-} = wp.blockEditor;
+import { __ } from '@wordpress/i18n';
+import classnames from 'classnames';
 
-
-const {
+import { registerBlockType, createBlock } from '@wordpress/blocks';
+import {AlignmentControl, BlockControls, InspectorControls, useBlockProps, PlainText, BlockIcon} from '@wordpress/block-editor';
+import ServerSideRender from '@wordpress/server-side-render';
+import {
     Toolbar,
     PanelBody,
     PanelRow,
     FormToggle,
     TextControl,
+    TextareaControl,
     ToggleControl,
-    Dashicon,
+    SelectControl } from '@wordpress/components';
+import { Fragment} from '@wordpress/element';
+import { map, partial } from 'lodash';
 
-} = wp.components;
-const { Fragment }  = wp.element;
-
-
-//import { DashiconsSelect } from './dashicons.js';
 import { BlockiconsSelect, BlockiconStyled } from '../oik-blockicon/blockicons.js';
 import { BlockListStyled } from './blocklist.js'
 import { BlockPrefixSelect } from './blockprefix.js';
-//import {ToggleControl} from "../../../gutenberg-source/packages/components/build-module";
+
 
 /**
  * Register the WordPress block
@@ -54,69 +45,20 @@ export default registerBlockType(
     // Namespaced, hyphens, lowercase, unique name
     'oik-block/blocklist',
     {
-        // Localize title using wp.i18n.__()
-        title: __( 'Block list' ),
-
-        description: 'Displays a list of Blocks for a chosen prefix',
-
-        // Category Options: common, formatting, layout, widgets, embed
-        category: 'widgets',
-
-        // Dashicons Options - https://goo.gl/aTM1DQ
-        icon: 'block-default',
-
-        // Limit to 3 Keywords / Phrases
-        keywords: [
-            __( 'list' ),
-            __( 'oik' ),
-            __( 'block'),
-        ],
-
-        // Set for each piece of dynamic data used in your block
-
-        attributes: {
-
-            prefix: {
-                type: 'string',
-                default: 'oik-block'
-            },
-
-            showBlockLink: {
-                type: 'boolean',
-                default: true
-            },
-
-           showDescription: {
-                type: 'boolean',
-                default: true
-            },
-
-            showBatch: {
-                type: 'boolean',
-                default: false
-            },
-
-            component: {
-                type: 'string',
-                default: ""
-            }
-
-
-
-        },
-
         example: {
             attributes: {
                 showBlockLink: false,
-                prefix: 'oik',
+                prefix: 'oik-block',
             }
         },
-
-
-
-
-
         edit: props => {
+            const { attributes, setAttributes, instanceId, focus, isSelected } = props;
+            const { textAlign, label } = props.attributes;
+            const blockProps = useBlockProps( {
+                className: classnames( {
+                    [ `has-text-align-${ textAlign }` ]: textAlign,
+                } ),
+            } );
 
 
             const onChangePrefix = ( event ) => {
@@ -198,7 +140,7 @@ export default registerBlockType(
 
                 </InspectorControls>
 
-                <div className={ props.className }>
+                <div { ...blockProps }>
                 { blocklist }
                 </div>
                     </Fragment>
@@ -207,14 +149,21 @@ export default registerBlockType(
 
             );
         },
-        /*
-        <ServerSideRender
-                    block="oik-block/dashicon" attributes={ props.attributes }
-                />
-         */
+
         save: props => {
-            console.log( "BlockListStyled - save");
-            return BlockListStyled( props.attributes.prefix, props.attributes.showBlockLink, props.attributes.showDescription, props.attributes.showBatch, props.attributes.component, props );
+            //console.log( "BlockListStyled - save");
+            const blockProps = useBlockProps.save();
+            var blocklist = BlockListStyled( props.attributes.prefix,
+                props.attributes.showBlockLink,
+                props.attributes.showDescription,
+                props.attributes.showBatch,
+                props.attributes.component,
+                props );
+            return (
+                <div { ...blockProps }>
+                    { blocklist }
+                </div>
+            );
         },
     },
 );
