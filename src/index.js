@@ -12,4 +12,4 @@ import './oik-blocklist';    // Displays a list of Blocks for a selected prefix
 import './oik-content';      // Dynamic content block
 import './oik-fields';       // From oik-fields - [bw_fields] and [bw_field] shortcode
 import './oik-nivo';         // From oik-nivo-slider nivo
-import './oik-person';       // From oik-user bw_user  and bw_follow_me etc
+import './oik-person';       // From oik-user bw_user and bw_follow_me etc
