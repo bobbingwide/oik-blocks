@@ -1,7 +1,7 @@
 # oik blocks
 
 
-## Summary of blocks
+## Summary of blocks in the src folder
 
 `index.js` defines the blocks that are built for this plugin.
 
@@ -10,52 +10,38 @@ SSR = Server Side Rendered
 
 Block            | Type    | Shortcode(s)        | Purpose
 -----            | ----    | --------            | -----
-github           | Static  | [github]            | Wrapper to [github] shortcode
-oik-address      | Static  | [bw_address]        | Address block
 oik-blockicon    | Static  | -                   | Block icon
-oik-contact-form | Dynamic | [bw_contact_form]   | Contact form 
-oik-countdown    | Static  | [bw_countdown]      | Countdown timer
-oik-css          | Dynamic | [bw_css]            | Inline CSS 
-oik-csv          | Dynamic | [bw_csv]            | Display CSV content
-oik-dashicon     | Dynamic SSR | [bw_dash[       | Dash icon
-oik-fields       | Dynamic SSR | [bw_fields]         | Displays fields / virtual fields
-oik-follow-me    | Static  | [bw_follow_me]      | Social media follow me
-oik-geshi        | Dynamic SSR | [bw_geshi] | Generic Syntax Highlighting: none, PHP, HTML, JavaScript, CSS
-oik-googlemap    | Static  | [bw_show_googlemap] | Google Maps Map
-oik-nivo         | Static  | [nivo]              | Nivo slider
-oik-person       | Static  | [bw_user] [bw_follow_me] | Person block
-oik-search       | Dynamic SSR | [bw_search] | Search form
-oik-shortcode    | Dynamic | various             | Dynamic shortcode block
-oik-uk-tides     | Dynamic SSR | [bw_tides]      | UK tides block
-oik-wp           | Dynamic SSR | [wp]            | Displays information about WordPress and PHP versions
+oik-blockinfo    | Static  | -                   | Block info
+oik-blocklist    | Static  | -                   | Block list for selected prefix
+oik-content      | Dynamic SSR | various         | Dynamic content block
+oik-fields       | Dynamic SSR | [bw_fields]     | Displays fields / virtual fields
+oik-nivo         | Dynamic SSR  | [nivo]              | Nivo slider
+oik-person       | Dynamic SSR  | [bw_user] [bw_follow_me] | Person block
 
 In each folder there is at least 1 .js file, and there could be some .scss files.
 
 File |  Target | Contents
 ----- | ------	| --------------
 editor.scss | blocks.editor.css | Styling for the editor
-index.js | editor.blocks.js | REACT JS for the block
-style.scss | blocks.style.css | Styling for the front end
-
-
+index.js | index.js | REACT JS for the block
+style.scss | style-index.css | Styling for the front end
+*.js | index.asset.php | Automatically built dependencies
 
 ## Build folder
 
 The `build` folder contains the run-time components:
 
-Folder | File | Contents
------- | ----- | -------
-css    | blocks.editor.css | Styles used in the Block editor
-css    | blocks.style.css | Styles used in the front end
-images | js-wapuu.svg | wapuu SVG file - from Zac's course
-js     | dummy.blocks.js | Dummy editor.blocks.js for testing Issue #4678
-js     | editor.blocks.js | Built JS for the Editor
-js     | frontend.blocks.js | Built JS for the front end
+File | Contents
+---- | -------
+index.asset.php | Dependencies and version used when registering blocks
+index.css | editorStyle - built CSS for the Editor
+index.js | editorScript - built JS for the Editor
+style-index.css | style - built CSS for the Front end
 
 
 ## Build process
 
-To build the JavaScript code in the blocks folder you need to use npm (Node Package Manager),
+To build the JavaScript code in the `src` folder you need to use `npm` (Node Package Manager),
 which is part of Node.js. 
 
 If you don't already have it [download and install Node.js](https://nodejs.org/en/download/)
@@ -63,26 +49,22 @@ If you don't already have it [download and install Node.js](https://nodejs.org/e
 Check what versions you have using `node -v` and `npm -v`.
 
 ```
-C:\Users\Herb>node -v
-v8.9.4
+C:\Users\herb>node -v
+v14.17.0
 
 C:\Users\Herb>npm -v
-6.4.1 
+6.4.11
 ```
 
-
-npm 6 is needed for building Gutenberg 4.0.0
-
-
 Then you need to install the dependencies locally.
+Run these commands from the plugin's directory.
 
 ```
 npm install
+npm install @wordpress/scripts --save-dev
 ```
 
-Run this command from the plugin's directory. 
-
-This will install a gazillion files into the `node_modules` folder, creating over 2000 sub-directories.
+These will install a gazillion files into the `node_modules` folder, creating over 2000 sub-directories.
 
 If you're unfamiliar with npm, then you may want to read something about it.
 See [What is npm?](https://docs.npmjs.com/getting-started/what-is-npm) 
@@ -93,15 +75,15 @@ To build the blocks into the run time code you then need to run either
 ```
 npm run dev
 ```
+which builds the development version,
 
-or 
+or, to build the production version,
 
 ```
 npm run build
 ```
 
 
-
-
-
- 
+There are other scripts in `package.json` that you can run. 
+- `npm run dev` is equivalent to `npm run start` or `npm start`.
+- other scripts are for internationalisation and localisation.
