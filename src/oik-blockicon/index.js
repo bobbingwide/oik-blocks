@@ -2,36 +2,28 @@
  * Implements the Block icon block
  *
  *
- * @copyright (C) Copyright Bobbing Wide 2019, 2020
+ * @copyright (C) Copyright Bobbing Wide 2019-2021
  * @author Herb Miller @bobbingwide
  */
 import './style.scss';
 import './editor.scss';
 
-// Get just the __() localization function from wp.i18n
-const { __ } = wp.i18n;
-// Get registerBlockType from wp.blocks
-const {
-    registerBlockType,
-} = wp.blocks;
-const {
-    BlockIcon,
-} = wp.editor;
-const {
-    InspectorControls,
-} = wp.blockEditor;
+import { __ } from '@wordpress/i18n';
+import classnames from 'classnames';
 
-const {
+import { registerBlockType, createBlock } from '@wordpress/blocks';
+import {AlignmentControl, BlockControls, InspectorControls, useBlockProps, PlainText, BlockIcon} from '@wordpress/block-editor';
+import ServerSideRender from '@wordpress/server-side-render';
+import {
     Toolbar,
     PanelBody,
     PanelRow,
     FormToggle,
     TextControl,
-    Dashicon,
-
-} = wp.components;
-const Fragment = wp.element.Fragment;
-
+    TextareaControl,
+    SelectControl } from '@wordpress/components';
+import { Fragment} from '@wordpress/element';
+import { map, partial } from 'lodash';
 import { BlockiconsSelect, BlockiconStyled } from './blockicons.js';
 
 /**
@@ -41,34 +33,6 @@ export default registerBlockType(
     // Namespaced, hyphens, lowercase, unique name
     'oik-block/blockicon',
     {
-        // Localize title using wp.i18n.__()
-        title: __( 'Block icon' ),
-
-        description: 'Displays a Block icon',
-
-        // Category Options: common, formatting, layout, widgets, embed
-        category: 'widgets',
-
-        // Dashicons Options - https://goo.gl/aTM1DQ
-        icon: 'block-default',
-
-        // Limit to 3 Keywords / Phrases
-        keywords: [
-            __( 'icon' ),
-            __( 'oik' ),
-            __( 'block'),
-        ],
-
-        // Set for each piece of dynamic data used in your block
-
-        attributes: {
-
-            blockicon: {
-                type: 'string',
-                default: 'oik-block/blockicon'
-            }
-
-        },
         example: {
         },
 
@@ -87,6 +51,14 @@ export default registerBlockType(
 
 
         edit: props => {
+            const { attributes, setAttributes, instanceId, focus, isSelected } = props;
+            const { textAlign, label } = props.attributes;
+            const blockProps = useBlockProps( {
+                className: classnames( {
+                    [ `has-text-align-${ textAlign }` ]: textAlign,
+                } ),
+            } );
+
 
 
             const onChangeBlockicon = ( event ) => {
@@ -112,20 +84,22 @@ export default registerBlockType(
 
                 </InspectorControls>
 
-                <div className={ props.className }>
+                <div {...blockProps}>
                     { blockicon }
                 </div>
                 </Fragment>
 
             );
         },
-        /*
-        <ServerSideRender
-                    block="oik-block/dashicon" attributes={ props.attributes }
-                />
-         */
+
         save: props => {
-            return BlockiconStyled( props.attributes.blockicon, props );
+            const blockProps = useBlockProps.save();
+            var blockicon = BlockiconStyled( props.attributes.blockicon, props );
+            return(
+                <div {...blockProps}>
+                    { blockicon }
+                </div>
+            );
         },
     },
 );
