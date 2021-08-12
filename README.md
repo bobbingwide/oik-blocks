@@ -4,62 +4,50 @@
 * Donate link: https://www.oik-plugins.com/oik/oik-donate/
 * Tags: gutenberg, shortcode, blocks, oik
 * Requires at least: 5.5.1
-* Tested up to: 5.8-RC2
+* Tested up to: 5.8
 * Gutenberg compatible: Yes
-* Stable tag: 0.6.0
+* Stable tag: 1.0.0
 * License: GPLv3 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 ## Description 
 WordPress blocks, aka Gutenberg blocks, for oik shortcodes.
 
-This is mostly prototype code delivering a number of the oik shortcodes
-as blocks for the new WordPress content editor.
+The blocks in this plugin are a mixture of
+- prototype blocks to replace oik-shortcodes
+- and blocks to help document WordPress blocks.
 
-oik delivers over 80 shortcodes.
-Some of these are crying out to be converted into advanced WordPress blocks.
+oik-blocks v1.0.0 provides 7 blocks
 
-oik-blocks provides 20 blocks
-
-- Address
 - Block icon
 - Block info
 - Block list
+- Dynamic content block
+- Fields
+- Nivo slider
+- Person
+
+v0.6.0 delivered other blocks. Each of these blocks have been implemented in other plugins
+so have been deleted from this plugin.
+
+- Address
 - Contact form
 - Countdown
 - CSS
 - CSV
 - Dash icon
-- Fields
 - Follow me
 - GeSHi
 - GitHub Issue
 - Google Maps
-- Nivo slider
-- Person
 - Search
 - Prototype Generic shortcode block (undocumented on oik-plugins.com )
 - UK tides
 - WordPress version
 
-
 For more info on the blocks included in the plugin see:
 
 [blocks readme](https://github.com/bobbingwide/oik-blocks/tree/master/blocks)
-
-
-This is just the start.
-
-This plugin is currently being used for education, demonstration, experimentation and estimation.
-
-The code is being developed to work with latest version of the Gutenberg plugin and/or the latest build of WordPress 5.0.
-
-We'll refer to Gutenberg as the new editor.
-And each block will be called a block.
-
-
-The oik-block plugin, from which this plugin was forked, includes logic to evaluate Gutenberg's compatibility with site contents.
-It forms opinions at multiple levels and applies these to decide which editor is the safest to use for the content and context.
 
 
 
@@ -77,16 +65,18 @@ https://github.com/bobbingwide/oik-blocks/
 Yes, it uses a number of other plugins:
 
 - oik
-- oik-bob-bing-wide
-- gutenberg and / or WordPress 5.0
+- oik-fields
+- Gutenberg and / or WordPress 5.0
 - oik-nivo-slider
-- oik-css
-- uk-tides
+- oik-user
 
 ## Screenshots 
-1. oik-blocks's address block
+1.
 
 ## Upgrade Notice 
+# 1.0.0 
+Upgrade for compatibility with WordPress 5.8
+
 # 0.6.0 
 Upgrade to oik-blocks v0.6.0 for three new fields displayed by the Fields block; post date, post modified and author name.
 
@@ -151,6 +141,14 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 ## Changelog 
+# 1.0.0 
+* Changed: Refactored to use wp-scripts and blocks registered from block.json,https://github.com/bobbingwide/oik-blocks/issues/47
+* Deleted: Removed deprecated blocks implemented in other plugins,https://github.com/bobbingwide/oik-blocks/issues/47
+* Tested: With WordPress 5.8 and WordPres Multi Site
+* Tested: With Gutenberg 11.2.0
+* Tested: With PHP 8.0
+* Tested: With PHPUnit 9
+
 # 0.6.0 
 * Changed: Add post_date, post_modified and author_name fields to the Fields block,https://github.com/bobbingwide/oik-blocks/issues/45
 * Changed: Create a simpler blocklist when Show block link toggle is off and Show batch commands is On.,https://github.com/bobbingwide/oik-blocks/issues/27
