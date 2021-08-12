@@ -13,32 +13,30 @@
  */
 //import './style.scss';
 //import './editor.scss';
+import { registerBlockType } from '@wordpress/blocks';
+import {__} from "@wordpress/i18n";
 
-// Get just the __() localization function from wp.i18n
-const { __ } = wp.i18n;
-// Get registerBlockType from wp.blocks
-const {
-    registerBlockType,
-} = wp.blocks;
-const {
-    ServerSideRender,
-} = wp.editor;
-const {
-    InspectorControls,
-} = wp.blockEditor;
-
-
-const {
+import classnames from 'classnames';
+import ServerSideRender from '@wordpress/server-side-render';
+/**
+ * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
+ * Those files can contain any CSS code that gets applied to the editor.
+ *
+ * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
+ */
+import {
     Toolbar,
     PanelBody,
     PanelRow,
     FormToggle,
     TextControl,
-    SelectControl,
-} = wp.components;
-const Fragment = wp.element.Fragment;
+    TextareaControl,
+    ToggleControl,
+    SelectControl } from '@wordpress/components';
+import { Fragment} from '@wordpress/element';
 import { map, partial } from 'lodash';
 
+import {AlignmentControl, BlockControls, InspectorControls, useBlockProps, PlainText} from '@wordpress/block-editor';
 
 /**
  * These are the different options for "virtual" fields
@@ -56,7 +54,6 @@ const fieldsOptions =
         //"author": "Author",
         "author_name": "Author name"
     };
-//import portOptions from './tidetimes-co-uk.js';
 
 
 
@@ -67,47 +64,16 @@ export default registerBlockType(
     // Namespaced, hyphens, lowercase, unique name
     'oik-block/fields',
     {
-        // Localize title using wp.i18n.__()
-        title: __( 'Fields' ),
-
-        description: 'Displays Fields',
-
-        // Category Options: common, formatting, layout, widgets, embed
-        category: 'widgets',
-
-        // Dashicons Options - https://goo.gl/aTM1DQ
-        icon: 'info-outline',
-
-        // Limit to 3 Keywords / Phrases
-        keywords: [
-            __( 'field' ),
-            __( 'meta'),
-            __( 'oik' ),
-        ],
-
-        // Set for each piece of dynamic data used in your block
-        attributes: {
-            fields: {
-                type: 'string',
-                default: '',
-
-            },
-            labels: {
-                type: 'string',
-                default: ''
-            },
-
-
-        },
         example: {
         },
-        supports: {
-            customClassName: false,
-            className: false,
-            html: false,
-        },
-
         edit: props => {
+            const { attributes, setAttributes, instanceId, focus, isSelected } = props;
+            const { textAlign, label } = props.attributes;
+            const blockProps = useBlockProps( {
+                className: classnames( {
+                    [ `has-text-align-${ textAlign }` ]: textAlign,
+                } ),
+            } );
 
             /**
              * Attempt a generic function to apply a change
@@ -149,10 +115,11 @@ export default registerBlockType(
                         </PanelBody>
 
                     </InspectorControls>
-
+                    <div {...blockProps } >
                     <ServerSideRender
                         block="oik-block/fields" attributes={ props.attributes }
                     />
+                    </div>
                 </Fragment>
 
             );
