@@ -13,45 +13,33 @@
  * Each field is optional.
  * You can't choose the order but you can try to style it!
  *
- * @copyright (C) Copyright Bobbing Wide 2019, 2020
+ * @copyright (C) Copyright Bobbing Wide 2019, 2020, 2021
  * @author Herb Miller @bobbingwide
  */
 import './style.scss';
 import './editor.scss';
 
-// Get just the __() localization function from wp.i18n
-const { __ } = wp.i18n;
-// Get registerBlockType from wp.blocks
-const {
-    registerBlockType,
-    createBlock,
-} = wp.blocks;
-const {
-    BlockIcon,
 
-} = wp.editor;
-const {
-    InspectorControls,
-} = wp.blockEditor;
+import { __ } from '@wordpress/i18n';
+import classnames from 'classnames';
 
-const {
+import { registerBlockType, createBlock } from '@wordpress/blocks';
+import {AlignmentControl, BlockControls, InspectorControls, useBlockProps, PlainText, BlockIcon} from '@wordpress/block-editor';
+import ServerSideRender from '@wordpress/server-side-render';
+import {
     Toolbar,
     PanelBody,
     PanelRow,
     FormToggle,
     TextControl,
+    TextareaControl,
     ToggleControl,
-    Dashicon,
+    SelectControl } from '@wordpress/components';
+import { Fragment} from '@wordpress/element';
+import { map, partial } from 'lodash';
 
-} = wp.components;
-const { Fragment }  = wp.element;
-
-
-//import { DashiconsSelect } from './dashicons.js';
 import { BlockiconsSelect, BlockiconStyled } from '../oik-blockicon/blockicons.js';
-import { BlockinfoStyled } from './blockinfo.js'
-
-//import {ToggleControl} from "../../../gutenberg-source/packages/components/build-module";
+import { BlockinfoStyled } from './blockinfo.js';
 
 /**
  * Register the WordPress block
@@ -60,77 +48,6 @@ export default registerBlockType(
     // Namespaced, hyphens, lowercase, unique name
     'oik-block/blockinfo',
     {
-        // Localize title using wp.i18n.__()
-        title: __( 'Block info' ),
-
-        description: 'Displays a Block\'s information',
-
-        // Category Options: common, formatting, layout, widgets, embed
-        category: 'widgets',
-
-        // Dashicons Options - https://goo.gl/aTM1DQ
-        icon: 'block-default',
-
-        // Limit to 3 Keywords / Phrases
-        keywords: [
-            __( 'info' ),
-            __( 'oik' ),
-            __( 'block'),
-        ],
-
-        // Set for each piece of dynamic data used in your block
-
-        attributes: {
-
-            blockicon: {
-                type: 'string',
-                default: 'oik-block/blockicon'
-            },
-
-            showBlockTypeName: {
-                type: 'boolean',
-                default: true
-            },
-
-            showBlockIcon: {
-                type: 'boolean',
-                default: true,
-            },
-
-            showTitle: {
-                type: 'boolean',
-                default: true
-            },
-
-            showDescription: {
-                type: 'boolean',
-                default: true
-            },
-
-            showCategory: {
-                type: 'boolean',
-                default: true
-            },
-            showKeywords: {
-                type: 'boolean',
-                default: true
-            },
-
-            // Default to false since this is a new field.
-            // If we default it to true the editor will attempt to change existing blocks.
-            showBlockLink: {
-                type: 'boolean',
-                default: false
-
-            },
-
-            showVariations: {
-                type: 'boolean',
-                default: true
-            },
-
-        },
-
         example: {
         },
 
@@ -172,6 +89,13 @@ export default registerBlockType(
         */
 
         edit: props => {
+            const { attributes, setAttributes, instanceId, focus, isSelected } = props;
+            const { textAlign, label } = props.attributes;
+            const blockProps = useBlockProps( {
+                className: classnames( {
+                    [ `has-text-align-${ textAlign }` ]: textAlign,
+                } ),
+            } );
 
 
             const onChangeBlockicon = ( event ) => {
@@ -305,7 +229,7 @@ export default registerBlockType(
 
                 </InspectorControls>
 
-                <div className={ props.className }>
+                <div {...blockProps}>
                 { blockinfo }
                 </div>
                 </Fragment>
@@ -315,7 +239,8 @@ export default registerBlockType(
         },
 
         save: props => {
-            return BlockinfoStyled( props.attributes.blockicon,
+            const blockProps = useBlockProps.save();
+            var blockinfo =  BlockinfoStyled( props.attributes.blockicon,
                 props.attributes.showBlockLink,
                 props.attributes.showBlockIcon,
                 props.attributes.showBlockTypeName,
@@ -325,6 +250,13 @@ export default registerBlockType(
                 props.attributes.showKeywords,
                 props.attributes.showVariations,
                 props );
-        },
-    },
+
+            return(
+                <div {...blockProps}>
+                    { blockinfo }
+                </div>
+            );
+
+        }
+    }
 );
