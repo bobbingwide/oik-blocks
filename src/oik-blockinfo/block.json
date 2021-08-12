@@ -1,0 +1,84 @@
+{
+  "apiVersion": 2,
+  "name": "oik-block/blockinfo",
+  "title": "Block info",
+  "category": "widgets",
+  "icon": "block-default",
+  "description": "Display a Block's information",
+  "attributes": {
+    "blockicon": {
+      "type": "string",
+      "default": "oik-block/blockicon"
+    },
+    "showBlockTypeName": {
+      "type": "boolean",
+      "default": true
+    },
+    "showBlockIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "showDescription": {
+      "type": "boolean",
+      "default": true
+    },
+    "showCategory": {
+      "type": "boolean",
+      "default": true
+    },
+    "showKeywords": {
+      "type": "boolean",
+      "default": true
+    },
+    "showBlockLink": {
+      "type": "boolean",
+      "default": false
+    },
+    "showVariations": {
+      "type": "boolean",
+      "default": true
+    },
+    "textAlign": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "style": {
+      "type": "object"
+    },
+    "fontSize": {
+      "type": "string"
+    },
+    "gradient": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "html": false,
+    "customClassName": true,
+    "className": true,
+    "color": {
+      "gradients": false,
+      "text": true,
+      "background": false,
+      "link": false
+    },
+    "typography": {
+      "fontSize": false,
+      "lineHeight": false
+    }
+  },
+  "keywords": [ "info", "block", "oik" ],
+  "textdomain": "oik-blocks"
+}
