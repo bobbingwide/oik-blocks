@@ -1,0 +1,59 @@
+{
+  "apiVersion": 2,
+  "name": "oik-block/fields",
+  "title": "Fields",
+  "category": "widgets",
+  "icon": "info-outline",
+  "description": "Displays fields.",
+  "attributes": {
+    "fields": {
+      "type": "string",
+      "default": ""
+    },
+    "labels": {
+      "type": "string",
+      "default": ""
+    },
+    "textAlign": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "style": {
+      "type": "object"
+    },
+    "fontSize": {
+      "type": "string"
+    },
+    "gradient": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "align": true,
+    "alignWide": true,
+    "alignFull": true,
+    "html": false,
+    "customClassName": false,
+    "className": false,
+    "color": {
+      "gradients": false,
+      "text": true,
+      "background": false,
+      "link": false
+    },
+    "typography": {
+      "fontSize": false,
+      "lineHeight": false
+    }
+  },
+  "keywords": [ "field", "meta", "oik" ],
+  "textdomain": "oik-blocks"
+}
