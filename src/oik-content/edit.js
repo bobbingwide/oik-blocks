@@ -137,7 +137,7 @@ export default function Edit ( props ) {
 
 
                 </div>
-                <div>
+                <div { ...blockProps}>
                     <ServerSideRender
                         block="oik/content-block" attributes={ attributes }
                     />
