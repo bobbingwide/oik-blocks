@@ -44,21 +44,6 @@ function oik_blocks_dynamic_block_shortcode( $attributes ) {
 }
 
 /**
- * Server rendering dynamic content block
- *
- * @param array $attributes
- * @return string generated HTML
- */
-function oik_blocks_dynamic_block_content_block( $attributes ) {
-	$html = \oik\oik_blocks\oik_blocks_check_server_func( 'shortcodes/oik-content.php', 'oik-blocks', 'oik_content_block' );
-	if ( ! $html ) {
-		$html = oik_content_block( $attributes );
-	}
-	//oik_require( "shortcodes/oik-shortcode.php", "oik-blocks" );
-	return $html;
-}
-
-/**
  * Renders the Fields block
  *
  * @param array $attributes fields, labels
@@ -282,9 +267,6 @@ function oik_blocks_register_dynamic_blocks() {
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blockicon');
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blockinfo');
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blocklist');
-
-	$args = [ 'render_callback' => 'oik_blocks_dynamic_block_content_block' ];
-	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-content', $args );
 	$args = [ 'render_callback' => 'oik_blocks_dynamic_block_fields' ];
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-fields', $args );
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-nivo' );
