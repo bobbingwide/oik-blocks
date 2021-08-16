@@ -5,7 +5,7 @@ Tags: gutenberg, shortcode, blocks, oik
 Requires at least: 5.5.1
 Tested up to: 5.8
 Gutenberg compatible: Yes
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,12 +16,11 @@ The blocks in this plugin are a mixture of
 - prototype blocks to replace oik-shortcodes
 - and blocks to help document WordPress blocks.
  
-oik-blocks v1.0.0 provides 7 blocks
+oik-blocks v1.0.0 provides 6 blocks
 
 - Block icon
 - Block info
 - Block list
-- Dynamic content block
 - Fields
 - Nivo slider
 - Person
@@ -35,6 +34,7 @@ so have been deleted from this plugin.
 - CSS
 - CSV
 - Dash icon
+- Dynamic content
 - Follow me
 - GeSHi
 - GitHub Issue
@@ -73,6 +73,9 @@ Yes, it uses a number of other plugins:
 1. 
 
 == Upgrade Notice ==
+= 1.1.0 = 
+Upgrade in parallel with oik which now implements the Dynamic content block 
+
 = 1.0.0 =
 Upgrade for compatibility with WordPress 5.8 
 
@@ -140,6 +143,9 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 == Changelog ==
+= 1.1.0 =
+* Changed: Transfered oik/content-block to oik #34 
+
 = 1.0.0 =
 * Changed: Refactored to use wp-scripts and blocks registered from block.json,[github bobbingwide oik-blocks issues 47]
 * Deleted: Removed deprecated blocks implemented in other plugins,[github bobbingwide oik-blocks issues 47]
