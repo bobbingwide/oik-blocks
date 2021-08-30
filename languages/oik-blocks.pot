@@ -1,18 +1,39 @@
-# Copyright (C) 2019 oik-blocks
-# This file is distributed under the same license as the oik-blocks package.
+# Copyright (C) 2021 Herb Miller
+# This file is distributed under the GPL3+.
 msgid ""
 msgstr ""
-"Project-Id-Version: oik-blocks 0.3.0\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/oik-blocks\n"
-"POT-Creation-Date: 2019-04-15 15:17:23+00:00\n"
+"Project-Id-Version: oik-blocks 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/oik-blocks\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2021-08-30T21:58:01+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
 
-#: libs/oik-depends.php:100 libs/oik-depends.php:147
+#. Plugin Name of the plugin
+msgid "oik-blocks"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://www.oik-plugins.com/oik-plugins/oik-blocks"
+msgstr ""
+
+#. Description of the plugin
+msgid "WordPress blocks, aka Gutenberg blocks, for oik shortcodes."
+msgstr ""
+
+#. Author of the plugin
+msgid "Herb Miller"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://oik-plugins.com/author/bobbingwide"
+msgstr ""
+
+#: libs/oik-depends.php:100
 msgid " version "
 msgstr ""
 
@@ -20,9 +41,13 @@ msgstr ""
 msgid "Plugin %1$s may not be fully functional."
 msgstr ""
 
-#: libs/oik-depends.php:106 libs/oik-depends.php:152
-msgid ""
-"Please install and activate the required minimum version of this plugin: %1$s"
+#: libs/oik-depends.php:106
+#: libs/oik-depends.php:152
+msgid "Please install and activate the required minimum version of this plugin: %1$s"
+msgstr ""
+
+#: libs/oik-depends.php:147
+msgid "version"
 msgstr ""
 
 #: libs/oik-depends.php:150
@@ -41,22 +66,159 @@ msgstr ""
 msgid "Upgrade %1$s"
 msgstr ""
 
-#. Plugin Name of the plugin/theme
-msgid "oik-blocks"
+#: build/index.js:1
+msgid "View block"
 msgstr ""
 
-#. Plugin URI of the plugin/theme
-msgid "https://www.oik-plugins.com/oik-plugins/oik-blocks"
+#: build/index.js:1
+msgid "Show block link"
 msgstr ""
 
-#. Description of the plugin/theme
-msgid "WordPress 5.0 blocks, aka Gutenberg blocks, for oik shortcodes."
+#: build/index.js:1
+msgid "Show block icon"
 msgstr ""
 
-#. Author of the plugin/theme
-msgid "Herb Miller"
+#: build/index.js:1
+msgid "Show block type name"
 msgstr ""
 
-#. Author URI of the plugin/theme
-msgid "https://oik-plugins.com/author/bobbingwide"
+#: build/index.js:1
+msgid "Show block title"
+msgstr ""
+
+#: build/index.js:1
+msgid "Show block description"
+msgstr ""
+
+#: build/index.js:1
+msgid "Show category"
+msgstr ""
+
+#: build/index.js:1
+msgid "Show keywords"
+msgstr ""
+
+#: build/index.js:1
+msgid "Show variations"
+msgstr ""
+
+#: build/index.js:1
+msgid "Show batch commands"
+msgstr ""
+
+#: src/oik-blockicon/block.json
+msgctxt "block title"
+msgid "Block icon"
+msgstr ""
+
+#: src/oik-blockicon/block.json
+msgctxt "block description"
+msgid "Displays a Block icon"
+msgstr ""
+
+#: src/oik-blockicon/block.json
+msgctxt "block keyword"
+msgid "icon"
+msgstr ""
+
+#: src/oik-blockicon/block.json
+#: src/oik-blockinfo/block.json
+#: src/oik-blocklist/block.json
+msgctxt "block keyword"
+msgid "block"
+msgstr ""
+
+#: src/oik-blockicon/block.json
+#: src/oik-blockinfo/block.json
+#: src/oik-blocklist/block.json
+#: src/oik-fields/block.json
+#: src/oik-nivo/block.json
+#: src/oik-person/block.json
+msgctxt "block keyword"
+msgid "oik"
+msgstr ""
+
+#: src/oik-blockinfo/block.json
+msgctxt "block title"
+msgid "Block info"
+msgstr ""
+
+#: src/oik-blockinfo/block.json
+msgctxt "block description"
+msgid "Display a Block's information"
+msgstr ""
+
+#: src/oik-blockinfo/block.json
+msgctxt "block keyword"
+msgid "info"
+msgstr ""
+
+#: src/oik-blocklist/block.json
+msgctxt "block title"
+msgid "Block list"
+msgstr ""
+
+#: src/oik-blocklist/block.json
+msgctxt "block description"
+msgid "Displays a list of Blocks for a chosen prefix"
+msgstr ""
+
+#: src/oik-blocklist/block.json
+msgctxt "block keyword"
+msgid "list"
+msgstr ""
+
+#: src/oik-fields/block.json
+msgctxt "block title"
+msgid "Fields"
+msgstr ""
+
+#: src/oik-fields/block.json
+msgctxt "block description"
+msgid "Displays fields."
+msgstr ""
+
+#: src/oik-fields/block.json
+msgctxt "block keyword"
+msgid "field"
+msgstr ""
+
+#: src/oik-fields/block.json
+msgctxt "block keyword"
+msgid "meta"
+msgstr ""
+
+#: src/oik-nivo/block.json
+msgctxt "block title"
+msgid "Nivo slider"
+msgstr ""
+
+#: src/oik-nivo/block.json
+msgctxt "block description"
+msgid "Nivo slider"
+msgstr ""
+
+#: src/oik-nivo/block.json
+msgctxt "block keyword"
+msgid "Nivo"
+msgstr ""
+
+#: src/oik-nivo/block.json
+msgctxt "block keyword"
+msgid "slider"
+msgstr ""
+
+#: src/oik-person/block.json
+msgctxt "block title"
+msgid "Person"
+msgstr ""
+
+#: src/oik-person/block.json
+msgctxt "block description"
+msgid "Displays a person's information"
+msgstr ""
+
+#: src/oik-person/block.json
+msgctxt "block keyword"
+msgid "Person"
 msgstr ""
