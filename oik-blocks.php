@@ -263,8 +263,13 @@ function oik_blocks_pre_theme_field() {
  script, style, editor_script, and editor_style
  */
 function oik_blocks_register_dynamic_blocks() {
+    if ( function_exists( "register_block_type" ) ) {
+        oik_blocks_plugins_loaded();
+    }
+    add_filter( 'block_type_metadata', 'oik_blocks_block_type_metadata', 10 );
 
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blockicon');
+	bw_trace2( $registered, "registered");
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blockinfo');
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blocklist');
 	$args = [ 'render_callback' => 'oik_blocks_dynamic_block_fields' ];
@@ -273,10 +278,37 @@ function oik_blocks_register_dynamic_blocks() {
 	$args = [ 'render_callback' => 'oik_blocks_dynamic_block_person' ];
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-person', $args );
 
-	if ( function_exists( "register_block_type" ) ) {
-		oik_blocks_boot_libs();
-	}
+
+
+    /**
+     * Localise the script by loading the required strings for the build/index.js file
+     * from the locale specific .json file in the languages folder.
+     */
+    $ok = wp_set_script_translations( 'oik-block-blockicon-editor-script', 'oik-blocks' , __DIR__ .'/languages' );
+    bw_trace2( $ok, "OK?");
 }
+
+/**
+ * Implements block_type_metadata filter to set the textdomain if not set.
+ *
+ * Note: $metadata['name'] will be set for each block.
+ *
+ * @param $metadata
+ * @return mixed
+ */
+function oik_blocks_block_type_metadata( $metadata ) {
+    if ( !isset( $metadata['textdomain']) ) {
+        $name = $metadata['name'];
+        $name_parts = explode( '/', $name );
+        $textdomain = $name_parts[0];
+        if ( 'oik-block' === $textdomain ) {
+            $textdomain = 'oik-blocks';
+        }
+        $metadata['textdomain'] = $textdomain;
+    }
+    return $metadata;
+}
+
 
 
 function oik_blocks_register_block_patterns() {
@@ -294,6 +326,8 @@ function oik_blocks_register_block_patterns() {
 function oik_blocks_plugins_loaded() {
 	oik_blocks_boot_libs();
 	oik_require_lib( "bwtrace" );
+	oik_require_lib( "bobbfunc");
+	bw_load_plugin_textdomain( "oik-blocks");
 }
 
 /**
