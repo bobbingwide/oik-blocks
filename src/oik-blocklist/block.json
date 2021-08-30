@@ -63,6 +63,5 @@
       "lineHeight": false
     }
   },
-  "keywords": [ "list", "block", "oik" ],
-  "textdomain": "oik-blocks"
+  "keywords": [ "list", "block", "oik" ]
 }
