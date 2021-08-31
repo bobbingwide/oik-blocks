@@ -62,12 +62,9 @@ const blockAttributes = {
  * But I don't know how map() works so it all appears to be arse about face.
  */
 const themeOptions = 
-{ default: "Default",
-  bar: "Bar",
+{ default: __("Default", 'oik-blocks' ),
+  bar: __("Bar", 'oik-blocks' ),
 };
-
-
-
 
 /**
  * Register 
@@ -126,11 +123,11 @@ export default registerBlockType(
           return [
 						
   					
-              <InspectorControls key="ic-nivo">
-								<PanelBody key="pb-nivo">
-									<TextControl label="Theme" value={props.attributes.theme} id="theme" onChange={onChangeTheme} />
-									<TextControl label="IDs" value={props.attributes.id} onChange={onChangeId} />
-									<TextControl label="Effect" value={props.attributes.effect} onChange={ partial( onChangeAttr, 'effect' )} /> 
+              <InspectorControls>
+								<PanelBody>
+									<TextControl label={__("Theme",'oik-blocks' )} value={props.attributes.theme} id="theme" onChange={onChangeTheme} />
+									<TextControl label={__("IDs", 'oik-blocks' )} value={props.attributes.id} onChange={onChangeId} />
+									<TextControl label={__("Effect",'oik-blocks' )} value={props.attributes.effect} onChange={ partial( onChangeAttr, 'effect' )} />
 									 
 																	
 									<SelectControl label="t2" value={props.attributes.theme}
