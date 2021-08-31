@@ -5,7 +5,7 @@ Tags: gutenberg, shortcode, blocks, oik
 Requires at least: 5.5.1
 Tested up to: 5.8
 Gutenberg compatible: Yes
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ The blocks in this plugin are a mixture of
 - prototype blocks to replace oik-shortcodes
 - and blocks to help document WordPress blocks.
  
-oik-blocks v1.0.0 provides 6 blocks
+oik-blocks v1.3.0 provides 6 blocks
 
 - Block icon
 - Block info
@@ -46,7 +46,7 @@ so have been deleted from this plugin.
 
 For more info on the blocks included in the plugin see:
 
-[blocks readme](https://github.com/bobbingwide/oik-blocks/tree/master/blocks)
+[blocks readme](https://github.com/bobbingwide/oik-blocks/tree/master/src)
 
 
 
@@ -65,16 +65,19 @@ Yes, it uses a number of other plugins:
 
 - oik 
 - oik-fields
-- Gutenberg and / or WordPress 5.0
+- Gutenberg and / or WordPress 5.0 or above
 - oik-nivo-slider
 - oik-user
 
 == Screenshots ==
-1. 
+1. to be completed
 
 == Upgrade Notice ==
+= 1.2.0 =
+Blocks are now internationalized.
+
 = 1.1.0 = 
-Upgrade in parallel with oik which now implements the Dynamic content block 
+Upgrade in parallel with oik (v4.3.0) which now implements the Dynamic content block. 
 
 = 1.0.0 =
 Upgrade for compatibility with WordPress 5.8 
@@ -143,13 +146,16 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 == Changelog ==
+= 1.2.0 =
+* Changed: Internationalized and localized #47
+ 
 = 1.1.0 =
 * Changed: Transfered oik/content-block to oik #34 
 
 = 1.0.0 =
 * Changed: Refactored to use wp-scripts and blocks registered from block.json,[github bobbingwide oik-blocks issues 47]
 * Deleted: Removed deprecated blocks implemented in other plugins,[github bobbingwide oik-blocks issues 47]
-* Tested: With WordPress 5.8 and WordPres Multi Site
+* Tested: With WordPress 5.8 and WordPress Multi Site
 * Tested: With Gutenberg 11.2.0
 * Tested: With PHP 8.0
 * Tested: With PHPUnit 9 

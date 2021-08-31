@@ -1,6 +1,6 @@
 {
 	"name": "oik-blocks",
-	"version": "1.0.0",
+	"version": "1.2.0",
 	"description": "More blocks and lazy smart shortcodes for the WordPress block editor.",
 	"author": "bobbingwide",
 	"license": "GPL-2.0-or-later",
