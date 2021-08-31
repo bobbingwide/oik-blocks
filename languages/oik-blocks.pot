@@ -2,14 +2,14 @@
 # This file is distributed under the GPL3+.
 msgid ""
 msgstr ""
-"Project-Id-Version: oik-blocks 1.1.0\n"
+"Project-Id-Version: oik-blocks 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/oik-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-08-30T21:58:01+00:00\n"
+"POT-Creation-Date: 2021-08-31T20:11:39+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 
@@ -66,44 +66,139 @@ msgstr ""
 msgid "Upgrade %1$s"
 msgstr ""
 
-#: build/index.js:1
-msgid "View block"
+#: build/index.js:669
+msgid "Blocks"
 msgstr ""
 
-#: build/index.js:1
+#: build/index.js:1441
+#: build/index.js:1951
 msgid "Show block link"
 msgstr ""
 
-#: build/index.js:1
+#: build/index.js:1445
 msgid "Show block icon"
 msgstr ""
 
-#: build/index.js:1
+#: build/index.js:1449
 msgid "Show block type name"
 msgstr ""
 
-#: build/index.js:1
+#: build/index.js:1453
 msgid "Show block title"
 msgstr ""
 
-#: build/index.js:1
+#: build/index.js:1457
+#: build/index.js:1955
 msgid "Show block description"
 msgstr ""
 
-#: build/index.js:1
+#: build/index.js:1461
 msgid "Show category"
 msgstr ""
 
-#: build/index.js:1
+#: build/index.js:1465
 msgid "Show keywords"
 msgstr ""
 
-#: build/index.js:1
+#: build/index.js:1469
 msgid "Show variations"
 msgstr ""
 
-#: build/index.js:1
+#: build/index.js:1624
+msgid "View block"
+msgstr ""
+
+#: build/index.js:1741
+msgid "Prefix"
+msgstr ""
+
+#: build/index.js:1959
 msgid "Show batch commands"
+msgstr ""
+
+#: build/index.js:1963
+msgid "Component"
+msgstr ""
+
+#: build/index.js:2043
+msgid "All"
+msgstr ""
+
+#: build/index.js:2044
+msgid "Featured image"
+msgstr ""
+
+#: build/index.js:2045
+msgid "File size of attachment"
+msgstr ""
+
+#: build/index.js:2046
+msgid "Image dimensions"
+msgstr ""
+
+#: build/index.js:2047
+msgid "Thumbnail"
+msgstr ""
+
+#: build/index.js:2048
+msgid "Google Maps Map"
+msgstr ""
+
+#: build/index.js:2049
+msgid "Page template name"
+msgstr ""
+
+#: build/index.js:2050
+msgid "Post date"
+msgstr ""
+
+#: build/index.js:2051
+msgid "Post modified date"
+msgstr ""
+
+#: build/index.js:2053
+msgid "Author name"
+msgstr ""
+
+#: build/index.js:2092
+#: build/index.js:2445
+msgid "Fields"
+msgstr ""
+
+#: build/index.js:2211
+msgid "Default"
+msgstr ""
+
+#: build/index.js:2212
+msgid "Bar"
+msgstr ""
+
+#: build/index.js:2276
+msgid "Theme"
+msgstr ""
+
+#: build/index.js:2281
+msgid "IDs"
+msgstr ""
+
+#: build/index.js:2285
+msgid "Effect"
+msgstr ""
+
+#: build/index.js:2388
+msgid "Logos"
+msgstr ""
+
+#: build/index.js:2390
+msgid "Genericons"
+msgstr ""
+
+#: build/index.js:2436
+msgid "User"
+msgstr ""
+
+#: build/index.js:2440
+msgid "Follow me icons style"
 msgstr ""
 
 #: src/oik-blockicon/block.json
