@@ -42,17 +42,17 @@ import {AlignmentControl, BlockControls, InspectorControls, useBlockProps, Plain
  * These are the different options for "virtual" fields
  */
 const fieldsOptions =
-    { "none": "All",
-        "featured": "Featured image",
-        "file_size": "File size of attachment",
-        "dimensions": "Image dimensions",
-        "thumbnail": "Thumbnail",
-        "googlemap": "Google Maps Map",
-        "template": "Page template name",
-        "post_date": "Post date",
-        "post_modified": "Post modified date",
-        //"author": "Author",
-        "author_name": "Author name"
+    { "none": __("All", 'oik-blocks' ),
+        "featured": __("Featured image", 'oik-blocks' ),
+        "file_size": __("File size of attachment", 'oik-blocks' ),
+        "dimensions": __("Image dimensions", 'oik-blocks' ),
+        "thumbnail": __("Thumbnail", 'oik-blocks' ),
+        "googlemap": __("Google Maps Map", 'oik-blocks' ),
+        "template": __("Page template name", 'oik-blocks' ),
+        "post_date": __("Post date", 'oik-blocks' ),
+        "post_modified": __("Post modified date", 'oik-blocks' ),
+        //"author": __("Author", 'oik-blocks' ),
+        "author_name": __("Author name", 'oik-blocks' )
     };
 
 
@@ -91,27 +91,19 @@ export default registerBlockType(
                 props.setAttributes( { [key] : value } );
             };
 
-
-
             return (
                 <Fragment>
                     <InspectorControls >
                         <PanelBody>
                             <PanelRow>
-                                <SelectControl label="Fields" value={props.attributes.fields}
+                                <SelectControl label={__("Fields", 'oik-blocks')} value={props.attributes.fields}
                                                options={ map( fieldsOptions, ( key, label ) => ( { value: label, label: key } ) ) }
                                                onChange={partial( onChangeAttr, 'fields' )}
                                 />
 
                             </PanelRow>
 
-                            <PanelRow>
 
-
-                            </PanelRow>
-                            <PanelRow>
-
-                            </PanelRow>
                         </PanelBody>
 
                     </InspectorControls>
@@ -121,10 +113,8 @@ export default registerBlockType(
                     />
                     </div>
                 </Fragment>
-
             );
         },
-
 
         save() {
             return null;

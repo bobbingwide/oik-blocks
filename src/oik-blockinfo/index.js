@@ -155,7 +155,7 @@ export default registerBlockType(
                         </PanelRow>
                         <PanelRow>
                             <ToggleControl
-                                label={ __( 'Show block link' ) }
+                                label={ __( 'Show block link', 'oik-blocks' ) }
                                 checked={ !! props.attributes.showBlockLink }
                                 onChange={ onChangeShowBlockLink }
 
@@ -163,7 +163,7 @@ export default registerBlockType(
                         </PanelRow>
                         <PanelRow>
                             <ToggleControl
-                                label={ __( 'Show block icon' ) }
+                                label={ __( 'Show block icon', 'oik-blocks' ) }
                                 checked={ !! props.attributes.showBlockIcon }
                                 onChange={ onChangeShowBlockIcon }
 
@@ -171,7 +171,7 @@ export default registerBlockType(
                         </PanelRow>
                         <PanelRow>
                             <ToggleControl
-                                label={ __( 'Show block type name' ) }
+                                label={ __( 'Show block type name', 'oik-blocks' ) }
                                 checked={ !! props.attributes.showBlockTypeName }
                                 onChange={ onChangeShowBlockTypeName }
 
@@ -179,7 +179,7 @@ export default registerBlockType(
                         </PanelRow>
                         <PanelRow>
                             <ToggleControl
-                                label={ __( 'Show block title' ) }
+                                label={ __( 'Show block title', 'oik-blocks' ) }
                                 checked={ !! props.attributes.showTitle }
                                 onChange={ onChangeShowTitle }
 
@@ -188,7 +188,7 @@ export default registerBlockType(
                         </PanelRow>
                         <PanelRow>
                             <ToggleControl
-                                label={ __( 'Show block description' ) }
+                                label={ __( 'Show block description', 'oik-blocks' ) }
                                 checked={ !! props.attributes.showDescription }
                                 onChange={ onChangeShowDescription }
 
@@ -197,7 +197,7 @@ export default registerBlockType(
                         </PanelRow>
                         <PanelRow>
                             <ToggleControl
-                                label={ __( 'Show category' ) }
+                                label={ __( 'Show category', 'oik-blocks' ) }
                                 checked={ !! props.attributes.showCategory }
                                 onChange={ onChangeShowCategory }
 
@@ -206,7 +206,7 @@ export default registerBlockType(
                         </PanelRow>
                         <PanelRow>
                             <ToggleControl
-                                label={ __( 'Show keywords' ) }
+                                label={ __( 'Show keywords', 'oik-blocks' ) }
                                 checked={ !! props.attributes.showKeywords }
                                 onChange={ onChangeShowKeywords }
 
@@ -215,7 +215,7 @@ export default registerBlockType(
                         </PanelRow>
                         <PanelRow>
                             <ToggleControl
-                                label={ __( 'Show variations' ) }
+                                label={ __( 'Show variations', 'oik-blocks' ) }
                                 checked={ !! props.attributes.showVariations }
                                 onChange={ onChangeShowVariations }
 

@@ -5,10 +5,11 @@
  * I supposed it's just a syntax thing.. modern JavaScript ES2015 vs original.
  * So here we have a mixture.
  *
- * @copyright (C) Copyright Bobbing Wide 2019,2020
+ * @copyright (C) Copyright Bobbing Wide 2019,2020,2021
  * @author Herb Miller @bobbingwide
  *
  */
+import { __ } from '@wordpress/i18n';
 
 const { Component }  = wp.element;
 const{ getBlockTypes, getBlockType, hasBlockSupport, getBlockVariations } = wp.blocks;
@@ -26,7 +27,7 @@ function BlockiconsSelect( { value, onChange, ...props } ) {
     return (
 
 
-            <SelectControl label="Blocks" value={ value } options={ options } onChange={ onChange } />
+            <SelectControl label={ __("Blocks", 'oik-blocks' )} value={ value } options={ options } onChange={ onChange } />
     );
         //this.renderBlockiconList();
 

@@ -104,7 +104,7 @@ export default registerBlockType(
                         </PanelRow>
                         <PanelRow>
                             <ToggleControl
-                                label={ __( 'Show block link' ) }
+                                label={ __( 'Show block link', 'oik-blocks' ) }
                                 checked={ !! props.attributes.showBlockLink }
                                 onChange={ onChangeShowBlockLink }
 
@@ -113,7 +113,7 @@ export default registerBlockType(
 
                         <PanelRow>
                         <ToggleControl
-                            label={ __( 'Show block description' ) }
+                            label={ __( 'Show block description', 'oik-blocks' ) }
                             checked={ !! props.attributes.showDescription }
                             onChange={ onChangeShowDescription }
 
@@ -122,7 +122,7 @@ export default registerBlockType(
                     </PanelRow>
                         <PanelRow>
                             <ToggleControl
-                                label={ __( 'Show batch commands' ) }
+                                label={ __( 'Show batch commands', 'oik-blocks' ) }
                                 checked={ !! props.attributes.showBatch }
                                 onChange={ onChangeShowBatch }
 
@@ -131,7 +131,7 @@ export default registerBlockType(
                         </PanelRow>
 
                     <PanelRow>
-                        <TextControl label={"Component"} value={ props.attributes.component} onChange={ onChangeComponent }/>
+                        <TextControl label={__( "Component", 'oik-blocks' )} value={ props.attributes.component} onChange={ onChangeComponent }/>
                     </PanelRow>
 
 

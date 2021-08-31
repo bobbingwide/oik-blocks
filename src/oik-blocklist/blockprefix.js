@@ -6,10 +6,11 @@
  * The onChange function will have to do that.
  *
  *
- * @copyright (C) Copyright Bobbing Wide 2019
+ * @copyright (C) Copyright Bobbing Wide 2019,2021
  * @author Herb Miller @bobbingwide
  *
  */
+import { __ } from '@wordpress/i18n';
 
 const { Component }  = wp.element;
 const{ getBlockTypes, getBlockType } = wp.blocks;
@@ -26,7 +27,7 @@ function BlockPrefixSelect( { value, onChange, ...props } ) {
     return (
 
 
-        <SelectControl label="Prefix" value={ value } options={ options } onChange={ onChange } />
+        <SelectControl label={ __("Prefix", 'oik-blocks' )} value={ value } options={ options } onChange={ onChange } />
     );
     //this.renderBlockiconList();
 
@@ -91,8 +92,5 @@ function getOptionLabel( block ) {
     var label = `${block.name} - ${ block.title }`;
     return label;
 }
-
-
-
 
 export  { BlockPrefixSelect, getNameSpace };
