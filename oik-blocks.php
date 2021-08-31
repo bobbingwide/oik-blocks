@@ -285,7 +285,8 @@ function oik_blocks_register_dynamic_blocks() {
      * from the locale specific .json file in the languages folder.
      */
     $ok = wp_set_script_translations( 'oik-block-blockicon-editor-script', 'oik-blocks' , __DIR__ .'/languages' );
-    bw_trace2( $ok, "OK?");
+    //bw_trace2( $ok, "OK?");
+    add_filter( 'load_script_textdomain_relative_path', 'oik_blocks_load_script_textdomain_relative_path', 10, 2);
 }
 
 /**
@@ -303,13 +304,32 @@ function oik_blocks_block_type_metadata( $metadata ) {
         $textdomain = $name_parts[0];
         if ( 'oik-block' === $textdomain ) {
             $textdomain = 'oik-blocks';
+            $metadata['textdomain'] = $textdomain;
         }
-        $metadata['textdomain'] = $textdomain;
+
     }
     return $metadata;
 }
 
-
+/**
+ * Filters $relative so that md5's match what's expected.
+ *
+ * Depending on how it was built the `build/index.js` may be preceded by `./` or `src/block-name/../../`.
+ * In either of these situations we want the $relative value to be returned as `build/index.js`.
+ * This then produces the correct md5 value and the .json file is found.
+ *
+ * @param $relative
+ * @param $src
+ *
+ * @return mixed
+ */
+function oik_blocks_load_script_textdomain_relative_path( $relative, $src ) {
+    if ( false !== strrpos( $relative, './build/index.js' )) {
+        $relative = 'build/index.js';
+    }
+    //bw_trace2( $relative, "relative");
+    return $relative;
+}
 
 function oik_blocks_register_block_patterns() {
 	if ( false ) {
