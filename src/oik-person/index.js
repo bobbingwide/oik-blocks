@@ -29,9 +29,9 @@ import { Fragment} from '@wordpress/element';
 import { map, partial } from 'lodash';
 
 var themeOptions = {
-    none: "Logos",
-    //dash: "Dashicons",
-    gener: "Genericons",
+    none: __("Logos", 'oik-blocks' ),
+    //dash: __("Dashicons", 'oik-blocks' ),
+    gener: __("Genericons", 'oik-blocks' ),
 };
 themeOptions = map( themeOptions, ( key, label ) => ( { value: label, label: key } ) );
 
@@ -68,17 +68,17 @@ export default registerBlockType(
                   <InspectorControls>
 								<PanelBody>
 								    <PanelRow>
-									    <TextControl label="User"
+									    <TextControl label={__("User", 'oik-blocks' )}
 											value={ props.attributes.user }
 											onChange={ onChangeUser }
 									    />
 								    </PanelRow>
                                     <PanelRow>
-                                        <SelectControl label="Follow me icons style" value={ props.attributes.theme } options={ themeOptions } onChange={ onChangeTheme } />
+                                        <SelectControl label={__("Follow me icons style",'oik-blocks' )} value={ props.attributes.theme } options={ themeOptions } onChange={ onChangeTheme } />
                                     </PanelRow>
 
                                     <PanelRow>
-                                        <TextControl label="Fields"
+                                        <TextControl label={__("Fields",'oik-blocks' )}
                                                      value={ props.attributes.fields }
                                                      onChange={ onChangeFields }
                                         />
