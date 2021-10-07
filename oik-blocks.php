@@ -243,6 +243,7 @@ function oik_blocks_loaded() {
 	add_action( "plugins_loaded", "oik_blocks_plugins_loaded", 100 );
 	add_action( "init", "oik_blocks_register_dynamic_blocks" );
 	add_action( 'init', 'oik_blocks_register_block_patterns' );
+	add_action( 'init', 'oik_blocks_prevent_nav_link_variations', 19 );
 	add_action( "oik_pre_theme_field", "oik_blocks_pre_theme_field" );
 }
 
@@ -335,6 +336,19 @@ function oik_blocks_register_block_patterns() {
 	if ( false ) {
 		oik_require( 'patterns/index.php', 'oik-patterns' );
 		oik_blocks_lazy_register_block_patterns();
+	}
+}
+
+/**
+ * Disables the creation of core/navigation-link variations.
+ *
+ * We hook into init at priority 19 in order to remove action hook that will register the
+ * navigation link variations. This is a bit draconian, but an easy first fix to showing too many Link blocks.
+ */
+function oik_blocks_prevent_nav_link_variations() {
+	$removed = remove_action( 'init', 'gutenberg_register_block_core_navigation_link', 20 );
+	if ( !$removed ) {
+		// That's interesting.
 	}
 }
 
