@@ -131,15 +131,12 @@ class BlockiconList extends Component {
  * @returns {JSX.Element}
  * @constructor
  */
-
 function BlockiconStyled( blocknamebarvariation, ...props ) {
     var block = getBlockorVariation( blocknamebarvariation );
     return(
         <div className={ props.className } >
             { block ? <Icon icon={ block.icon && block.icon.src ? block.icon.src : block.icon } /> : <p>Hmm</p> }
         </div>
-
-
     );
 }
 

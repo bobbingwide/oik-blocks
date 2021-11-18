@@ -79,5 +79,6 @@
       "lineHeight": false
     }
   },
-  "keywords": [ "info", "block", "oik" ]
+  "keywords": [ "info", "block", "oik" ],
+  "style": "file:../../build/style-index.css"
 }
