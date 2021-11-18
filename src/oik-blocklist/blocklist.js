@@ -1,19 +1,18 @@
 /*
  * Block list renderer - displays the Block list for the selected namespace prefix
  *
- * @copyright (C) Copyright Bobbing Wide 2019
+ * @copyright (C) Copyright Bobbing Wide 2019,2021
  * @author Herb Miller @bobbingwide
  *
  */
 
-const { getBlockType, getBlockTypes, getBlockContent, serialize } = wp.blocks;
-const { BlockIcon } = wp.blockEditor;
-const { Fragment, renderToString } = wp.element;
-// Get just the __() localization function from wp.i18n
-//const { renderToString } = wp.element.renderToString;
-const { __ } = wp.i18n;
-const { select } = wp.data;
-const { addQueryArgs} = wp.url;
+import { getBlockType, getBlockTypes, getBlockContent, serialize } from '@wordpress/blocks';
+import { BlockIcon } from '@wordpress/block-editor';
+import { Icon } from '@wordpress/components';
+import { Fragment, renderToString } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import { select } from '@wordpress/data';
+import { addQueryArgs } from '@wordpress/url';
 
 import { BlockiconStyled, BlockSupportsInserter } from '../oik-blockicon/blockicons.js';
 import { getNameSpace} from './blockprefix.js';
@@ -106,9 +105,6 @@ function getBlockLink( block ) {
 
 
 function BlockListItem( block, showBlockLink ) {
-/* { block.icon */
-
- //console.log( block );
     var blockLink = null;
 
     if ( showBlockLink ) {
@@ -122,11 +118,10 @@ function BlockListItem( block, showBlockLink ) {
     var blockSupportsInserter = null;
     blockSupportsInserter = BlockSupportsInserter( block) ;
 
-
     return( <Fragment key={block.block_name + '|' + block.name}>
 
             <dt >
-                <BlockIcon icon={block.icon} />
+                <Icon icon={ block.icon && block.icon.src ? block.icon.src : block.icon } />
             </dt>
 
             <dd>
@@ -148,18 +143,14 @@ function BlockListItem( block, showBlockLink ) {
                 <br />
                 {block.description}<br />
 
-
-
             </dd>
         </Fragment>
         );
 }
 
-
 /**
  * Removed BlockCreateItem - replaced by BlockCreateBlockLink
  */
-
 
 /**
  * Note that the variation parameter is the parent name for a variation.
