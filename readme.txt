@@ -3,9 +3,9 @@ Contributors: bobbingwide
 Donate link: https://www.oik-plugins.com/oik/oik-donate/
 Tags: gutenberg, shortcode, blocks, oik
 Requires at least: 5.5.1
-Tested up to: 5.8
+Tested up to: 5.8.2
 Gutenberg compatible: Yes
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,11 +73,14 @@ Yes, it uses a number of other plugins:
 1. to be completed
 
 == Upgrade Notice ==
+= 1.3.0 = 
+Update for compatibility with Gutenberg 11.9.0
+
 = 1.2.0 =
 Blocks are now internationalized.
 
 = 1.1.0 = 
-Upgrade in parallel with oik (v4.3.0) which now implements the Dynamic content block. 
+Upgrade in parallel with oik (v4.3.0 or higher) which now implements the Dynamic content block. 
 
 = 1.0.0 =
 Upgrade for compatibility with WordPress 5.8 
@@ -146,6 +149,14 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 == Changelog ==
+= 1.3.0 =
+* Changed: Rework display of BlockIcon related content for Gutenberg 11.9.0 compatibility #50
+* Changed: Improve CSS for BlockIcon related SVGs #51
+* Changed: Ensure front end CSS is enqueued for blocks that need it #50
+* Tested: With WordPress 5.8.2 and WordPress Multi Site
+* Tested: With Gutenberg 11.9.0
+* Tested: With PHP 8.0
+
 = 1.2.0 =
 * Changed: Internationalized and localized #47
  
