@@ -1,18 +1,15 @@
 /*
  * Block info renderer - displays the fields for the block info block
  *
- * @copyright (C) Copyright Bobbing Wide 2019,2020
+ * @copyright (C) Copyright Bobbing Wide 2019,2020,2021
  * @author Herb Miller @bobbingwide
  *
  */
 
-
 import {BlockSupportsInserter, getBlockorVariation} from "../oik-blockicon/blockicons";
 import {BlockVariations } from "../oik-blockicon/blockvariations";
-const { getBlockType } = wp.blocks;
 import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
 import { BlockListItem } from '../oik-blocklist/blocklist';
-
 
 /**
  *
@@ -43,6 +40,7 @@ function BlockinfoStyled( blocknamebarvariation, showBlockLink, showBlockIcon, s
     } else {
         //console.log( block );
         var blockicon = showBlockIcon ? BlockiconStyled(blocknamebarvariation, props) : null;
+        //console.log( blockicon );
         var blockTypeName = showBlockTypeName ? <div>{block.block_name} {block.name}</div> : null;
         var blockTitle = showTitle ? <div>{block.title}</div> : null;
         var blockDescription = showDescription ? <div>{block.description}</div> : null;
@@ -68,7 +66,6 @@ function BlockinfoStyled( blocknamebarvariation, showBlockLink, showBlockIcon, s
 
         );
     }
-
 
 }
 
