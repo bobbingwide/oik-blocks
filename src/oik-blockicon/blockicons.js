@@ -11,10 +11,12 @@
  */
 import { __ } from '@wordpress/i18n';
 
-const { Component }  = wp.element;
-const{ getBlockTypes, getBlockType, hasBlockSupport, getBlockVariations } = wp.blocks;
-const { BlockIcon } = wp.blockEditor;
-const { SelectControl } = wp.components;
+import { Component } from '@wordpress/element';
+import { getBlockTypes, getBlockType, hasBlockSupport, getBlockVariations } from '@wordpress/blocks';
+import { BlockIcon } from '@wordpress/block-editor';
+import { Icon } from '@wordpress/components';
+
+import { SelectControl } from '@wordpress/components';
 import { getAllBlockVariations, cloneVariation } from '../oik-blockicon/blockvariations';
 
 function BlockiconsSelect( { value, onChange, ...props } ) {
@@ -112,7 +114,7 @@ class BlockiconList extends Component {
         /* { block.icon */
         /* console.log( block ); */
         return( <li>
-            <BlockIcon icon={block.icon.src} />
+            <Icon icon={block.icon.src} />
             {block.name } {block.title }
         </li> );
     }
@@ -134,7 +136,7 @@ function BlockiconStyled( blocknamebarvariation, ...props ) {
     var block = getBlockorVariation( blocknamebarvariation );
     return(
         <div className={ props.className } >
-            { block ? <BlockIcon icon={ block.icon } /> : <p>Hmm</p> }
+            { block ? <Icon icon={ block.icon.src } /> : <p>Hmm</p> }
         </div>
 
 
@@ -145,7 +147,7 @@ function BlockiconStyled( blocknamebarvariation, ...props ) {
  * Retrieves a block or block variation.
  *
  *
- * @param blocknamebarvariation
+ * @param blocknamebarvariation string format `blockname|variation`
  * @returns {*}
  */
 
@@ -178,9 +180,7 @@ function getBlockorVariation( blocknamebarvariation ) {
 }
 
 function BlockSupportsInserter( block ) {
-
     return hasBlockSupport( block, 'inserter', true) ?  '' : ' ( Not insertable )';
 }
-
 
 export  { BlockiconsSelect, BlockiconStyled, BlockSupportsInserter, getBlockorVariation };
