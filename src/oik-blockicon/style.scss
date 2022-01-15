@@ -1,5 +1,6 @@
-/* oik-blockicon/style.scss */
-.wp-block-oik-block-blockicon svg {
+/* oik-blockicon/style.scss 0114 */
+.wp-block-oik-block-blockicon svg,
+.wp-block-oik-block-blockicon img {
   width: 24px;
   height: 24px;
   fill: currentColor;
@@ -21,7 +22,7 @@
 
 
 .wp-block-oik-block-blockicon.is-style-svg64 {
-    svg {
+    svg, img {
       width: 64px;
       height: 64px;
       max-height: 64px;
@@ -50,7 +51,8 @@
 }
 
 @mixin sizeablesvg( $svg-size, $sizepx ) {
-  .wp-block-oik-block-blockicon.#{$svg-size} svg {
+  .wp-block-oik-block-blockicon.#{$svg-size} svg,
+  .wp-block-oik-block-blockicon.#{$svg-size} img {
     width: $sizepx;
     height: $sizepx;
   }
@@ -65,7 +67,7 @@
 
 
   .wp-block-oik-block-blockicon.is-style-#{$svg-size} {
-    svg {
+    svg, img {
       width: $sizepx;
       height: $sizepx;
       max-height: $sizepx;
@@ -89,6 +91,3 @@
 }
 @include sizeablesvg( svg100, 100px );
 @include sizeablesvg( svg150, 150px );
-
-
-

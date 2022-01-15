@@ -1,9 +1,10 @@
-/* oik-blocklist/style.scss */
+/* oik-blocklist/style.scss 0114 */
 pre.wp-block-oik-block-blocklist {
     font-size: 10px;
   }
 
-.wp-block-oik-block-blocklist svg {
+.wp-block-oik-block-blocklist svg,
+.wp-block-oik-block-blocklist img {
   width: 24px;
   height: 24px;
   fill: currentColor;

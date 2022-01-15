@@ -1,7 +1,7 @@
+/* oik-blockinfo/style.scss 0114 */
 
-/* oik-blockinfo/style.scss */
-
-.wp-block-oik-block-blockinfo svg {
+.wp-block-oik-block-blockinfo svg,
+.wp-block-oik-block-blockinfo img {
   width: 24px;
   height: 24px;
   fill: currentColor;
@@ -10,7 +10,7 @@
 
 .wp-block-oik-block-blockinfo.svg64 {
 
-  svg {
+  svg, img {
   width: 64px;
   height: 64px;
   }
@@ -37,8 +37,8 @@
 }
 
 
-.wp-block-oik-block-blockicon .is-style-svg64 {
-    svg {
+.wp-block-oik-block-blockicon.is-style-svg64 {
+    svg, img {
       width: 64px;
       height: 64px;
       max-height: 64px;
