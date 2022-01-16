@@ -102,6 +102,7 @@ function getBlockLink( block ) {
     //console.log( 'getBlockLink');
     //console.log( block);
         var blockTitle = block.title.replace( / /g, '-' );
+        blockTitle = blockTitle.replace( '/', '-' );
         blockTitle = blockTitle.toLowerCase();
         var blockName = block.name.replace( '/', '-' );
         var blockLink = null;
