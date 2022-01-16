@@ -1,7 +1,7 @@
 /*
  * Block list renderer - displays the Block list for the selected namespace prefix
  *
- * @copyright (C) Copyright Bobbing Wide 2019,2021
+ * @copyright (C) Copyright Bobbing Wide 2019,2021,2022
  * @author Herb Miller @bobbingwide
  *
  */
@@ -23,14 +23,14 @@ import { getAllBlockVariations, getVariationLink } from '../oik-blockicon/blockv
  *
  * @param prefix
  * @param showBlockLink
- * @param showDescription
+ * @param showVariations
  * @param showBatch
  * @param component
  * @param props
  * @returns {JSX.Element}
  * @constructor
  */
-function BlockListStyled( prefix, showBlockLink, showDescription, showBatch, component, ...props ) {
+function BlockListStyled( prefix, showBlockLink, showVariations, showBatch, component, ...props ) {
     var prefix_array = prefix.split( '/' );
     const namespace = prefix_array[0];
 
@@ -38,36 +38,55 @@ function BlockListStyled( prefix, showBlockLink, showDescription, showBatch, com
     block_types = block_types.filter( namespaceFilter, namespace );
     //console.log( block_types );
     block_types = block_types.sort( (a, b) => a.title.localeCompare(b.title));
-
-    var block_variations = getAllBlockVariations( block_types );
-    block_variations = block_variations.sort( (a, b) => a.title.localeCompare(b.title));
-
-    block_types = block_types.concat( block_variations );
-    //console.log( block_types );
-
     var count_blocks = block_types.length;
-    //var blocklist = null;
+    var block_variations = getAllBlockVariations(block_types);
+    var variationsList = null;
+    if ( showVariations && showBatch ) {
+        //block_variations = block_variations.sort((a, b) => a.title.localeCompare(b.title));
+        if (showBlockLink) {
+            variationsList = block_variations.map((block) => BlockCreateBlockLink(block, component));
+        } else {
+            variationsList = block_variations.map((block) => BlockNoLink(block, component));
+        }
+    }
+
+    var blocklist = null;
 
     if ( showBatch ) {
         if ( showBlockLink ) {
 
-            var blocklist = <pre>
-        rem Blocks {count_blocks}
+            blocklist = <pre>
+                rem Blocks {count_blocks}
+                <br />
+                rem Variations { block_variations.length }
                 <br/>
                 {block_types.map((block) => BlockCreateBlockLink(block, component))}
-        </pre>
+                {variationsList}
+                </pre>
         } else {
-            var blocklist = <pre>
+            block_types = block_types.sort((a, b) => a.name.localeCompare(b.name));
+            blocklist = <pre>
                 rem Block {count_blocks }
                 <br />
+                rem Variations { block_variations.length }
+                <br/>
                 {block_types.map( (block) => BlockNoLink( block, component ))}
+                {variationsList}
             </pre>
         }
     } else {
-        var blocklist =
+        blocklist =
         <dl>
             {block_types.map((block) => BlockListItem(block, showBlockLink))}
         </dl>
+        if ( showVariations) {
+            var variationList =
+               
+                <dl>
+                    {block_variations.map((block ) => BlockListItem( block, showBlockLink )) }
+                </dl>
+            blocklist = <Fragment>{blocklist}<h3>Variations</h3>{variationList}</Fragment>
+        }
     }
     return( blocklist  );
 }
@@ -104,6 +123,14 @@ function getBlockLink( block ) {
     }
 
 
+/**
+ * Returns a formatted block list item.
+ *
+  * @param block
+ * @param showBlockLink
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function BlockListItem( block, showBlockLink ) {
     var blockLink = null;
 
@@ -113,6 +140,13 @@ function BlockListItem( block, showBlockLink ) {
         } else {
             blockLink = getVariationLink( block );
         }
+    }
+
+    var variationSep = null;
+    if  ( undefined === block.block_name || '' === block.block_name ) {
+        variationSep = '';
+    } else {
+        variationSep = ' : ';
     }
 
     var blockSupportsInserter = null;
@@ -130,14 +164,14 @@ function BlockListItem( block, showBlockLink ) {
                         href={ blockLink }
                         title={ __( 'View block', 'oik-blocks' ) }
                     >
-
-                {block.title } - {block.name }
+                        {block.block_title}{variationSep}{block.title } - {block.block_name} {block.name }
                     </a> ) }
 
 
                 {!showBlockLink && (
                     <span>
-                        {block.title} - {block.name} </span>)
+                        {block.block_title}{variationSep}{block.title } - {block.block_name} {block.name }
+                    </span>)
                 }
                 {blockSupportsInserter}
                 <br />
@@ -182,8 +216,20 @@ function BlockCreateBlockLink( block, component ) {
 }
 
 function BlockNoLink( block, component ) {
+    var block_name = '';
+    if ( undefined !== block.block_name ) {
+        block_name = block_name.concat( block.block_name, ' ' );
+    }
+    block_name = block_name.concat( block.name);
+
+    var block_title = '';
+    if ( undefined !== block.block_title ) {
+        block_title = block_title.concat( block.block_title, ' ' );
+    }
+    block_title = block_title.concat( block.title );
+
     return(
-        <Fragment>{block.title } - {block.name}<br /></Fragment>
+        <Fragment>{block_name },{block_title}<br /></Fragment>
     );
 }
 

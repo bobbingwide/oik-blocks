@@ -1,15 +1,20 @@
 /**
  * Implements the Block list block
  *
- * This block displays a list of blocks associated with a block type name prefix e.g. core, core-embed, oik-block
+ * This block displays a list of blocks associated with a block type name prefix e.g. core, oik-block
  * It's used to help populate the list of blocks for each component that we want to document.
+ *
+ * Use the showVariations toggle to include any block variations delivered with the prefix.
+ * For WordPress core this adds over 120 variations to the the original 71 core blocks.
+ *
+ * The number varies depending on the number of registered post types. See core/navigation-link
  *
  * Note: If the prefix is used by more than one plugin then the list of blocks should be produced
  * using the Block info block being repeated for each block that the plugin delivers.
  *
  * In the future this could be determined from the presence of the block.json files.
  *
- * @copyright (C) Copyright Bobbing Wide 2019, 2020, 2021
+ * @copyright (C) Copyright Bobbing Wide 2019, 2020, 2021, 2022
  * @author Herb Miller @bobbingwide
  */
 import './style.scss';
@@ -20,7 +25,6 @@ import classnames from 'classnames';
 
 import { registerBlockType, createBlock } from '@wordpress/blocks';
 import {AlignmentControl, BlockControls, InspectorControls, useBlockProps, PlainText, BlockIcon} from '@wordpress/block-editor';
-import ServerSideRender from '@wordpress/server-side-render';
 import {
     Toolbar,
     PanelBody,
@@ -70,8 +74,8 @@ export default registerBlockType(
                 props.setAttributes(  { showBlockLink: ! props.attributes.showBlockLink } );
             }
 
-            const onChangeShowDescription = ( event ) => {
-                props.setAttributes(  { showDescription: ! props.attributes.showDescription } );
+            const onChangeshowVariations = ( event ) => {
+                props.setAttributes(  { showVariations: ! props.attributes.showVariations } );
             }
 
             const onChangeShowBatch = ( event ) => {
@@ -84,7 +88,7 @@ export default registerBlockType(
 
             var blocklist = BlockListStyled( props.attributes.prefix,
                 props.attributes.showBlockLink,
-                props.attributes.showDescription,
+                props.attributes.showVariations,
                 props.attributes.showBatch,
                 props.attributes.component,
                 props );
@@ -113,9 +117,9 @@ export default registerBlockType(
 
                         <PanelRow>
                         <ToggleControl
-                            label={ __( 'Show block description', 'oik-blocks' ) }
-                            checked={ !! props.attributes.showDescription }
-                            onChange={ onChangeShowDescription }
+                            label={ __( 'Show block variations', 'oik-blocks' ) }
+                            checked={ !! props.attributes.showVariations }
+                            onChange={ onChangeshowVariations }
 
                         />
 
@@ -155,7 +159,7 @@ export default registerBlockType(
             const blockProps = useBlockProps.save();
             var blocklist = BlockListStyled( props.attributes.prefix,
                 props.attributes.showBlockLink,
-                props.attributes.showDescription,
+                props.attributes.showVariations,
                 props.attributes.showBatch,
                 props.attributes.component,
                 props );

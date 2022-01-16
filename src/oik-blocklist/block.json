@@ -14,7 +14,7 @@
       "type": "boolean",
       "default": true
     },
-    "showDescription": {
+    "showVariations": {
       "type": "boolean",
       "default": true
     },
