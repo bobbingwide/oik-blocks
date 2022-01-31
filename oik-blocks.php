@@ -26,7 +26,7 @@ function oik_blocks_frontend_styles() {
      * - oik-block/blockinfo
      * - oik-block/blocklist
      */
-    //wp_enqueue_style( 'dashicons');
+    wp_enqueue_style( 'dashicons');
 }
 
 /**
