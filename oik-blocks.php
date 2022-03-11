@@ -26,7 +26,7 @@ function oik_blocks_frontend_styles() {
      * - oik-block/blockinfo
      * - oik-block/blocklist
      */
-    wp_enqueue_style( 'dashicons');
+    //wp_enqueue_style( 'dashicons');
 }
 
 /**
@@ -273,6 +273,7 @@ function oik_blocks_register_dynamic_blocks() {
     $args = [ 'render_callback' => 'oik_blocks_dynamic_block_blockicon'];
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blockicon', $args );
 	bw_trace2( $registered, "registered");
+	$args = [ 'render_callback' => 'oik_blocks_dynamic_block_blockinfo'];
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blockinfo', $args );
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blocklist', $args );
 	$args = [ 'render_callback' => 'oik_blocks_dynamic_block_fields' ];
@@ -344,8 +345,14 @@ function oik_blocks_load_script_textdomain_relative_path( $relative, $src ) {
 /**
  * Server rendering dynamic blockicon block
  *
- * Enqueues dashicons if necessary.
- * ```
+ * Attempts to find the SVG equivalent of any dashicon.
+ * - Find which block's icon is needed
+ * - Checks the block's registration
+ * - If it's registered then get the dashicon name
+ * - And get the dashicon SVG to replace the dashicon HTML.
+ *
+ * Enqueues dashicons if it's necessary.
+ *  * ```
  * <div class="wp-block-oik-block-blockicon"><div><span class="dashicon dashicons dashicons-building"></span></div></div>
  * ```
  *
@@ -353,11 +360,47 @@ function oik_blocks_load_script_textdomain_relative_path( $relative, $src ) {
  * @return string generated HTML
  */
 function oik_blocks_dynamic_block_blockicon( $attributes, $content, $block ) {
-    if ( strpos( $content, 'dashicons-' ) ) {
-        wp_enqueue_style( 'dashicons' );
-    }
+	//bw_trace2();
+	if ( strpos( $content, 'dashicons-' ) ) {
+		$blockicon = $attributes['blockicon'];
+		//echo $blockicon;
+		$registration = WP_Block_Type_Registry::get_instance()->get_registered( $blockicon );
+		if ( $registration ) {
+			$icon=$registration->icon;
+			$html=\oik\oik_blocks\oik_blocks_check_server_func( "shortcodes/oik-dash.php", "oik-bob-bing-wide", "bw_dash" );
+			if ( ! $html ) {
+				$attributes=[ 'icon'=>$icon ];
+				$html      =bw_dash( $attributes, null, null );
+				$html      =oik_bob_bing_wide_server_side_wrapper( $attributes, $html );
+				$content   =$html;
+				return $content;
+			}
+		}
+		wp_enqueue_style( 'dashicons' );
+	}
+
     return $content;
 }
+
+/**
+ * Server rendering for oik-block/blockinfo and oik-block/blocklist.
+ *
+ * If there's a dashicon we need to enqueue dashicons.
+ *
+ * @param $attributes
+ * @param $content
+ * @param $block
+ *
+ * @return mixed
+ */
+
+function oik_blocks_dynamic_block_blockinfo( $attributes, $content, $block ) {
+	if ( strpos( $content, 'dashicons-' ) ) {
+		wp_enqueue_style( 'dashicons' );
+	}
+	return $content;
+}
+
 
 function oik_blocks_register_block_patterns() {
 	if ( false ) {
