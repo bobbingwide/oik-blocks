@@ -4,9 +4,9 @@
 * Donate link: https://www.oik-plugins.com/oik/oik-donate/
 * Tags: gutenberg, shortcode, blocks, oik
 * Requires at least: 5.5.1
-* Tested up to: 5.8.2
+* Tested up to: 5.9.1
 * Gutenberg compatible: Yes
-* Stable tag: 1.3.0
+* Stable tag: 1.4.0
 * License: GPLv3 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,7 +17,7 @@ The blocks in this plugin are a mixture of
 - prototype blocks to replace oik-shortcodes
 - and blocks to help document WordPress blocks.
 
-oik-blocks v1.3.0 provides 6 blocks
+oik-blocks v1.4.0 provides 6 blocks
 
 - Block icon
 - Block info
@@ -74,6 +74,9 @@ Yes, it uses a number of other plugins:
 1. to be completed
 
 ## Upgrade Notice 
+# 1.4.0 
+Update for improved display of Variations and SVG icons.
+
 # 1.3.0 
 Update for compatibility with Gutenberg 11.9.0
 
@@ -150,6 +153,17 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 ## Changelog 
+# 1.4.0 
+* Changed: Convert blockicons to SVG when possible or enqueue dashicons.css #41
+* Changed: Replace / with - in block title for Login/out block #27
+* Changed: Improve display of variations #27
+* Changed: Update build file: style-index.css #52
+* Changed: Support SVG image files for blockicon, blockinfo and blocklist #52
+* Tested: With WordPress 5.9.1 and WordPress Multi Site
+* Tested: With Gutenberg 12.7.1
+* Tested: With PHP 8.0
+
+
 # 1.3.0 
 * Changed: Rework display of BlockIcon related content for Gutenberg 11.9.0 compatibility #50
 * Changed: Improve CSS for BlockIcon related SVGs #51

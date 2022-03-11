@@ -7,12 +7,12 @@
  * @return generated HTML
  */
 function oik_blocks_shortcode_block( $attributes ) {
-	bw_trace2();
+	//bw_trace2();
 	$shortcode = bw_array_get( $attributes, "shortcode", null );
 	$content = bw_array_get( $attributes, "content", null );
 	unset( $attributes[ 'shortcode' ] );
 	unset( $attributes[ 'content' ] );
-	bw_trace2( $attributes, "atts", false );
+	//bw_trace2( $attributes, "atts", false );
 	
 	//BW_::p( $shortcode );
 	///BW_::p( $content );
