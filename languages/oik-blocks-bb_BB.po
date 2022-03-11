@@ -1,8 +1,8 @@
-# Copyright (C) 2021 Herb Miller
+# Copyright (C) 2022 Herb Miller
 # This file is distributed under the GPL3+.
 msgid ""
 msgstr ""
-"Project-Id-Version: oik-blocks 1.2.0\n"
+"Project-Id-Version: oik-blocks 1.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/oik-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Language: bb_BB\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-08-31T20:11:39+00:00\n"
+"POT-Creation-Date: 2022-03-11T10:10:08+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 msgid "oik-blocks"
@@ -62,138 +62,139 @@ msgstr "Atcvitae %1$s"
 msgid "Upgrade %1$s"
 msgstr "Ugparde %1$s"
 
-#: build/index.js:669
-msgid "Blocks"
-msgstr "Bolkcs"
-
-#: build/index.js:1441
-#: build/index.js:1951
-msgid "Show block link"
-msgstr "Sohw bolck lnik"
-
-#: build/index.js:1445
-msgid "Show block icon"
-msgstr "Sohw bolck iocn"
-
-#: build/index.js:1449
-msgid "Show block type name"
-msgstr "Sohw bolck tpye nmae"
-
-#: build/index.js:1453
-msgid "Show block title"
-msgstr "Sohw bolck ttile"
-
-#: build/index.js:1457
-#: build/index.js:1955
-msgid "Show block description"
-msgstr "Sohw bolck dsercpiiton"
-
-#: build/index.js:1461
-msgid "Show category"
-msgstr "Sohw ctageroy"
-
-#: build/index.js:1465
-msgid "Show keywords"
-msgstr "Sohw kyeowdrs"
-
-#: build/index.js:1469
-msgid "Show variations"
-msgstr "Sohw vraaiitnos"
-
-#: build/index.js:1624
-msgid "View block"
-msgstr "Veiw bolck"
-
-#: build/index.js:1741
+#: build/index.js:1
 msgid "Prefix"
 msgstr "Perifx"
 
-#: build/index.js:1959
+#: build/index.js:1
+msgid "View block"
+msgstr "Veiw bolck"
+
+#: build/index.js:1
+msgid "Blocks"
+msgstr "Bolkcs"
+
+#: build/index.js:1
+msgid "Show block link"
+msgstr "Sohw bolck lnik"
+
+#: build/index.js:1
+msgid "Show block icon"
+msgstr "Sohw bolck iocn"
+
+#: build/index.js:1
+msgid "Show block type name"
+msgstr "Sohw bolck tpye nmae"
+
+#: build/index.js:1
+msgid "Show block title"
+msgstr "Sohw bolck ttile"
+
+#: build/index.js:1
+msgid "Show block description"
+msgstr "Sohw bolck dsercpiiton"
+
+#: build/index.js:1
+msgid "Show category"
+msgstr "Sohw ctageroy"
+
+#: build/index.js:1
+msgid "Show keywords"
+msgstr "Sohw kyeowdrs"
+
+#: build/index.js:1
+msgid "Show variations"
+msgstr "Sohw vraaiitnos"
+
+#: build/index.js:1
+msgid "Show block variations"
+msgstr "Sohw bolck vraaiitnos"
+
+#: build/index.js:1
 msgid "Show batch commands"
 msgstr "Sohw btach cmoamdns"
 
-#: build/index.js:1963
+#: build/index.js:1
 msgid "Component"
 msgstr "Cmoopennt"
 
-#: build/index.js:2043
+#: build/index.js:1
 msgid "All"
 msgstr "All"
 
-#: build/index.js:2044
+#: build/index.js:1
 msgid "Featured image"
 msgstr "Faeuterd iamge"
 
-#: build/index.js:2045
+#: build/index.js:1
 msgid "File size of attachment"
 msgstr "Flie szie Of attcamhnet"
 
-#: build/index.js:2046
+#: build/index.js:1
 msgid "Image dimensions"
 msgstr "Iamge dmineisnos"
 
-#: build/index.js:2047
+#: build/index.js:1
 msgid "Thumbnail"
 msgstr "Tuhbmanil"
 
-#: build/index.js:2048
+#: build/index.js:1
 msgid "Google Maps Map"
 msgstr "Goolge Mpas MAp"
 
-#: build/index.js:2049
+#: build/index.js:1
 msgid "Page template name"
 msgstr "Pgae tmelptae nmae"
 
-#: build/index.js:2050
+#: build/index.js:1
 msgid "Post date"
 msgstr "Psot dtae"
 
-#: build/index.js:2051
+#: build/index.js:1
 msgid "Post modified date"
 msgstr "Psot mdofieid dtae"
 
-#: build/index.js:2053
+#: build/index.js:1
 msgid "Author name"
 msgstr "Atuohr nmae"
 
-#: build/index.js:2092
-#: build/index.js:2445
+#: build/index.js:1
 msgid "Fields"
 msgstr "Feidls"
 
-#: build/index.js:2211
+#: build/index.js:1
 msgid "Default"
 msgstr "Dfeualt"
 
-#: build/index.js:2212
+#: build/index.js:1
 msgid "Bar"
 msgstr "BAr"
 
-#: build/index.js:2276
+#: build/index.js:1
 msgid "Theme"
 msgstr "Tehme"
 
-#: build/index.js:2281
+#: build/index.js:1
 msgid "IDs"
 msgstr "IDs"
 
-#: build/index.js:2285
+#: build/index.js:1
 msgid "Effect"
 msgstr "Effcet"
 
-#: build/index.js:2388
+#: build/index.js:1
 msgid "Logos"
 msgstr "Lgoos"
 
-#: build/index.js:2390
+#: build/index.js:1
 msgid "Genericons"
 msgstr "Gnerecinos"
 
-#: build/index.js:2436
+#: build/index.js:1
 msgid "User"
 msgstr "Uesr"
 
-#: build/index.js:2440
+#: build/index.js:1
 msgid "Follow me icons style"
 msgstr "Floolw mE iocns sytle"
 
