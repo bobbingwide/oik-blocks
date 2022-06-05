@@ -90,6 +90,10 @@ function oik_blocks_fields_results( $html, $attributes ) {
 		$html .= "Please set featured image";
 	}
 
+	if( $html === null ) {
+	    $html = $fields;
+    }
+	
 	return $html;
 }
 
