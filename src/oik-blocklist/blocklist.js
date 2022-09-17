@@ -152,6 +152,13 @@ function BlockListItem( block, showBlockLink ) {
 
     var blockSupportsInserter = null;
     blockSupportsInserter = BlockSupportsInserter( block) ;
+    var blockDescription = null;
+    //console.log( block.description );
+    blockDescription = ( typeof block.description === 'string' ) ? block.description : 'TBC';
+    //blockDescription = <Fragment>{block.description}</Fragment>;
+
+    //console.log( block.block_name + '|' + block.name );
+    //console.log( blockDescription );
 
     return( <Fragment key={block.block_name + '|' + block.name}>
 
@@ -176,7 +183,7 @@ function BlockListItem( block, showBlockLink ) {
                 }
                 {blockSupportsInserter}
                 <br />
-                {block.description}<br />
+                {blockDescription}<br />
 
             </dd>
         </Fragment>
@@ -198,11 +205,13 @@ function BlockListItem( block, showBlockLink ) {
  */
 function BlockCreateBlockLink( block, component ) {
     var url = ajaxurl;
+    var blockDescription = ( typeof block.description === 'string') ? block.description : 'TBC';
+    //var blockDescription = renderToString( <Fragment>{block.description}</Fragment> );
     var keywords = block.keywords ? block.keywords.join() : null;
     url = addQueryArgs( url, { action: 'oiksc_create_or_update_block' });
     url = addQueryArgs( url, { title: block.title });
     url = addQueryArgs( url, { name: block.name });
-    url = addQueryArgs( url, { description: block.description });
+    url = addQueryArgs( url, { description:  blockDescription } );
     url = addQueryArgs( url, { component: component});
     url = addQueryArgs( url, { keywords: keywords});
     url = addQueryArgs( url, { category: block.category});
