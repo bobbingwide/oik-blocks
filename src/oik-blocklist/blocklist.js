@@ -154,7 +154,8 @@ function BlockListItem( block, showBlockLink ) {
     blockSupportsInserter = BlockSupportsInserter( block) ;
     var blockDescription = null;
     //console.log( block.description );
-    blockDescription = ( typeof block.description === 'string' ) ? block.description : 'TBC';
+    blockDescription = BlockDescription( block.description );
+    //    ( typeof block.description === 'string' ) ? block.description : <span>{block.description}</span>;
     //blockDescription = <Fragment>{block.description}</Fragment>;
 
     //console.log( block.block_name + '|' + block.name );
@@ -205,8 +206,9 @@ function BlockListItem( block, showBlockLink ) {
  */
 function BlockCreateBlockLink( block, component ) {
     var url = ajaxurl;
-    var blockDescription = ( typeof block.description === 'string') ? block.description : 'TBC';
+    //var blockDescription = ( typeof block.description === 'string') ? block.description : 'TBC';
     //var blockDescription = renderToString( <Fragment>{block.description}</Fragment> );
+    var blockDescription = BlockDescription( block.description );
     var keywords = block.keywords ? block.keywords.join() : null;
     url = addQueryArgs( url, { action: 'oiksc_create_or_update_block' });
     url = addQueryArgs( url, { title: block.title });
@@ -216,6 +218,8 @@ function BlockCreateBlockLink( block, component ) {
     url = addQueryArgs( url, { keywords: keywords});
     url = addQueryArgs( url, { category: block.category});
     url = addQueryArgs( url, { variation: block.block_name});
+    // This doesn't seem to work anymore!
+    console.log( block.icon );
     var blockIcon = renderToString( <BlockIcon icon={block.icon } /> );
     url = addQueryArgs( url, { icon: blockIcon });
     //console.log( url );
@@ -241,6 +245,36 @@ function BlockNoLink( block, component ) {
     return(
         <Fragment>{block_name },{block_title}<br /></Fragment>
     );
+}
+
+/**
+ * Returns a string for the block description.
+ *
+ * The renderToString() function doesn't work during save().
+ * This function is a hacky workaround for those blocks that
+ * don't simply provide a string.
+ * We assume we can use the content of the first block
+ * since it's expected to be a paragraph.
+ *
+ * @param description
+ * @returns {string}
+ * @constructor
+ */
+
+function BlockDescription( description ) {
+
+    if ( typeof description === 'string' ) {
+        return(description);
+    } else {
+        //console.log( description);
+        var descFromFirstPara = 'TBC';
+        var children = description.props.children;
+        if ( children[0].type === 'p' ) {
+            descFromFirstPara = children[0].props.children;
+        }
+        return( descFromFirstPara );
+    }
+
 }
 
 export  { BlockListStyled, BlockListItem };
