@@ -218,10 +218,12 @@ function BlockCreateBlockLink( block, component ) {
     url = addQueryArgs( url, { keywords: keywords});
     url = addQueryArgs( url, { category: block.category});
     url = addQueryArgs( url, { variation: block.block_name});
-    // This doesn't seem to work anymore!
-    console.log( block.icon );
-    var blockIcon = renderToString( <BlockIcon icon={block.icon } /> );
-    url = addQueryArgs( url, { icon: blockIcon });
+    // This doesn't seem to work anymore! We should probably be referencing block.icon.src
+    // Never mind, the icon was sometimes too large to pass on the URL
+    // So let's forget about it for now.
+    //console.log( block.icon );
+    //var blockIcon = renderToString( <BlockIcon icon={block.icon } /> );
+    //url = addQueryArgs( url, { icon: blockIcon });
     //console.log( url );
     return( <a key={block.name} href={ url }>
         Create/Update: {block.title} - {block.name}<br />
@@ -251,30 +253,31 @@ function BlockNoLink( block, component ) {
  * Returns a string for the block description.
  *
  * The renderToString() function doesn't work during save().
+ *
  * This function is a hacky workaround for those blocks that
  * don't simply provide a string.
- * We assume we can use the content of the first block
+ * We assume we can use the content of the first inner block
  * since it's expected to be a paragraph.
+ * If the first inner block is not a paragraph the description will be TBC.
  *
  * @param description
  * @returns {string}
  * @constructor
  */
-
 function BlockDescription( description ) {
-
     if ( typeof description === 'string' ) {
         return(description);
     } else {
-        //console.log( description);
+        //console.log( description );
         var descFromFirstPara = 'TBC';
+        //descFromFirstPara = renderToString( <Fragment> {description} </Fragment>);
+        //console.log( descFromFirstPara);
         var children = description.props.children;
         if ( children[0].type === 'p' ) {
             descFromFirstPara = children[0].props.children;
         }
         return( descFromFirstPara );
     }
-
 }
 
 export  { BlockListStyled, BlockListItem };
