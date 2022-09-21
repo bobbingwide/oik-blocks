@@ -265,10 +265,14 @@ function BlockNoLink( block, component ) {
  * @constructor
  */
 function BlockDescription( description ) {
+    //console.log( description );
+    if ( typeof description === 'boolean') {
+        return( '' );
+    }
     if ( typeof description === 'string' ) {
         return(description);
     } else {
-        //console.log( description );
+
         var descFromFirstPara = 'TBC';
         //descFromFirstPara = renderToString( <Fragment> {description} </Fragment>);
         //console.log( descFromFirstPara);
@@ -280,4 +284,4 @@ function BlockDescription( description ) {
     }
 }
 
-export  { BlockListStyled, BlockListItem };
+export  { BlockListStyled, BlockListItem, BlockDescription };

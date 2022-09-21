@@ -9,7 +9,7 @@
 import {BlockSupportsInserter, getBlockorVariation} from "../oik-blockicon/blockicons";
 import {BlockVariations } from "../oik-blockicon/blockvariations";
 import { BlockiconStyled } from '../oik-blockicon/blockicons.js';
-import { BlockListItem } from '../oik-blocklist/blocklist';
+import { BlockListItem, BlockDescription } from '../oik-blocklist/blocklist';
 
 /**
  *
@@ -43,7 +43,7 @@ function BlockinfoStyled( blocknamebarvariation, showBlockLink, showBlockIcon, s
         //console.log( blockicon );
         var blockTypeName = showBlockTypeName ? <div>{block.block_name} {block.name}</div> : null;
         var blockTitle = showTitle ? <div>{block.title}</div> : null;
-        var blockDescription = showDescription ? <div>{block.description}</div> : null;
+        var blockDescription = showDescription ? BlockDescription( block.description ) : null;
         var blockCategory = showCategory ? <div>{block.category}</div> : null;
         var keywords = block.keywords ? block.keywords.join() : null;
         var blockKeywords = showKeywords ? <div>{keywords}</div> : null;
