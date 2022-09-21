@@ -1,0 +1,72 @@
+{
+  "apiVersion": 2,
+  "name": "oik-block/blocklist",
+  "title": "Block list",
+  "category": "widgets",
+  "icon": "block-default",
+  "description": "Displays a list of Blocks for a chosen prefix",
+  "attributes": {
+    "prefix": {
+      "type": "string",
+      "default": "oik-block"
+    },
+    "showBlockLink": {
+      "type": "boolean",
+      "default": true
+    },
+    "showVariations": {
+      "type": "boolean",
+      "default": true
+    },
+    "showBatch": {
+      "type": "boolean",
+      "default": false
+    },
+    "component": {
+      "type": "string",
+      "default": ""
+    },
+    "textAlign": {
+      "type": "string"
+    },
+    "className": {
+      "type": "string"
+    },
+    "textColor": {
+      "type": "string"
+    },
+    "backgroundColor": {
+      "type": "string"
+    },
+    "style": {
+      "type": "object"
+    },
+    "fontSize": {
+      "type": "string"
+    },
+    "gradient": {
+      "type": "string"
+    }
+  },
+  "supports": {
+    "html": false,
+    "customClassName": true,
+    "className": true,
+    "color": {
+      "gradients": false,
+      "text": true,
+      "background": false,
+      "link": false
+    },
+    "typography": {
+      "fontSize": false,
+      "lineHeight": false
+    }
+  },
+  "keywords": [
+    "list",
+    "block",
+    "oik"
+  ],
+  "style": "file:../../build/style-index.css"
+}

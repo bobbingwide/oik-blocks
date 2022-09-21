@@ -1,0 +1,45 @@
+{
+  "apiVersion": 2,
+  "name": "oik-block/person",
+  "title": "Person",
+  "category": "common",
+  "icon": "admin-users",
+  "description": "Displays a person's information",
+  "attributes": {
+    "user": {
+      "type": "string",
+      "default": ""
+    },
+    "fields": {
+      "type": "string",
+      "default": "gravatar/about,bio,follow_me"
+    },
+    "theme": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "align": false,
+    "alignWide": false,
+    "alignFull": false,
+    "html": false,
+    "customClassName": false,
+    "className": true,
+    "color": {
+      "gradients": false,
+      "text": false,
+      "background": false,
+      "link": false
+    },
+    "typography": {
+      "fontSize": false,
+      "lineHeight": false
+    }
+  },
+  "keywords": [
+    "Person",
+    "oik"
+  ],
+  "style": "file:../../build/style-index.css"
+}

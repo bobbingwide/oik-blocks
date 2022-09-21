@@ -1,0 +1,45 @@
+{
+  "apiVersion": 2,
+  "name": "oik-block/nivo",
+  "title": "Nivo slider",
+  "category": "common",
+  "icon": "slides",
+  "description": "Nivo slider",
+  "attributes": {
+    "theme": {
+      "type": "string",
+      "default": "default"
+    },
+    "id": {
+      "type": "string",
+      "default": ""
+    },
+    "effect": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "align": false,
+    "alignWide": false,
+    "alignFull": false,
+    "html": false,
+    "customClassName": false,
+    "className": false,
+    "color": {
+      "gradients": false,
+      "text": false,
+      "background": false,
+      "link": false
+    },
+    "typography": {
+      "fontSize": false,
+      "lineHeight": false
+    }
+  },
+  "keywords": [
+    "Nivo",
+    "slider",
+    "oik"
+  ]
+}
