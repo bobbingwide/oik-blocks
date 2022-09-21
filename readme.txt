@@ -3,9 +3,9 @@ Contributors: bobbingwide
 Donate link: https://www.oik-plugins.com/oik/oik-donate/
 Tags: gutenberg, shortcode, blocks, oik
 Requires at least: 5.5.1
-Tested up to: 5.9.1
+Tested up to: 6.0.2
 Gutenberg compatible: Yes
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,6 +73,9 @@ Yes, it uses a number of other plugins:
 1. to be completed
 
 == Upgrade Notice ==
+= 1.4.1 =
+Upgrade to support blocks with complex descriptions. eg Jetpack/markdown.
+
 = 1.4.0 =
 Update for improved display of Variations and SVG icons. 
 
@@ -152,6 +155,13 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 == Changelog ==
+= 1.4.1 =
+* Changed: Supports different formats of block.description #55
+* Changed: Return field name when value not available #45
+* Tested: With WordPress 6.0.2 and WordPress Multi Site
+* Tested: With Gutenberg 14.1.0
+* Tested: With PHP 8.0 
+
 = 1.4.0 = 
 * Changed: Convert blockicons to SVG when possible or enqueue dashicons.css #41
 * Changed: Replace / with - in block title for Login/out block #27
