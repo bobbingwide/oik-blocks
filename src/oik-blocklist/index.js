@@ -82,6 +82,9 @@ export default registerBlockType(
                 props.setAttributes( { showBatch: ! props.attributes.showBatch } );
             }
 
+            const onChangeDetermineUpdates = ( event ) => {
+                props.setAttributes( { determineUpdates: ! props.attributes.determineUpdates } );
+            }
             const onChangeComponent = ( event ) => {
                 props.setAttributes( { component: event } );
             }
@@ -133,8 +136,18 @@ export default registerBlockType(
                             />
 
                         </PanelRow>
+                        <PanelRow>
+                            <ToggleControl
+                                label={ __( 'Determine updates to apply', 'oik-blocks' ) }
+                                checked={ !! props.attributes.determineUpdates }
+                                onChange={ onChangeDetermineUpdates }
 
-                    <PanelRow>
+                            />
+
+                        </PanelRow>
+
+
+                        <PanelRow>
                         <TextControl label={__( "Component", 'oik-blocks' )} value={ props.attributes.component} onChange={ onChangeComponent }/>
                     </PanelRow>
 

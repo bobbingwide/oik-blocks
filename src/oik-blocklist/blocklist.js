@@ -266,6 +266,9 @@ function BlockNoLink( block, component ) {
  */
 function BlockDescription( description ) {
     //console.log( description );
+    if ( undefined === description ) {
+        return( '' );
+    }
     if ( typeof description === 'boolean') {
         return( '' );
     }
