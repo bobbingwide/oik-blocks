@@ -279,6 +279,7 @@ function oik_blocks_register_dynamic_blocks() {
 	bw_trace2( $registered, "registered");
 	$args = [ 'render_callback' => 'oik_blocks_dynamic_block_blockinfo'];
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blockinfo', $args );
+    $args = [ 'render_callback' => 'oik_blocks_dynamic_block_blocklist'];
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blocklist', $args );
 	$args = [ 'render_callback' => 'oik_blocks_dynamic_block_fields' ];
 	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-fields', $args );
@@ -387,7 +388,7 @@ function oik_blocks_dynamic_block_blockicon( $attributes, $content, $block ) {
 }
 
 /**
- * Server rendering for oik-block/blockinfo and oik-block/blocklist.
+ * Server rendering for oik-block/blockinfo.
  *
  * If there's a dashicon we need to enqueue dashicons.
  *
@@ -397,13 +398,36 @@ function oik_blocks_dynamic_block_blockicon( $attributes, $content, $block ) {
  *
  * @return mixed
  */
-
 function oik_blocks_dynamic_block_blockinfo( $attributes, $content, $block ) {
+    if ( strpos( $content, 'dashicons-' ) ) {
+        wp_enqueue_style( 'dashicons' );
+    }
+    return $content;
+}
+
+/**
+ * Server rendering for oik-block/blocklist.
+ *
+ * If there's a dashicon we need to enqueue dashicons.
+ *
+ * I was going to use this function to render extra content when determineUpdates is true.
+ * This logic is actually implemented in oik-shortcodes; it hooks into `render_block_oik-block/blocklist`
+ *
+ * @param $attributes
+ * @param $content
+ * @param $block
+ *
+ * @return mixed
+ */
+function oik_blocks_dynamic_block_blocklist( $attributes, $content, $block ) {
 	if ( strpos( $content, 'dashicons-' ) ) {
 		wp_enqueue_style( 'dashicons' );
 	}
 	return $content;
 }
+
+
+
 
 
 function oik_blocks_register_block_patterns() {
