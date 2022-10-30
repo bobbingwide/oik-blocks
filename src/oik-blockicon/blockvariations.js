@@ -6,6 +6,7 @@
  *
  */
 import { BlockListItem } from "../oik-blocklist/blocklist";
+import {getNameSpace} from "../oik-blocklist/blockprefix";
 
 /**
  * Displays a list of block variations for the block.
@@ -20,6 +21,8 @@ function BlockVariations( blockname ) {
     }
     var blockVariations = blockname.variations;
     //console.log( blockVariations );
+    blockVariations = blockVariations.filter(templatepartFilter);
+    blockVariations = blockVariations.filter( postTermsFilter );
     return( <dl>
         { blockVariations.map(( variation ) => blockVariationLink( variation, blockname)) }
     </dl> );
@@ -46,21 +49,64 @@ function blockVariationLink( variation, block_type ) {
 function getAllBlockVariations( block_types ) {
     var block_variations = [];
     block_variations = block_types.map((block_type) => getPrefixedBlockVariations(block_type ));
-    console.log( block_variations );
+    //console.log( block_variations );
     block_variations = block_variations.flat();
-    console.log( block_variations);
+    //console.log( block_variations);
     return block_variations;
 }
 
 /**
- * Get prefixed is the wrong name now. It's just a cloned block variation.
+ * Get prefixed is the wrong name now.
+ *
+ * @TODO Rename the function. It's just a cloned block variation.
+ *
  * @param block_type
  * @returns {*}
  */
 function getPrefixedBlockVariations( block_type ) {
     var variations = block_type.variations;
+
+    //if ( isTemplatePart( block_type ) ) {
+    if ( block_type.name === 'core/template-part' ) {
+        variations = variations.filter(templatepartFilter);
+    } else if ( block_type.name === 'core/post-terms' ) {
+        variations = variations.filter( postTermsFilter );
+    }
     var prefixed_variations = variations.map(( variation ) => cloneVariation( variation, block_type ));
     return prefixed_variations;
+}
+
+/**
+ * Don't return variations of the template_part which are registered for the theme.
+ *
+ * @param element
+ * @param index
+ * @param array
+ * @returns {boolean}
+ */
+function templatepartFilter( element, index, array ) {
+   //console.log( element );
+   if ( element.attributes.hasOwnProperty( 'theme' )  ) {
+       return false;
+   }
+    return true;
+}
+
+/**
+ * Don't return variations of the core/post-terms block for CPTs
+ *
+ * @param element
+ * @param index
+ * @param array
+ * @returns {boolean}
+ */
+function postTermsFilter( element, index, array ) {
+    //console.log( element );
+    if ( 'category' === element.name || 'post_tag' === element.name ) {
+        return true;
+    }
+
+    return false;
 }
 
 /**
