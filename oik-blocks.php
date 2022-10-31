@@ -5,7 +5,7 @@
  * Description: WordPress blocks, aka Gutenberg blocks, for oik shortcodes.
  * Author: Herb Miller
  * Author URI: https://oik-plugins.com/author/bobbingwide
- * Version: 1.4.1
+ * Version: 1.4.2
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: oik-blocks

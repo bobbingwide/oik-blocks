@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="1.392133">
-    <testsuite name="oik-blocks" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="1.392133">
-      <testsuite name="Tests_issue_4225" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-blocks\tests\test-issue-4225.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="1.392133">
-        <testcase name="test_get_the_content_page_2" class="Tests_issue_4225" classname="Tests_issue_4225" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-blocks\tests\test-issue-4225.php" line="23" assertions="1" time="1.392133"/>
+  <testsuite name="" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.550910">
+    <testsuite name="oik-blocks" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.550910">
+      <testsuite name="Tests_issue_4225" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-blocks\tests\test-issue-4225.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.550910">
+        <testcase name="test_get_the_content_page_2" class="Tests_issue_4225" classname="Tests_issue_4225" file="C:\apache\htdocs\wordpress\wp-content\plugins\oik-blocks\tests\test-issue-4225.php" line="23" assertions="1" time="0.550910"/>
       </testsuite>
     </testsuite>
   </testsuite>
