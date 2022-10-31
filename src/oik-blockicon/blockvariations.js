@@ -20,7 +20,7 @@ function BlockVariations( blockname ) {
         return null;
     }
     var blockVariations = blockname.variations;
-    //console.log( blockVariations );
+        //console.log( blockVariations );
     blockVariations = blockVariations.filter(templatepartFilter);
     blockVariations = blockVariations.filter( postTermsFilter );
     return( <dl>
