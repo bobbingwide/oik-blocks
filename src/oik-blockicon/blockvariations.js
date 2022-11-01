@@ -19,10 +19,9 @@ function BlockVariations( blockname ) {
     if ( blockname.variations === undefined ) {
         return null;
     }
+    //console.log( blockname );
     var blockVariations = blockname.variations;
-        //console.log( blockVariations );
-    blockVariations = blockVariations.filter(templatepartFilter);
-    blockVariations = blockVariations.filter( postTermsFilter );
+    blockVariations = filterVariations( blockVariations, blockname.name );
     return( <dl>
         { blockVariations.map(( variation ) => blockVariationLink( variation, blockname)) }
     </dl> );
@@ -64,16 +63,27 @@ function getAllBlockVariations( block_types ) {
  * @returns {*}
  */
 function getPrefixedBlockVariations( block_type ) {
+    //console.log( block_type );
     var variations = block_type.variations;
-
-    //if ( isTemplatePart( block_type ) ) {
-    if ( block_type.name === 'core/template-part' ) {
-        variations = variations.filter(templatepartFilter);
-    } else if ( block_type.name === 'core/post-terms' ) {
-        variations = variations.filter( postTermsFilter );
-    }
+    variations = filterVariations( variations, block_type.name );
     var prefixed_variations = variations.map(( variation ) => cloneVariation( variation, block_type ));
     return prefixed_variations;
+}
+
+/**
+ * Filter out variations depending on the block_type
+ * @param variations
+ * @param block_type
+ * @returns {*}
+ */
+function filterVariations( variations, block_type ) {
+    //if ( isTemplatePart( block_type ) ) {
+    if ( block_type === 'core/template-part' ) {
+        variations = variations.filter(templatepartFilter);
+    } else if ( block_type === 'core/post-terms' ) {
+        variations = variations.filter( postTermsFilter );
+    }
+    return variations;
 }
 
 /**
