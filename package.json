@@ -1,6 +1,6 @@
 {
 	"name": "oik-blocks",
-	"version": "1.4.1",
+	"version": "1.4.3",
 	"description": "More blocks and lazy smart shortcodes for the WordPress block editor.",
 	"author": "bobbingwide",
 	"license": "GPL-2.0-or-later",
@@ -22,12 +22,12 @@
 		"l10n": "l10n oik-blocks"
 	},
 	"dependencies": {
-		"@wordpress/block-editor": "^10.0.0",
-		"@wordpress/blocks": "^11.16.0",
-		"@wordpress/i18n": "^4.17.0",
+		"@wordpress/block-editor": "^12.9.0",
+		"@wordpress/blocks": "^12.18.0",
+		"@wordpress/i18n": "^4.41.0",
 		"postcss": "^8.3.6"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^24.1.0"
+		"@wordpress/scripts": "^26.12.0"
 	}
 }
