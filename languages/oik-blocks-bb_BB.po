@@ -1,8 +1,8 @@
-# Copyright (C) 2022 Herb Miller
+# Copyright (C) 2023 Herb Miller
 # This file is distributed under the GPL3+.
 msgid ""
 msgstr ""
-"Project-Id-Version: oik-blocks 1.4.0\n"
+"Project-Id-Version: oik-blocks 1.4.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/oik-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,9 +11,9 @@ msgstr ""
 "Language: bb_BB\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-03-11T10:10:08+00:00\n"
+"POT-Creation-Date: 2023-09-19T20:38:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0\n"
+"X-Generator: WP-CLI 2.8.1\n"
 msgid "oik-blocks"
 msgstr "OIk-bolkcs"
 
@@ -26,39 +26,39 @@ msgstr "WroPderss bolkcs, AkA Gtuneebrg bolkcs, fOr OIk sohtroceds."
 msgid "Herb Miller"
 msgstr "Hreb Mlielr"
 
-msgid "https://oik-plugins.com/author/bobbingwide"
-msgstr "https://oik-plugins.com/author/bobbingwide"
+msgid "https://bobbingwide.com/about-bobbing-wide"
+msgstr "https://bobbingwide.com/about-bobbing-wide"
 
 #: libs/oik-depends.php:100
 msgid " version "
 msgstr "vreison"
 
-#: libs/oik-depends.php:103
+#: libs/oik-depends.php:104
 msgid "Plugin %1$s may not be fully functional."
 msgstr "Pulign %1$s mAy nOt bE fluly fnutcoianl."
 
-#: libs/oik-depends.php:106
-#: libs/oik-depends.php:152
+#: libs/oik-depends.php:108
+#: libs/oik-depends.php:156
 msgid "Please install and activate the required minimum version of this plugin: %1$s"
 msgstr "Pelsae isnatll And atcvitae thE rqeiuerd mnimium vreison Of tihs pulign: %1$s"
 
-#: libs/oik-depends.php:147
+#: libs/oik-depends.php:149
 msgid "version"
 msgstr "vreison"
 
-#: libs/oik-depends.php:150
+#: libs/oik-depends.php:153
 msgid "%1$s may not be fully functional."
 msgstr "%1$s mAy nOt bE fluly fnutcoianl."
 
-#: libs/oik-depends.php:284
+#: libs/oik-depends.php:289
 msgid "Install %1$s"
 msgstr "Isnatll %1$s"
 
-#: libs/oik-depends.php:312
+#: libs/oik-depends.php:318
 msgid "Activate %1$s"
 msgstr "Atcvitae %1$s"
 
-#: libs/oik-depends.php:330
+#: libs/oik-depends.php:337
 msgid "Upgrade %1$s"
 msgstr "Ugparde %1$s"
 
@@ -113,6 +113,10 @@ msgstr "Sohw bolck vraaiitnos"
 #: build/index.js:1
 msgid "Show batch commands"
 msgstr "Sohw btach cmoamdns"
+
+#: build/index.js:1
+msgid "Determine updates to apply"
+msgstr "Dtereimne udptaes tO apply"
 
 #: build/index.js:1
 msgid "Component"
@@ -198,21 +202,27 @@ msgstr "Uesr"
 msgid "Follow me icons style"
 msgstr "Floolw mE iocns sytle"
 
+#: build/oik-blockicon/block.json
 #: src/oik-blockicon/block.json
 msgctxt "block title"
 msgid "Block icon"
 msgstr "Bolck iocn"
 
+#: build/oik-blockicon/block.json
 #: src/oik-blockicon/block.json
 msgctxt "block description"
 msgid "Displays a Block icon"
 msgstr "Dsilpyas A Bolck iocn"
 
+#: build/oik-blockicon/block.json
 #: src/oik-blockicon/block.json
 msgctxt "block keyword"
 msgid "icon"
 msgstr "iocn"
 
+#: build/oik-blockicon/block.json
+#: build/oik-blockinfo/block.json
+#: build/oik-blocklist/block.json
 #: src/oik-blockicon/block.json
 #: src/oik-blockinfo/block.json
 #: src/oik-blocklist/block.json
@@ -220,6 +230,12 @@ msgctxt "block keyword"
 msgid "block"
 msgstr "bolck"
 
+#: build/oik-blockicon/block.json
+#: build/oik-blockinfo/block.json
+#: build/oik-blocklist/block.json
+#: build/oik-fields/block.json
+#: build/oik-nivo/block.json
+#: build/oik-person/block.json
 #: src/oik-blockicon/block.json
 #: src/oik-blockinfo/block.json
 #: src/oik-blocklist/block.json
@@ -230,86 +246,103 @@ msgctxt "block keyword"
 msgid "oik"
 msgstr "OIk"
 
+#: build/oik-blockinfo/block.json
 #: src/oik-blockinfo/block.json
 msgctxt "block title"
 msgid "Block info"
 msgstr "Bolck ifno"
 
+#: build/oik-blockinfo/block.json
 #: src/oik-blockinfo/block.json
 msgctxt "block description"
 msgid "Display a Block's information"
 msgstr "Dsilpay A Bolck's ifnroamiton"
 
+#: build/oik-blockinfo/block.json
 #: src/oik-blockinfo/block.json
 msgctxt "block keyword"
 msgid "info"
 msgstr "ifno"
 
+#: build/oik-blocklist/block.json
 #: src/oik-blocklist/block.json
 msgctxt "block title"
 msgid "Block list"
 msgstr "Bolck lsit"
 
+#: build/oik-blocklist/block.json
 #: src/oik-blocklist/block.json
 msgctxt "block description"
 msgid "Displays a list of Blocks for a chosen prefix"
 msgstr "Dsilpyas A lsit Of Bolkcs fOr A cohesn perifx"
 
+#: build/oik-blocklist/block.json
 #: src/oik-blocklist/block.json
 msgctxt "block keyword"
 msgid "list"
 msgstr "lsit"
 
+#: build/oik-fields/block.json
 #: src/oik-fields/block.json
 msgctxt "block title"
 msgid "Fields"
 msgstr "Feidls"
 
+#: build/oik-fields/block.json
 #: src/oik-fields/block.json
 msgctxt "block description"
 msgid "Displays fields."
 msgstr "Dsilpyas feidls."
 
+#: build/oik-fields/block.json
 #: src/oik-fields/block.json
 msgctxt "block keyword"
 msgid "field"
 msgstr "feild"
 
+#: build/oik-fields/block.json
 #: src/oik-fields/block.json
 msgctxt "block keyword"
 msgid "meta"
 msgstr "mtea"
 
+#: build/oik-nivo/block.json
 #: src/oik-nivo/block.json
 msgctxt "block title"
 msgid "Nivo slider"
 msgstr "Nvio siledr"
 
+#: build/oik-nivo/block.json
 #: src/oik-nivo/block.json
 msgctxt "block description"
 msgid "Nivo slider"
 msgstr "Nvio siledr"
 
+#: build/oik-nivo/block.json
 #: src/oik-nivo/block.json
 msgctxt "block keyword"
 msgid "Nivo"
 msgstr "Nvio"
 
+#: build/oik-nivo/block.json
 #: src/oik-nivo/block.json
 msgctxt "block keyword"
 msgid "slider"
 msgstr "siledr"
 
+#: build/oik-person/block.json
 #: src/oik-person/block.json
 msgctxt "block title"
 msgid "Person"
 msgstr "Preosn"
 
+#: build/oik-person/block.json
 #: src/oik-person/block.json
 msgctxt "block description"
 msgid "Displays a person's information"
 msgstr "Dsilpyas A preosn's ifnroamiton"
 
+#: build/oik-person/block.json
 #: src/oik-person/block.json
 msgctxt "block keyword"
 msgid "Person"
