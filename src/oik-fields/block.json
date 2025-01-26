@@ -1,5 +1,5 @@
 {
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "oik-block/fields",
   "title": "Fields",
   "category": "widgets",
@@ -54,5 +54,9 @@
       "lineHeight": false
     }
   },
-  "keywords": [ "field", "meta", "oik" ]
+  "keywords": [ "field", "meta", "oik" ],
+  "textdomain": "oik-blocks",
+  "editorScript": "file:../../build/fields.js",
+  "editorStyle": "file:../../build/fields.css",
+  "style": "file:../../build/style-fields.css"
 }

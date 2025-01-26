@@ -115,7 +115,7 @@ function getBlockLink( block ) {
             var postType = select( 'core/editor').getCurrentPostType();
             //console.log( postType );
 
-            prefix = siteurl.prefix.replace( postType, 'block');
+            prefix = siteurl.prefix.replace( '/' + postType + '/', '/block/');
         } else {
             console.log( "SiteURL's null");
         }

@@ -1,5 +1,5 @@
 {
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "oik-block/blocklist",
   "title": "Block list",
   "category": "widgets",
@@ -68,5 +68,8 @@
     }
   },
   "keywords": [ "list", "block", "oik" ],
-  "style": "file:../../build/style-index.css"
+  "textdomain": "oik-blocks",
+  "editorScript": "file:../../build/blocklist.js",
+  "editorStyle": "file:../../build/blocklist.css",
+  "style": "file:../../build/style-blocklist.css"
 }
