@@ -6,8 +6,7 @@ module.exports = {
         'blockinfo': './src/oik-blockinfo',
         'blocklist': './src/oik-blocklist',
         'fields': './src/oik-fields',
-        'person': './src/oik-person'
-        //'second-block': './src/second-block',
-        //'nivo': './src/nivo'
+        'person': './src/oik-person',
+        'nivo': './src/oik-nivo'
     },
 };

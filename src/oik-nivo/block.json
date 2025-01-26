@@ -1,5 +1,5 @@
 {
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "oik-block/nivo",
   "title": "Nivo slider",
   "category": "common",
@@ -37,5 +37,9 @@
       "lineHeight": false
     }
   },
-  "keywords": [ "Nivo", "slider", "oik" ]
+  "keywords": [ "Nivo", "slider", "oik" ],
+  "textdomain": "oik-blocks",
+  "editorScript": "file:../../build/nivo.js",
+  "editorStyle": "file:../../build/nivo.css",
+  "style": "file:../../../build/style-nivo.css"
 }

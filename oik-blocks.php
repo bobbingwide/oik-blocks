@@ -286,7 +286,7 @@ function oik_blocks_register_dynamic_blocks() {
 	$registered = register_block_type_from_metadata( __DIR__ .'/build/oik-blocklist', $args );
 	$args = [ 'render_callback' => 'oik_blocks_dynamic_block_fields' ];
 	$registered = register_block_type_from_metadata( __DIR__ .'/build/oik-fields', $args );
-	//$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-nivo' );
+	$registered = register_block_type_from_metadata( __DIR__ .'/build/oik-nivo' );
 	$args = [ 'render_callback' => 'oik_blocks_dynamic_block_person' ];
 	$registered = register_block_type_from_metadata( __DIR__ .'/build/oik-person', $args );
 
