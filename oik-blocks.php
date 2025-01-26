@@ -5,7 +5,7 @@
  * Description: WordPress blocks, aka Gutenberg blocks, for oik shortcodes.
  * Author: Herb Miller
  * Author URI: https://bobbingwide.com/about-bobbing-wide
- * Version: 1.4.3
+ * Version: 1.4.4
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain: oik-blocks
@@ -56,6 +56,8 @@ function oik_blocks_dynamic_block_fields( $attributes ) {
 			oik_is_block_renderer( true );
 		}
 		$attributes = oik_blocks_fields_attributes( $attributes );
+		$attributes['id'] = '.';
+		bw_trace2( $attributes, 'attributes', false );
 		$html = bw_metadata( $attributes, null, null );
 		$html = oik_blocks_fields_results( $html, $attributes );
 	}
@@ -72,6 +74,7 @@ function oik_blocks_fields_attributes( $attributes ) {
 	$fields = bw_array_get( $attributes, "fields", "none" );
 	if ( "none" === $fields ) {
 		unset( $attributes[ 'fields' ] );
+
 	}
 	return $attributes;
 }
@@ -244,7 +247,7 @@ function oik_blocks_oik_add_shortcodes() {
 function oik_blocks_loaded() {
 	add_action('enqueue_block_assets', 'oik_blocks_frontend_styles');
 	add_action( "oik_loaded", "oik_blocks_oik_loaded" );
-	add_action( "plugins_loaded", "oik_blocks_plugins_loaded", 100 );
+	//add_action( "plugins_loaded", "oik_blocks_plugins_loaded", 100 );
 	add_action( "init", "oik_blocks_register_dynamic_blocks" );
 	add_action( 'init', 'oik_blocks_register_block_patterns' );
 	//add_action( 'init', 'oik_blocks_prevent_nav_link_variations', 19 );
@@ -275,17 +278,17 @@ function oik_blocks_register_dynamic_blocks() {
     add_filter( 'block_type_metadata', 'oik_blocks_block_type_metadata', 10 );
 
     $args = [ 'render_callback' => 'oik_blocks_dynamic_block_blockicon'];
-	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blockicon', $args );
+	$registered = register_block_type_from_metadata( __DIR__ .'/build/oik-blockicon', $args );
 	bw_trace2( $registered, "registered");
 	$args = [ 'render_callback' => 'oik_blocks_dynamic_block_blockinfo'];
-	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blockinfo', $args );
+	$registered = register_block_type_from_metadata( __DIR__ .'/build/oik-blockinfo', $args );
     $args = [ 'render_callback' => 'oik_blocks_dynamic_block_blocklist'];
-	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-blocklist', $args );
+	$registered = register_block_type_from_metadata( __DIR__ .'/build/oik-blocklist', $args );
 	$args = [ 'render_callback' => 'oik_blocks_dynamic_block_fields' ];
-	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-fields', $args );
-	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-nivo' );
+	$registered = register_block_type_from_metadata( __DIR__ .'/build/oik-fields', $args );
+	//$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-nivo' );
 	$args = [ 'render_callback' => 'oik_blocks_dynamic_block_person' ];
-	$registered = register_block_type_from_metadata( __DIR__ .'/src/oik-person', $args );
+	$registered = register_block_type_from_metadata( __DIR__ .'/build/oik-person', $args );
 
     /**
      * Localise the script by loading the required strings for the build/index.js file
