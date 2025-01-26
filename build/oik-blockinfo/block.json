@@ -1,5 +1,5 @@
 {
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "oik-block/blockinfo",
   "title": "Block info",
   "category": "widgets",
@@ -84,5 +84,8 @@
     "block",
     "oik"
   ],
-  "style": "file:../../build/style-index.css"
+  "textdomain": "oik-blocks",
+  "editorScript": "file:../../build/blockinfo.js",
+  "editorStyle": "file:../../build/blockinfo.css",
+  "style": "file:../../build/style-blockinfo.css"
 }

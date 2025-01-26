@@ -1,5 +1,5 @@
 {
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "oik-block/person",
   "title": "Person",
   "category": "common",
@@ -41,5 +41,8 @@
     "Person",
     "oik"
   ],
-  "style": "file:../../build/style-index.css"
+  "textdomain": "oik-blocks",
+  "editorScript": "file:../../build/person.js",
+  "editorStyle": "file:../../build/person.css",
+  "style": "file:../../build/style-person.css"
 }

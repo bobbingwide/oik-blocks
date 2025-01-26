@@ -1,5 +1,5 @@
 {
-  "apiVersion": 2,
+  "apiVersion": 3,
   "name": "oik-block/blockicon",
   "title": "Block icon",
   "category": "widgets",
@@ -52,7 +52,8 @@
     "block",
     "oik"
   ],
-  "editorScript": "file:../../build/index.js",
-  "editorStyle": "file:../../build/index.css",
-  "style": "file:../../build/style-index.css"
+  "textdomain": "oik-blocks",
+  "editorScript": "file:../../build/blockicon.js",
+  "editorStyle": "file:../../build/blockicon.css",
+  "style": "file:../../build/style-blockicon.css"
 }
