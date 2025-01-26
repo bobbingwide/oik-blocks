@@ -1,4 +1,7 @@
 == Upgrade Notice ==
+= 1.4.3 =
+Upgrade for PHP 8.2 support.
+
 = 1.4.2 =
 Update for improved listing of variations for core blocks and support for automatic block updates.
 
@@ -84,6 +87,14 @@ No longer displays the Preferred editor meta box
 Forked from oik-block which will now only implement opinions.
 
 == Changelog ==
+= 1.4.3 = 
+* Changed: Build with wp-scripts v26.12.0 #47
+* Changed: Support PHP 8.2 #63
+* Changed: Block list: Add filterVariations function #54
+* Tested: With WordPress 6.4.1 and WordPress Multisite
+* Tested: With Gutenberg 16.6.0
+* Tested: With PHP 8.2
+
 = 1.4.2 = 
 * Changed: Filter out variations of core/template-part and core/post-terms for CPTs #27, #54
 * Changed: Add determineUpdates toggle #57

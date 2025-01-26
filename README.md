@@ -4,9 +4,9 @@
 * Donate link: https://www.oik-plugins.com/oik/oik-donate/
 * Tags: gutenberg, shortcode, blocks, oik
 * Requires at least: 5.5.1
-* Tested up to: 6.3.1
+* Tested up to: 6.7.1
 * Gutenberg compatible: Yes
-* Stable tag: 1.4.3
+* Stable tag: 1.4.4
 * License: GPLv3 or later
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -74,22 +74,23 @@ Yes, it uses a number of other plugins:
 1. to be completed
 
 ## Upgrade Notice 
-# 1.4.3 
-Upgrade for PHP 8.2 support.
+# 1.4.4 
+Now delivers each block individually. No longer delivers the Nivo block ( oik-block/nivo )
 
 ## Changelog 
-# 1.4.3 
-* Changed: Build with wp-scripts v26.12.0 #47
-* Changed: Support PHP 8.2 #63
-* Changed: Block list: Add filterVariations function #54
-* Tested: With WordPress 6.3.1 and WordPress Multisite
-* Tested: With Gutenberg 16.6.0
-* Tested: With PHP 8.2
-
-
+# 1.4.4 
+* Changed: Set id=. before calling bw_metadata #67
+* Changed: Multiple entry points for blocks. No longer build nivo #66
+* Changed: Register blocks from build #66
+* Changed: blocklist/blockinfo - Correct the URL update #66
+* Changed: Use clsx instead of classnames. Deliver multiple entry points. Update to apiversion: 3 #66
+* Changed: Update wp-scripts to v30.9.0, add clsx package #66
+* Changed: Reconcile bobbfunc shared library
+* Tested: With WordPress 6.7.1 and WordPress Multisite
+* Tested: With Gutenberg 19.7.0
+* Tested: With PHP 8.3
 
 ## Further reading 
 If you want to read more about the oik plugins then please visit the
 [oik plugin](https://www.oik-plugins.com/oik)
 **"the oik plugin - for often included key-information"**
-
